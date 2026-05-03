@@ -331,8 +331,8 @@ def slide6():
 # Glass card qualificador + pill DIAGNÓSTICO + instrução
 # ============================================================
 def slide7():
-    img = photo_uri("trio_reuniao.png")
-    pos = photo_position("trio_reuniao.png")
+    img = photo_uri("lucas_derick.jpeg")
+    pos = photo_position("lucas_derick.jpeg")
     return f'''<div class="slide" style="background:{INK["void"]};">
       {logo_mark(dark_bg=True, size=32)}
       {slide_index(7, TOTAL)}
