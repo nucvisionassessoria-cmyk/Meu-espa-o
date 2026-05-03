@@ -274,6 +274,7 @@ def logo_mark(dark_bg=True, size=28, position="top-center"):
 # PHOTO SYSTEM — focal-point-aware crops + cinematic treatments
 # ============================================================
 PHOTO_META = {
+    "trio_reuniao.png":   {"focal": (50, 40), "type": "trio_portrait",      "best": ["hero", "cta", "authority"]},
     "lucas_derick.jpeg":  {"focal": (50, 30), "type": "duo_action",         "best": ["hero", "cta", "context"]},
     "lucas_3.jpeg":       {"focal": (50, 38), "type": "solo_full_body",     "best": ["protagonist", "authority"]},
     "lucas_2.jpeg":       {"focal": (50, 18), "type": "solo_full_body",     "best": ["protagonist"]},
