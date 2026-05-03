@@ -27,33 +27,48 @@ TOTAL = 7
 # editorial kicker + headline anchored top
 # ============================================================
 def slide1():
-    return f'''<div class="slide" style="{bg_brand_atmo()}">
-      {overlay_noise(0.4)}
+    img = photo_uri("lucas_derick.jpeg")
+    pos = photo_position("lucas_derick.jpeg")
+    return f'''<div class="slide" style="background:{INK["void"]};">
       {logo_mark(dark_bg=True, size=26)}
       {slide_index(1, TOTAL)}
 
-      <!-- TOP TEXT BLOCK -->
-      <div style="position:absolute;top:64px;left:28px;right:28px;z-index:15;">
-        {kicker("Diagnóstico Estratégico", color="rgba(255,255,255,0.78)")}
-        <div style="font-family:{FONTS["body"]};font-size:30px;font-weight:600;
-                    color:#fff;line-height:1.02;letter-spacing:{TRACK["tight"]};
-                    margin-top:14px;">Sua empresa<br>vende.</div>
+      <!-- FULL-BLEED PHOTO — strong top-fade overlay lets typography sit cleanly -->
+      <div style="position:absolute;inset:0;z-index:1;">
+        <img src="{img}" style="width:100%;height:100%;object-fit:cover;
+                   object-position:{pos};filter:contrast(1.07) saturate(1.05) brightness(0.80);">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,
+                    rgba(10,15,26,0.92) 0%, rgba(10,15,26,0.70) 38%,
+                    rgba(10,15,26,0.22) 65%, transparent 100%);
+                    pointer-events:none;"></div>
       </div>
 
-      <!-- PHOTO BOTTOM (full bleed) -->
-      <div style="position:absolute;bottom:0;left:0;right:0;height:54%;z-index:5;overflow:hidden;">
-        {photo_layered("lucas_derick.jpeg", "hero")}
+      {overlay_noise(0.30, blend="soft-light", z=4)}
+
+      <!-- EDITORIAL DISPLAY STACK — full Anton, V4-grade -->
+      <div style="position:absolute;top:58px;left:28px;right:28px;z-index:15;">
+        {kicker("Diagnóstico Estratégico", color="rgba(255,255,255,0.65)")}
+
+        <div style="margin-top:14px;line-height:0.86;">
+          <div class="display" style="font-size:80px;color:#fff;
+                      text-shadow:0 4px 28px rgba(0,0,0,0.55);">SUA</div>
+          <div class="display" style="font-size:66px;color:#fff;
+                      text-shadow:0 4px 28px rgba(0,0,0,0.55);">EMPRESA</div>
+          <div class="display" style="font-size:80px;color:{ACCENT["light"]};
+                      text-shadow:0 4px 28px rgba(0,0,0,0.55),
+                                  0 0 36px rgba(30,197,242,0.30);">VENDE.</div>
+        </div>
+
+        <!-- Conflict pill -->
+        <div style="margin-top:16px;">
+          {display_pill("MAS NÃO CRESCE.", accent="primary", size=36, glow=True)}
+        </div>
       </div>
 
-      <!-- DISPLAY PILL straddling the seam -->
-      <div style="position:absolute;top:46%;left:28px;right:28px;z-index:18;text-align:left;">
-        {display_pill("MAS NÃO CRESCE.", accent="white", size=44, glow=False)}
-      </div>
-
-      <!-- BOTTOM-LEFT WATERMARK -->
-      <div style="position:absolute;bottom:30px;left:28px;z-index:18;">
+      <!-- WATERMARK -->
+      <div style="position:absolute;bottom:40px;left:28px;z-index:18;">
         <div style="font-family:{FONTS["body"]};font-size:9px;font-weight:600;
-                    color:rgba(255,255,255,0.55);letter-spacing:{TRACK["label"]};
+                    color:rgba(255,255,255,0.42);letter-spacing:{TRACK["label"]};
                     text-transform:uppercase;">@nucvision · Estrutura · Crescimento</div>
       </div>
 
@@ -163,21 +178,21 @@ def slide4():
         ("04", "Marketing desconectado",  "Gera lead, mas o lead não converte."),
         ("05", "Atendimento sem padrão",  "Cliente vive uma experiência aleatória."),
     ]
-    rows = "".join(f'<div style="margin-bottom:8px;">{feature_row(n, l, d, dark=False)}</div>'
+    rows = "".join(f'<div style="margin-bottom:4px;">{feature_row(n, l, d, dark=False)}</div>'
                    for n, l, d in items)
 
     return f'''<div class="slide" style="{bg_paper_atmo()}">
       {logo_mark(dark_bg=False, size=24)}
       {slide_index(4, TOTAL, light=True)}
 
-      <div style="position:absolute;top:62px;left:24px;right:24px;z-index:10;">
+      <div style="position:absolute;top:60px;left:24px;right:24px;bottom:46px;z-index:10;overflow:hidden;">
         {kicker("Os Gargalos", color=ACCENT["primary"], light=True)}
 
-        <div style="display:flex;align-items:baseline;gap:10px;margin-top:10px;
-                    margin-bottom:20px;">
-          <div class="display" style="font-size:46px;color:{ACCENT["primary"]};line-height:0.86;
+        <div style="display:flex;align-items:baseline;gap:10px;margin-top:8px;
+                    margin-bottom:12px;">
+          <div class="display" style="font-size:42px;color:{ACCENT["primary"]};line-height:0.86;
                       letter-spacing:{TRACK["tight"]};">5</div>
-          <div style="font-family:{FONTS["body"]};font-size:21px;font-weight:600;
+          <div style="font-family:{FONTS["body"]};font-size:19px;font-weight:600;
                       color:{INK["deep"]};line-height:1.1;letter-spacing:{TRACK["tight"]};">
             falhas invisíveis<br>que travam crescimento.
           </div>
@@ -195,9 +210,9 @@ def slide4():
 # ============================================================
 def slide5():
     img_office = photo_uri("iago_office_2.png")
-    img_field  = photo_uri("iago_2.png")
+    img_field  = photo_uri("derick_1.png")
     pos_office = photo_position("iago_office_2.png")
-    pos_field  = photo_position("iago_2.png")
+    pos_field  = photo_position("derick_1.png")
 
     return f'''<div class="slide" style="{bg_dark_atmo()}">
       {overlay_noise(0.45)}
