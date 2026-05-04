@@ -45,25 +45,25 @@ def slide1():
 
       {overlay_noise(0.28, blend="soft-light", z=4)}
 
-      <!-- DISPLAY STACK — Anton, provocativo -->
+      <!-- DISPLAY STACK — setup em corpo + punchline Anton -->
       <div style="position:absolute;top:56px;left:28px;right:28px;z-index:15;">
         {kicker("Cultura Empresarial", color="rgba(255,255,255,0.62)")}
 
-        <div style="margin-top:14px;line-height:0.86;">
-          <div class="display" style="font-size:80px;color:#fff;
-                      text-shadow:0 4px 28px rgba(0,0,0,0.55);">SUA</div>
-          <div class="display" style="font-size:66px;color:#fff;
-                      text-shadow:0 4px 28px rgba(0,0,0,0.55);">EMPRESA</div>
-          <div class="display" style="font-size:66px;color:#fff;
-                      text-shadow:0 4px 28px rgba(0,0,0,0.55);">DEPENDE</div>
-          <div class="display" style="font-size:66px;color:{ACCENT["light"]};
-                      text-shadow:0 4px 28px rgba(0,0,0,0.55),
-                                  0 0 32px rgba(30,197,242,0.28);">DE VOCÊ?</div>
+        <!-- SETUP: corpo de texto, legível, provocativo -->
+        <div style="margin-top:16px;font-family:{FONTS["body"]};font-size:27px;
+                    font-weight:600;color:#fff;line-height:1.10;
+                    letter-spacing:{TRACK["tight"]};
+                    text-shadow:0 3px 18px rgba(0,0,0,0.6);">
+          Se sua empresa<br>depende de você,
         </div>
 
-        <!-- Twist -->
-        <div style="margin-top:14px;">
-          {display_pill("O PROBLEMA É OUTRO.", accent="primary", size=32, glow=True)}
+        <!-- PUNCHLINE: Anton massivo — impacto máximo -->
+        <div style="margin-top:18px;line-height:0.86;">
+          <div class="display" style="font-size:72px;color:#fff;
+                      text-shadow:0 4px 28px rgba(0,0,0,0.55);">VOCÊ TEM</div>
+          <div class="display" style="font-size:52px;color:{ACCENT["primary"]};
+                      text-shadow:0 4px 28px rgba(0,0,0,0.55),
+                                  0 0 32px rgba(30,197,242,0.40);">UM PROBLEMA.</div>
         </div>
       </div>
 
@@ -227,51 +227,54 @@ def slide4():
 # Anton massivo + lista condensada
 # ============================================================
 def slide5():
-    return f'''<div class="slide" style="{bg_brand_atmo()}">
-      {overlay_noise(0.42)}
-      {overlay_vignette(0.28)}
-      {slide_index(5, TOTAL)}
+    # V4 FLAGSHIP STYLE — fundo claro, Anton enorme na cor da marca,
+    # corpo de texto limpo, photo card arredondado na base
+    img = photo_uri("trio_reuniao.png")
+    pos = photo_position("trio_reuniao.png")
+    return f'''<div class="slide" style="{bg_paper_atmo()}">
+      {logo_mark(dark_bg=False, size=24)}
+      {slide_index(5, TOTAL, light=True)}
 
-      <div style="position:absolute;top:50%;left:28px;right:28px;z-index:15;
-                  transform:translateY(-50%);">
-        {kicker("O Que Cultura Forte É", color="rgba(255,255,255,0.70)")}
+      <!-- CONTENT BLOCK — top half -->
+      <div style="position:absolute;top:58px;left:28px;right:28px;z-index:10;">
+        {kicker("O Que Cultura Forte É", color=ACCENT["primary"], light=True)}
 
-        <div class="display" style="font-size:48px;color:#fff;line-height:0.86;
-                    letter-spacing:{TRACK["tight"]};margin-top:16px;
-                    text-shadow:0 6px 28px rgba(0,0,0,0.35);">CULTURA</div>
-        <div class="display" style="font-size:48px;color:#fff;line-height:0.86;
-                    letter-spacing:{TRACK["tight"]};
-                    text-shadow:0 6px 28px rgba(0,0,0,0.35);">FORTE NÃO</div>
-        <div class="display" style="font-size:48px;color:{ACCENT["ice"]};
-                    line-height:0.86;letter-spacing:{TRACK["tight"]};
-                    text-shadow:0 6px 28px rgba(0,0,0,0.35),
-                                0 0 28px rgba(224,244,251,0.22);">É DISCURSO.</div>
-
-        <!-- Hairline -->
-        <div style="height:1px;width:48px;background:rgba(255,255,255,0.30);
-                    margin:24px 0 18px;"></div>
-
-        <!-- 4 pilares em linha horizontal -->
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-          {''.join([
-            f'<div style="font-family:{FONTS["body"]};font-size:11px;font-weight:600;'
-            f'color:#fff;text-transform:uppercase;letter-spacing:{TRACK["label"]};'
-            f'background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.20);'
-            f'padding:5px 12px;border-radius:{RADIUS["pill"]}px;'
-            f'backdrop-filter:blur(8px);">{p}</div>'
-            for p in ["Clareza", "Padrão", "Direção", "Consistência"]
-          ])}
+        <!-- ANTON MASSIVO na cor primária da marca -->
+        <div style="margin-top:12px;line-height:0.86;">
+          <div class="display" style="font-size:62px;color:{ACCENT["primary"]};
+                      letter-spacing:{TRACK["tight"]};">CULTURA</div>
+          <div class="display" style="font-size:62px;color:{ACCENT["primary"]};
+                      letter-spacing:{TRACK["tight"]};">NÃO É</div>
+          <div class="display" style="font-size:50px;color:{INK["deep"]};
+                      letter-spacing:{TRACK["tight"]};">DISCURSO.</div>
         </div>
 
-        <div style="font-family:{FONTS["body"]};font-size:13px;
-                    color:rgba(255,255,255,0.75);line-height:1.55;margin-top:16px;
-                    max-width:320px;font-weight:300;">
-          É o que faz a empresa funcionar
-          <strong style="color:#fff;font-weight:600;">mesmo quando você não está.</strong>
+        <!-- Hairline editorial -->
+        <div style="height:1.5px;width:40px;background:{ACCENT["primary"]};
+                    opacity:0.5;margin:14px 0 12px;border-radius:2px;"></div>
+
+        <!-- CORPO — limpo, direto, bem espaçado -->
+        <div style="font-family:{FONTS["body"]};font-size:13.5px;font-weight:400;
+                    color:{GRAY["600"]};line-height:1.58;max-width:320px;">
+          É padrão, previsibilidade e consistência —
+          o que faz sua empresa funcionar
+          <strong style="color:{INK["deep"]};font-weight:600;">mesmo sem você.</strong>
         </div>
       </div>
 
-      {progress_bar(5, TOTAL)}
+      <!-- PHOTO CARD — base arredondada, estilo V4 Flagship -->
+      <div style="position:absolute;bottom:44px;left:22px;right:22px;height:175px;
+                  border-radius:{RADIUS["xl"]}px;overflow:hidden;
+                  box-shadow:0 16px 40px rgba(10,15,26,0.18),
+                             0 4px 12px rgba(10,15,26,0.08);">
+        <img src="{img}" style="width:100%;height:100%;object-fit:cover;
+                   object-position:{pos};filter:contrast(1.06) saturate(1.04);">
+        <!-- overlay suave só na base para texto se necessário -->
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,
+                    transparent 40%, rgba(10,15,26,0.35) 100%);"></div>
+      </div>
+
+      {progress_bar(5, TOTAL, light=True)}
     </div>'''
 
 # ============================================================
