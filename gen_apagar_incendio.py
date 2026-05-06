@@ -234,8 +234,8 @@ def slide4():
 # Fundo claro, Anton brand color, photo card base
 # ============================================================
 def slide5():
-    img = photo_uri("iago_bracos_cruzados.png")
-    pos = photo_position("iago_bracos_cruzados.png")
+    img = photo_uri("dashboard_laptop.png")
+    pos = photo_position("dashboard_laptop.png")
     return f'''<div class="slide" style="{bg_paper_atmo()}">
       {logo_mark(dark_bg=False, size=24)}
       {slide_index(5, TOTAL, light=True)}
