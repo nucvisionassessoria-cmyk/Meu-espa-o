@@ -144,8 +144,8 @@ def slide2():
 # Iago como backdrop — 4 sintomas de quem virou bombeiro
 # ============================================================
 def slide3():
-    img = photo_uri("iago_office_3.png")
-    pos = photo_position("iago_office_3.png")
+    img = photo_uri("derick_1.png")
+    pos = photo_position("derick_1.png")
 
     return f'''<div class="slide" style="background:{INK["void"]};">
       {slide_index(3, TOTAL)}
