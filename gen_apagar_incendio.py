@@ -292,20 +292,27 @@ def slide6():
                   transform:translateY(-50%);">
         {kicker("A Diferença", color="rgba(255,255,255,0.68)")}
 
-        <div class="display" style="font-size:52px;color:#fff;line-height:0.86;
+        <div class="display" style="font-size:50px;color:#fff;line-height:0.88;
                     letter-spacing:{TRACK["tight"]};margin-top:18px;
                     text-shadow:0 6px 28px rgba(0,0,0,0.32);">ENQUANTO</div>
-        <div class="display" style="font-size:52px;color:#fff;line-height:0.86;
+        <div class="display" style="font-size:50px;color:#fff;line-height:0.88;
                     letter-spacing:{TRACK["tight"]};
-                    text-shadow:0 6px 28px rgba(0,0,0,0.32);">VOCÊ APAGA,</div>
-        <div class="display" style="font-size:42px;color:{ACCENT["ice"]};
-                    line-height:0.86;letter-spacing:{TRACK["tight"]};
+                    text-shadow:0 6px 28px rgba(0,0,0,0.32);">VOCÊ APAGA</div>
+        <div class="display" style="font-size:50px;color:#fff;line-height:0.88;
+                    letter-spacing:{TRACK["tight"]};
+                    text-shadow:0 6px 28px rgba(0,0,0,0.32);">INCÊNDIO,</div>
+
+        <div style="height:1px;width:36px;background:rgba(255,255,255,0.28);
+                    margin:14px 0 12px;"></div>
+
+        <div class="display" style="font-size:40px;color:{ACCENT["ice"]};
+                    line-height:0.88;letter-spacing:{TRACK["tight"]};
                     text-shadow:0 6px 28px rgba(0,0,0,0.32),
                                 0 0 28px rgba(224,244,251,0.20);">O CONCORRENTE</div>
-        <div class="display" style="font-size:42px;color:{ACCENT["ice"]};
-                    line-height:0.86;letter-spacing:{TRACK["tight"]};
+        <div class="display" style="font-size:40px;color:{ACCENT["ice"]};
+                    line-height:0.88;letter-spacing:{TRACK["tight"]};
                     text-shadow:0 6px 28px rgba(0,0,0,0.32),
-                                0 0 28px rgba(224,244,251,0.20);">CONSTRÓI.</div>
+                                0 0 28px rgba(224,244,251,0.20);">CONSTRÓI OPORTUNIDADES.</div>
 
         <div style="height:1px;width:48px;background:rgba(255,255,255,0.28);
                     margin:24px 0 16px;"></div>
