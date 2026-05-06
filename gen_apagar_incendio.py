@@ -240,31 +240,32 @@ def slide5():
       {logo_mark(dark_bg=False, size=24)}
       {slide_index(5, TOTAL, light=True)}
 
-      <div style="position:absolute;top:58px;left:28px;right:28px;z-index:10;">
+      <!-- ZONA TEXTO — bounded para nunca invadir o card -->
+      <div style="position:absolute;top:48px;left:28px;right:28px;bottom:226px;
+                  z-index:10;overflow:hidden;">
         {kicker("A Virada", color=ACCENT["primary"], light=True)}
 
-        <div style="margin-top:12px;line-height:0.86;">
-          <div class="display" style="font-size:64px;color:{ACCENT["primary"]};
+        <div style="margin-top:10px;line-height:0.86;">
+          <div class="display" style="font-size:54px;color:{ACCENT["primary"]};
                       letter-spacing:{TRACK["tight"]};">ESTRUTURA</div>
-          <div class="display" style="font-size:64px;color:{ACCENT["primary"]};
+          <div class="display" style="font-size:54px;color:{ACCENT["primary"]};
                       letter-spacing:{TRACK["tight"]};">É O QUE</div>
-          <div class="display" style="font-size:54px;color:{INK["deep"]};
+          <div class="display" style="font-size:44px;color:{INK["deep"]};
                       letter-spacing:{TRACK["tight"]};">TE LIBERTA.</div>
         </div>
 
         <div style="height:1.5px;width:40px;background:{ACCENT["primary"]};
-                    opacity:0.5;margin:14px 0 12px;border-radius:2px;"></div>
+                    opacity:0.5;margin:12px 0 10px;border-radius:2px;"></div>
 
-        <div style="font-family:{FONTS["body"]};font-size:13.5px;font-weight:400;
-                    color:{GRAY["600"]};line-height:1.58;max-width:310px;">
-          Processos, indicadores e times com autonomia
-          não tiram você do jogo —
-          <strong style="color:{INK["deep"]};font-weight:600;">colocam você no lugar certo:</strong>
-          estratégia.
+        <div style="font-family:{FONTS["body"]};font-size:13px;font-weight:400;
+                    color:{GRAY["600"]};line-height:1.50;max-width:300px;">
+          Processos e autonomia colocam você
+          <strong style="color:{INK["deep"]};font-weight:600;">no lugar certo: estratégia.</strong>
         </div>
       </div>
 
-      <div style="position:absolute;bottom:44px;left:22px;right:22px;height:178px;
+      <!-- ZONA FOTO CARD — separada por respiro de ~32px -->
+      <div style="position:absolute;bottom:36px;left:22px;right:22px;height:160px;
                   border-radius:{RADIUS["xl"]}px;overflow:hidden;
                   box-shadow:0 16px 40px rgba(10,15,26,0.18),
                              0 4px 12px rgba(10,15,26,0.08);">
