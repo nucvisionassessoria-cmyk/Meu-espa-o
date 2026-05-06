@@ -285,7 +285,8 @@ PHOTO_META = {
     "iago_office_3.png":  {"focal": (50, 25), "type": "solo_full_body",     "best": ["protagonist"]},
     "iago_2.png":         {"focal": (45, 32), "type": "action_environment", "best": ["context", "process"]},
     "iago_1.png":         {"focal": (50, 35), "type": "action_environment", "best": ["context"]},
-    "derick_1.png":       {"focal": (50, 28), "type": "solo_bust",          "best": ["protagonist"]},
+    "derick_1.png":            {"focal": (50, 28), "type": "solo_bust",               "best": ["protagonist"]},
+    "iago_bracos_cruzados.png": {"focal": (50, 22), "type": "solo_portrait_authority", "best": ["hero", "split", "authority", "protagonist"]},
 }
 
 def photo_uri(name):
