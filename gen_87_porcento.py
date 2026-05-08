@@ -27,92 +27,130 @@ TOTAL = 8
 # ============================================================
 def slide1():
     derick = photo_uri("derick_bracos_cruzados.jpg")
-    iago = photo_uri("iago_bracos_cruzados.png")
+    iago   = photo_uri("iago_bracos_cruzados.png")
+
+    # Fotos altas (410px) para rostos aparecerem na zona visível sem fade.
+    # INK["void"] = #05080F — mesma cor usada em todos os gradients de fade,
+    # garantindo que bordas das fotos dissolvam naturalmente no fundo.
+    # Sem "center seam div" — o fade lateral de cada foto resolve sozinho.
     return f'''<div class="slide" style="background:{INK["void"]};overflow:hidden;">
-      <!-- glow ambient -->
-      <div style="position:absolute;inset:0;
-                  background:radial-gradient(ellipse 70% 50% at 50% 18%, rgba(30,197,242,0.18) 0%, transparent 60%),
-                             radial-gradient(ellipse 80% 60% at 50% 100%, rgba(10,15,26,0.95) 0%, transparent 70%),
-                             linear-gradient(170deg, {INK["void"]} 0%, {INK["rich"]} 60%, {INK["medium"]} 100%);
-                  z-index:1;"></div>
 
-      <!-- DERICK left -->
-      <div style="position:absolute;left:-30px;bottom:0;width:240px;height:340px;z-index:5;">
+      <!-- Camada 1: atmosfera unificada de fundo -->
+      <div style="position:absolute;inset:0;z-index:1;
+                  background:
+                    radial-gradient(ellipse 80% 55% at 50% -5%,  rgba(30,197,242,0.16) 0%, transparent 55%),
+                    radial-gradient(ellipse 55% 40% at  8% 100%, rgba(20,30,52,0.80) 0%, transparent 55%),
+                    radial-gradient(ellipse 55% 40% at 92% 100%, rgba(20,30,52,0.80) 0%, transparent 55%),
+                    {INK["void"]};"></div>
+
+      <!-- DERICK — esquerda (JPG fundo estúdio)
+           Container estreito e recuado para que o fundo claro não alcance
+           o centro do slide. 3 fades right em cascata + brightness baixo. -->
+      <div style="position:absolute;left:-28px;bottom:0;width:252px;height:410px;z-index:4;">
         <img src="{derick}" style="width:100%;height:100%;object-fit:cover;
-                   object-position:55% 18%;
-                   filter:contrast(1.10) saturate(0.92) brightness(0.92);">
+                   object-position:50% 8%;
+                   filter:contrast(1.05) saturate(0.78) brightness(0.86);">
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,
-                    {INK["void"]} 0%, rgba(5,8,15,0.55) 18%, transparent 40%);"></div>
+                    {INK["void"]} 0%, rgba(5,8,15,0.90) 6%, rgba(5,8,15,0.10) 20%, transparent 34%);"></div>
         <div style="position:absolute;inset:0;background:linear-gradient(90deg,
-                    transparent 0%, transparent 70%, rgba(5,8,15,0.45) 100%);"></div>
-      </div>
-
-      <!-- IAGO right -->
-      <div style="position:absolute;right:-30px;bottom:0;width:240px;height:340px;z-index:5;">
-        <img src="{iago}" style="width:100%;height:100%;object-fit:cover;
-                   object-position:45% 18%;
-                   filter:contrast(1.10) saturate(0.92) brightness(0.92);">
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,
-                    {INK["void"]} 0%, rgba(5,8,15,0.55) 18%, transparent 40%);"></div>
+                    transparent 0%, transparent 32%,
+                    rgba(5,8,15,0.40) 50%, rgba(5,8,15,0.88) 65%, {INK["void"]} 76%);"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(90deg,
+                    transparent 0%, transparent 48%, {INK["void"]} 73%);"></div>
         <div style="position:absolute;inset:0;background:linear-gradient(270deg,
-                    transparent 0%, transparent 70%, rgba(5,8,15,0.45) 100%);"></div>
+                    transparent 0%, transparent 90%, rgba(5,8,15,0.35) 100%);"></div>
       </div>
 
-      <!-- center seam blend -->
-      <div style="position:absolute;left:50%;bottom:0;width:80px;height:340px;
-                  transform:translateX(-50%);z-index:6;
-                  background:linear-gradient(90deg, transparent 0%, rgba(5,8,15,0.55) 50%, transparent 100%);"></div>
+      <!-- IAGO — direita (PNG RGBA, transparência natural) -->
+      <div style="position:absolute;right:-28px;bottom:0;width:262px;height:410px;z-index:4;">
+        <img src="{iago}" style="width:100%;height:100%;object-fit:cover;
+                   object-position:50% 0%;
+                   filter:contrast(1.05) saturate(0.78) brightness(0.86);">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,
+                    {INK["void"]} 0%, rgba(5,8,15,0.90) 6%, rgba(5,8,15,0.10) 20%, transparent 34%);"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(270deg,
+                    transparent 0%, transparent 40%,
+                    rgba(5,8,15,0.30) 58%, rgba(5,8,15,0.76) 76%, {INK["void"]} 88%);"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(90deg,
+                    transparent 0%, transparent 90%, rgba(5,8,15,0.35) 100%);"></div>
+      </div>
 
-      <!-- TEXT TOP ZONE -->
+      <!-- Camada 2: escurecimento do topo para legibilidade do texto -->
+      <div style="position:absolute;top:0;left:0;right:0;height:240px;z-index:7;
+                  background:linear-gradient(180deg,
+                    {INK["void"]} 0%, rgba(5,8,15,0.92) 28%, rgba(5,8,15,0.55) 55%, transparent 100%);
+                  pointer-events:none;"></div>
+
+      <!-- Camada 3: split-lighting center — cobertura larga do centro do slide.
+           32% de largura = ~134px, cobre o seam entre x=143–277.
+           Rostos (x≈80 e x≈310) ficam fora do oval, sem escurecer. -->
+      <div style="position:absolute;left:0;right:0;bottom:0;height:420px;z-index:6;
+                  background:radial-gradient(ellipse 32% 100% at 50% 65%,
+                    {INK["void"]} 0%, rgba(5,8,15,0.88) 35%, rgba(5,8,15,0.40) 60%, transparent 100%);
+                  pointer-events:none;"></div>
+
+      <!-- Camada 3b: boost de luz suave no lado esquerdo (Derick)
+           Radial limitado a x=0–160, preserva o seam central intacto. -->
+      <div style="position:absolute;left:0;bottom:80px;width:180px;height:360px;z-index:5;
+                  background:radial-gradient(ellipse 90% 70% at 22% 48%,
+                    rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 45%, transparent 75%);
+                  pointer-events:none;"></div>
+
+      <!-- Camada 4: glow ciano unificado — conecta os dois sócios ao ambiente -->
+      <div style="position:absolute;top:0;left:0;right:0;bottom:0;z-index:8;
+                  background:radial-gradient(ellipse 60% 35% at 50% 52%,
+                    rgba(30,197,242,0.08) 0%, transparent 65%);
+                  pointer-events:none;"></div>
+
+      <!-- TEXTO — centrado, acima da zona de rostos -->
       <div style="position:absolute;top:0;left:0;right:0;z-index:12;
                   display:flex;flex-direction:column;align-items:center;
-                  padding-top:26px;">
-        {logo_mark(dark_bg=True, size=22)}
+                  padding-top:24px;">
+        {logo_mark(dark_bg=True, size=20)}
 
-        <div style="margin-top:20px;">
-          {kicker("Diagnóstico do Mercado", color="rgba(255,255,255,0.55)")}
+        <div style="margin-top:16px;">
+          {kicker("Diagnóstico do Mercado", color="rgba(255,255,255,0.52)")}
         </div>
 
-        <!-- pill com 87% -->
-        <div style="margin-top:14px;display:inline-block;
+        <!-- Pill 87% com glow ciano -->
+        <div style="margin-top:12px;display:inline-block;
                     background:linear-gradient(135deg, {ACCENT["primary"]} 0%, {ACCENT["vivid"]} 100%);
-                    padding:6px 26px 12px;border-radius:{RADIUS["lg"]}px;
-                    box-shadow:0 12px 32px rgba(30,197,242,0.40),
-                               0 0 48px rgba(30,197,242,0.25),
-                               inset 0 1px 0 rgba(255,255,255,0.25);">
-          <span class="display" style="font-size:78px;color:#fff;line-height:0.86;
+                    padding:5px 24px 10px;border-radius:{RADIUS["lg"]}px;
+                    box-shadow:0 10px 28px rgba(30,197,242,0.45),
+                               0 0 56px rgba(30,197,242,0.22),
+                               inset 0 1px 0 rgba(255,255,255,0.28);">
+          <span class="display" style="font-size:76px;color:#fff;line-height:0.86;
                        letter-spacing:{TRACK["tight"]};
-                       text-shadow:0 2px 12px rgba(0,0,0,0.25);">87%</span>
+                       text-shadow:0 2px 10px rgba(0,0,0,0.30);">87%</span>
         </div>
 
-        <div style="margin-top:14px;text-align:center;line-height:0.92;">
-          <div class="display" style="font-size:30px;color:#fff;
+        <div style="margin-top:12px;text-align:center;line-height:0.94;">
+          <div class="display" style="font-size:29px;color:#fff;
                       letter-spacing:{TRACK["tight"]};
-                      text-shadow:0 2px 16px rgba(0,0,0,0.65);">DO SEU MARKETING</div>
-          <div class="display" style="font-size:30px;color:rgba(255,255,255,0.92);
+                      text-shadow:0 2px 18px rgba(0,0,0,0.80);">DO SEU MARKETING</div>
+          <div class="display" style="font-size:29px;color:rgba(255,255,255,0.88);
                       letter-spacing:{TRACK["tight"]};margin-top:2px;
-                      text-shadow:0 2px 16px rgba(0,0,0,0.65);">NÃO FUNCIONA.</div>
+                      text-shadow:0 2px 18px rgba(0,0,0,0.80);">NÃO FUNCIONA.</div>
         </div>
       </div>
 
-      <!-- BOTTOM tagline -->
-      <div style="position:absolute;bottom:36px;left:0;right:0;z-index:14;
+      <!-- Tagline de baixo — âncora visual, z-index alto para ficar sobre tudo -->
+      <div style="position:absolute;bottom:34px;left:0;right:0;z-index:18;
                   text-align:center;">
         <div style="font-family:{FONTS["body"]};font-size:13px;font-weight:500;
-                    color:rgba(255,255,255,0.85);line-height:1.4;
-                    text-shadow:0 2px 12px rgba(0,0,0,0.85);">
+                    color:rgba(255,255,255,0.88);line-height:1.4;
+                    text-shadow:0 2px 14px rgba(0,0,0,0.95);">
           E você ainda <strong style="color:#fff;font-weight:700;">não sabe qual parte é.</strong>
         </div>
-        <div style="margin-top:10px;font-family:{FONTS["body"]};font-size:9px;
-                    font-weight:600;color:rgba(255,255,255,0.45);
-                    letter-spacing:{TRACK["label"]};text-transform:uppercase;
-                    text-shadow:0 1px 6px rgba(0,0,0,0.6);">
+        <div style="margin-top:8px;font-family:{FONTS["body"]};font-size:9px;
+                    font-weight:600;color:rgba(255,255,255,0.40);
+                    letter-spacing:{TRACK["label"]};text-transform:uppercase;">
           @nucvision · Diagnóstico B2B
         </div>
       </div>
 
       {slide_index(1, TOTAL)}
-      {overlay_noise(0.22, blend="soft-light", z=8)}
+      {overlay_noise(0.20, blend="soft-light", z=10)}
       {progress_bar(1, TOTAL)}
     </div>'''
 
