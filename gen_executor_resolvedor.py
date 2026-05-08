@@ -107,7 +107,7 @@ def slide2():
         <div style="margin-top:20px;">
           <!-- PRESENÇA riscada -->
           <div style="position:relative;display:inline-block;margin-bottom:4px;">
-            <div class="display" style="font-size:66px;color:rgba(255,255,255,0.28);
+            <div class="display" style="font-size:58px;color:rgba(255,255,255,0.28);
                         letter-spacing:{TRACK["tight"]};">PRESENÇA.</div>
             <div style="position:absolute;top:48%;left:-4px;right:-4px;
                         height:3px;background:rgba(255,255,255,0.55);
@@ -115,7 +115,7 @@ def slide2():
           </div>
 
           <div style="margin-top:2px;">
-            <div class="display" style="font-size:66px;color:{ACCENT["primary"]};
+            <div class="display" style="font-size:58px;color:{ACCENT["primary"]};
                         letter-spacing:{TRACK["tight"]};
                         text-shadow:0 0 40px rgba(30,197,242,0.45);">PROGRESSO.</div>
           </div>
@@ -390,17 +390,15 @@ def slide7():
 
         {kicker("O Princípio", color="rgba(255,255,255,0.50)")}
 
-        <div style="margin-top:16px;white-space:nowrap;overflow:hidden;">
-          <div class="display" style="font-size:112px;color:#fff;
-                      line-height:0.84;letter-spacing:-0.02em;
+        <div style="margin-top:16px;line-height:0.86;">
+          <div class="display" style="font-size:70px;color:#fff;
+                      line-height:0.86;letter-spacing:-0.02em;
                       text-shadow:0 8px 40px rgba(0,0,0,0.40);">OPERAÇÃO</div>
-        </div>
-        <div style="margin-top:2px;white-space:nowrap;overflow:hidden;">
-          <div class="display" style="font-size:112px;
-                      background:linear-gradient(95deg,{ACCENT["primary"]} 0%,{ACCENT["vivid"]} 60%, rgba(30,197,242,0.40) 100%);
+          <div class="display" style="font-size:70px;
+                      background:linear-gradient(95deg,{ACCENT["primary"]} 0%,{ACCENT["vivid"]} 100%);
                       -webkit-background-clip:text;background-clip:text;
                       -webkit-text-fill-color:transparent;
-                      line-height:0.84;letter-spacing:-0.02em;">CONSTRÓI.</div>
+                      line-height:0.86;letter-spacing:-0.02em;">CONSTRÓI.</div>
         </div>
 
         <div style="margin-top:28px;max-width:320px;">
