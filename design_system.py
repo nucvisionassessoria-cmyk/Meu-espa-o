@@ -287,6 +287,7 @@ PHOTO_META = {
     "iago_1.png":         {"focal": (50, 35), "type": "action_environment", "best": ["context"]},
     "derick_1.png":            {"focal": (50, 28), "type": "solo_bust",               "best": ["protagonist"]},
     "iago_bracos_cruzados.png": {"focal": (50, 22), "type": "solo_portrait_authority", "best": ["hero", "split", "authority", "protagonist"]},
+    "derick_bracos_cruzados.jpg":{"focal": (50, 25), "type": "solo_portrait_authority", "best": ["hero", "split", "authority", "protagonist"]},
     "dashboard_laptop.png":    {"focal": (50, 45), "type": "product_screen",          "best": ["structure", "tech", "flagship", "indicators"]},
 }
 
