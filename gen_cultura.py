@@ -71,7 +71,7 @@ def slide1():
       <div style="position:absolute;bottom:40px;left:28px;z-index:18;">
         <div style="font-family:{FONTS["body"]};font-size:9px;font-weight:600;
                     color:rgba(255,255,255,0.40);letter-spacing:{TRACK["label"]};
-                    text-transform:uppercase;">@nucvision · Estrutura · Crescimento</div>
+                    text-transform:uppercase;">@nucvision · agencianuc.com.br</div>
       </div>
 
       {progress_bar(1, TOTAL)}

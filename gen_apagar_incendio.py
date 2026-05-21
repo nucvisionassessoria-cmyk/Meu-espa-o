@@ -82,7 +82,7 @@ def slide1():
         <div style="margin-top:16px;font-family:{FONTS["body"]};font-size:9px;
                     font-weight:600;color:rgba(255,255,255,0.30);
                     letter-spacing:{TRACK["label"]};text-transform:uppercase;">
-          @nucvision · Gestão · Estrutura
+          @nucvision · agencianuc.com.br
         </div>
       </div>
 

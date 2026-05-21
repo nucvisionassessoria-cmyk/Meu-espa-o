@@ -10,6 +10,7 @@ import base64, io
 BRAND_NAME    = "NUC VISION"
 HANDLE        = "@nucvision"
 SUBTITLE      = "Estrutura · Crescimento · Resultado"
+WEBSITE       = "agencianuc.com.br"
 
 # ── Color System ──────────────────────────────────────────────────────────────
 BRAND_PRIMARY = "#1EC5F2"   # Ciano vibrante — barra de progresso, ícones, tags
