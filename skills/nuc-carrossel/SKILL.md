@@ -18,6 +18,103 @@ recorte serrilhado — é uma FALHA, não uma entrega.
 
 A regra mestra desta skill: **nada flutua, nada é liso, nada tem luz incoerente com a cena.**
 
+**Ordem de execução obrigatória: Seção -1 → Seção 0 → Seções 1–8.**
+
+---
+
+# SEÇÃO -1 — A SKILL É UM DIRETOR CRIATIVO, NÃO UMA EXECUTORA
+
+> **Esta seção roda ANTES DE TUDO — antes da narrativa, antes do design.
+> Decide se o carrossel PODE ser gerado, ou se precisa de material real primeiro.**
+
+## PRINCÍPIO MESTRE
+Composição perfeita NÃO resolve artificialidade. A "cara de IA" não vem da renderização
+— vem da ORIGEM do material. Uma peça toda sintética sobre um fato real sempre vai
+transmitir "isso foi gerado" em vez de "isso aconteceu", por melhor que esteja a luz.
+
+A referência que buscamos (ex.: V4) não cria a realidade do zero. Ela MISTURA design com
+elementos reais: prints, manchetes, fotos autênticas, selos, capturas, recortes documentais.
+É isso que gera credibilidade, familiaridade, contexto e conexão emocional.
+
+Portanto: **você não assume que tem todo o material necessário.** Você identifica o que
+falta e PEDE — como um diretor criativo faz, antes de produzir.
+
+---
+
+## ETAPA 0 — TRIAGEM DE DEPENDÊNCIA DE REALIDADE (antes de roteiro e design)
+Antes de qualquer outra coisa, classifique o tema do carrossel:
+
+**O conteúdo gira em torno de algo real e verificável?**
+- pessoa pública (Hamilton, Musk, Toguro...)
+- empresa/marca (Ferrari, Meta, OpenAI, Mercado Livre...)
+- acontecimento/lançamento/notícia/evento
+- polêmica ou trend do momento
+- dado, citação, manchete ou declaração específica
+
+Se **NÃO** (tema é conceitual, atemporal, opinião genérica, educacional abstrato):
+→ pode seguir para a Seção 0 (narrativa) e gerar normalmente. Realismo via design basta.
+
+Se **SIM** → ative o protocolo de ativos reais abaixo. NÃO gere ainda.
+
+---
+
+## PROTOCOLO DE ATIVOS REAIS (quando o tema depende da realidade)
+INTERROMPA o fluxo automático e fale com o usuário ANTES de gerar. Mensagem padrão:
+
+> "Esse carrossel é sobre [tema real]. Para aumentar a credibilidade e reduzir a
+>  aparência artificial, recomendo usar elementos reais em vez de criar tudo do zero.
+>  Você consegue me enviar algum destes materiais?
+>   • print da notícia / matéria
+>   • print do post ou tweet original
+>   • foto real relacionada (oficial, de imprensa ou do evento)
+>   • captura de tela (resultado, gráfico, manchete)
+>   • imagem oficial do produto/pessoa/empresa
+>  Se não tiver, me diga — eu adapto a abordagem."
+
+Só prossiga depois da resposta. Dois caminhos:
+
+**A) Usuário envia material real** → use-o como ÂNCORA da peça. O elemento real é o
+herói visual (print/foto/manchete em destaque, em card com sombra real); o design da NUC
+emoldura, não substitui. É assim que se reduz artificialidade de verdade.
+
+**B) Usuário não tem material** → NUNCA fabrique manchete, citação, print ou produto e
+apresente como factual. Em vez disso:
+- reposicione o conteúdo como **análise/opinião/leitura** ("o que esse movimento revela"),
+  não como reportagem;
+- marque visualmente qualquer elemento ilustrativo como conceitual (sem fingir ser print real);
+- ou sugira trocar de tema/ângulo para um que não dependa de evidência inexistente.
+Credibilidade nunca justifica inventar fato. Isso protege a marca de desinformação.
+
+---
+
+## DETECTOR DE ARTIFICIALIDADE (rodar antes de aprovar QUALQUER peça)
+Mesmo em tema conceitual, antes de exportar, responda honestamente:
+
+1. Essa arte parece feita por um designer humano com recursos reais?
+2. Existem elementos reais suficientes (foto/print/selo/manchete)?
+3. Existe alguma evidência visual concreta?
+4. Existe contexto visual do mundo real?
+5. Parece algo que alguém VIU acontecer?
+6. Ou parece apenas uma composição criada por IA?
+
+**Veredito:**
+- Se a resposta honesta for "está parecendo só composição de IA" → INTERROMPA.
+  Não exporte. Volte ao usuário e sugira materiais reais (protocolo acima), ou
+  reposicione a peça para não depender de uma realidade que você está fabricando.
+- Se houver ao menos uma âncora real coerente (ou o tema for legitimamente conceitual)
+  → aprovado para seguir ao QA narrativo (Seção 0) e visual (Seções 1–8).
+
+---
+
+## REGRA DE OURO
+A pergunta da skill deixou de ser "como eu gero este carrossel?".
+Passou a ser: **"quais recursos eu preciso para que este carrossel seja realmente forte —
+e quais deles eu ainda não tenho?"**
+Identifique o que falta. Peça o que falta. Só então produza.
+
+---
+> **FIM DA SEÇÃO -1. Ordem de execução: Seção -1 → Seção 0 (narrativa) → Seções 1–8 (visual).**
+
 ---
 
 # SEÇÃO 0 — O CARROSSEL É UMA HISTÓRIA, NÃO UMA LISTA
@@ -300,18 +397,24 @@ Verifique mentalmente cada item. Reprovou em 1 → reescreva o slide, não expor
 
 ## 9. FLUXO DE TRABALHO
 
+**FASE -1 — DIREÇÃO CRIATIVA (Seção -1 — roda PRIMEIRO):**
+1. Classifique: o tema depende de realidade verificável (pessoa/marca/notícia)?
+2. Se sim: interrompa e peça materiais reais ao usuário (prints, fotos, manchetes).
+3. Rode o detector de artificialidade. Se reprovar, não avance.
+4. Só depois que a âncora real estiver em mãos (ou o tema for conceitual): prossiga.
+
 **FASE NARRATIVA (Seção 0 — obrigatória antes de qualquer código):**
-1. Escolha o modelo de arco (A–E) e escreva o arco em 1 frase por beat.
-2. Atribua papel funcional a cada slide (gancho / curiosidade / escalada / virada / revelação / insight / CTA).
-3. Escreva o copy de cada slide com loop aberto — proibido fechar no meio.
-4. Rode o teste de remoção. Qualquer slide removível = reescrever.
-5. Rode o teste de qualidade narrativa (7 perguntas). Só avança com todos "sim".
+5. Escolha o modelo de arco (A–E) e escreva o arco em 1 frase por beat.
+6. Atribua papel funcional a cada slide (gancho / curiosidade / escalada / virada / revelação / insight / CTA).
+7. Escreva o copy de cada slide com loop aberto — proibido fechar no meio.
+8. Rode o teste de remoção. Qualquer slide removível = reescrever.
+9. Rode o teste de qualidade narrativa (7 perguntas). Só avança com todos "sim".
 
 **FASE VISUAL (Seções 1–8 — só depois da narrativa aprovada):**
-6. Leia os assets que o usuário subiu em `/fotos`.
-7. Importe `nuc_realism` se existir; senão, implemente as regras da seção 2 inline.
-8. Para cada slide: monte fundo (L1) → recorte ancorado (L2) → tipo+grafismo (L3) → grão.
-9. Rode o QA visual da seção 8 em cada slide.
-10. Exporte via Playwright. Entregue os PNG 1080x1350.
-11. Se algum asset impedir o padrão (recorte sujo, foto de baixa resolução), AVISE o
+10. Leia os assets que o usuário subiu em `/fotos`.
+11. Importe `nuc_realism` se existir; senão, implemente as regras da seção 2 inline.
+12. Para cada slide: monte fundo (L1) → recorte ancorado (L2) → tipo+grafismo (L3) → grão.
+13. Rode o QA visual da seção 8 em cada slide.
+14. Exporte via Playwright. Entregue os PNG 1080x1350.
+15. Se algum asset impedir o padrão (recorte sujo, foto de baixa resolução), AVISE o
     usuário e peça o asset correto em vez de entregar abaixo do padrão.
