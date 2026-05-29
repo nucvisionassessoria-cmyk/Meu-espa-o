@@ -449,27 +449,42 @@ def slide6():
 # ── SLIDE 7 — Insight forte ───────────────────────────────────────────────────
 
 def slide7():
-    return f'''<div class="slide" style="background:{INK["void"]};">
-      {noise(0.25)}
-      <!-- glow radial central -->
-      <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-                  width:340px;height:340px;
-                  background:radial-gradient(circle,rgba(30,197,242,0.12) 0%,transparent 65%);
-                  z-index:1;pointer-events:none;"></div>
+    return f'''<div class="slide" style="overflow:hidden;
+        background:radial-gradient(ellipse 100% 80% at 28% 32%,#101A2C 0%,{INK["void"]} 60%,#040509 100%);">
+      {dot_grid(color="rgba(255,255,255,0.035)")}
+
+      <!-- glow de apoio, descentralizado -->
+      <div style="position:absolute;top:38%;left:30%;transform:translate(-50%,-50%);
+                  width:300px;height:300px;z-index:1;pointer-events:none;
+                  background:radial-gradient(circle,rgba(30,197,242,0.16),transparent 66%);
+                  filter:blur(6px);"></div>
       {logo()}
-      <div style="position:absolute;top:0;left:0;right:0;bottom:0;
-                  display:flex;flex-direction:column;align-items:center;
-                  justify-content:center;padding:0 28px;z-index:10;text-align:center;">
-        <div class="display" style="font-size:48px;color:#fff;
-                    line-height:0.92;margin-bottom:16px;">
+
+      <!-- aspa gigante -->
+      <div class="display" style="position:absolute;top:64px;left:24px;z-index:9;
+                  font-size:150px;line-height:0.7;color:{ACCENT["primary"]};opacity:0.22;">“</div>
+
+      <!-- kicker -->
+      <div style="position:absolute;top:150px;left:30px;z-index:10;">
+        {kicker("O Insight")}
+      </div>
+
+      <!-- statement alinhado à esquerda, com margem -->
+      <div style="position:absolute;top:182px;left:30px;right:30px;z-index:10;">
+        <div class="display" style="font-size:42px;color:#fff;line-height:0.98;">
           QUEM TEM<br>POSICIONAMENTO<br>CLARO
         </div>
-        <div class="display" style="font-size:36px;line-height:1;">
-          NÃO PRECISA DE<br>{pill("CAMPANHA", 34)}<br>
-          <span style="font-size:36px;color:#fff;">PARA SE DEFENDER.</span>
+        <div class="display" style="font-size:42px;color:rgba(255,255,255,0.45);
+                    line-height:1.05;margin-top:14px;">
+          NÃO PRECISA DE<br>
+          <span style="background:{ACCENT["primary"]};color:#06121c;
+                padding:0 12px 5px;border-radius:9px;
+                box-shadow:0 6px 26px rgba(30,197,242,0.5);">CAMPANHA</span><br>
+          <span style="color:#fff;">PARA SE DEFENDER.</span>
         </div>
       </div>
-      {overlay_vignette(0.4, z=3)}
+
+      {overlay_vignette(0.42, z=3)}
     </div>'''
 
 
