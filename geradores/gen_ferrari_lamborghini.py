@@ -6,12 +6,16 @@ Formato: 420×525px → exportado a 1080×1350px
 import sys, base64
 from pathlib import Path
 sys.path.insert(0, "/home/user/Meu-espa-o")
+sys.path.insert(0, "/home/user/Meu-espa-o/geradores")
 from design_system import (
     FONT_LINK, CSS_BASE, INK, PAPER, ACCENT, GRAY,
     FONTS, TYPE, TRACK, LINE, RADIUS, SHADOW,
     LOGO_URI, NOISE_B64,
     overlay_noise, overlay_vignette, logo_mark,
     ig_frame_open, ig_frame_close, html_shell,
+)
+from nuc_realism import (
+    REALISM_CSS, GRAO_OVERLAY, fundo_profundo, recorte, sombra_contato, card,
 )
 
 FOTOS = Path("/home/user/Meu-espa-o/fotos")
@@ -176,6 +180,8 @@ def slide2():
     luce = photo_uri("ferrari_luce_trim.png")
     return f'''<div class="slide" style="overflow:hidden;
         background:linear-gradient(165deg,#141826 0%,{INK["deep"]} 52%,#0A0C16 100%);">
+      <!-- CAMADA 0 · o próprio carro borrado vira atmosfera (profundidade real) -->
+      {fundo_profundo(luce, extra_style="filter:blur(20px) brightness(0.42) saturate(1.1);")}
       {dot_grid(color="rgba(255,255,255,0.05)")}
       {logo()}
 
@@ -184,14 +190,13 @@ def slide2():
         {kicker("O Que Aconteceu · 26 Mai 2026")}
       </div>
 
-      <!-- ZONA 2 · CARRO (terço central, respirando) -->
+      <!-- ZONA 2 · CARRO ancorado (sombra de contato + light wrap) -->
       <div style="position:absolute;top:142px;left:50%;transform:translateX(-50%);
-                  width:300px;height:140px;z-index:0;
+                  width:300px;height:140px;z-index:1;
                   background:radial-gradient(ellipse at 50% 55%,
-                    rgba(90,170,225,0.26),transparent 66%);filter:blur(6px);"></div>
-      <div style="position:absolute;top:120px;left:50%;transform:translateX(-50%);
-                  width:300px;z-index:2;
-                  filter:drop-shadow(0 16px 30px rgba(0,0,0,0.45));">
+                    rgba(90,170,225,0.22),transparent 66%);filter:blur(6px);"></div>
+      <div class="subject" style="position:absolute;top:120px;left:50%;
+                  transform:translateX(-50%);width:300px;z-index:2;">
         <img src="{luce}" style="width:100%;display:block;">
       </div>
 
@@ -377,9 +382,9 @@ def slide5():
           FERRARI · −8%</div>
       </div>
 
-      <!-- Lambo — direita, em cor vibrante (vencedor) -->
-      <div style="position:absolute;top:226px;right:-14px;width:230px;z-index:2;
-                  filter:drop-shadow(0 10px 26px rgba(0,0,0,0.5));">
+      <!-- Lambo — direita, em cor vibrante (vencedor), ancorada -->
+      <div class="subject" style="position:absolute;top:226px;right:-14px;
+                  width:230px;z-index:2;">
         <img src="{lambo}" style="width:100%;display:block;">
       </div>
       <div style="position:absolute;top:224px;right:14px;z-index:5;text-align:right;">
@@ -506,12 +511,18 @@ def slide8():
                   width:380px;height:200px;z-index:0;
                   background:radial-gradient(ellipse at 50% 55%,rgba(200,40,40,0.28),transparent 66%);
                   filter:blur(10px);"></div>
+      <!-- sombra de contato sob o carro (não flutua) -->
+      <div style="position:absolute;top:236px;left:50%;transform:translateX(-50%);
+                  width:240px;height:34px;z-index:1;
+                  background:radial-gradient(closest-side,rgba(0,0,0,0.6),transparent 78%);
+                  filter:blur(9px);"></div>
       <div style="position:absolute;top:80px;left:50%;transform:translateX(-52%);
                   width:360px;z-index:2;
                   -webkit-mask-image:radial-gradient(ellipse 94% 90% at 50% 50%,#000 68%,transparent 96%);
                   mask-image:radial-gradient(ellipse 94% 90% at 50% 50%,#000 68%,transparent 96%);">
         <img src="{ferrari_c}" style="width:100%;display:block;
-             filter:drop-shadow(0 14px 30px rgba(0,0,0,0.6));">
+             filter:brightness(0.97) contrast(1.05) saturate(1.04)
+                    drop-shadow(0 14px 30px rgba(0,0,0,0.6));">
       </div>
 
       <!-- ZONA 3 · TEXTO base -->
@@ -574,10 +585,17 @@ def slide9():
 # ── Assembly ───────────────────────────────────────────────────────────────────
 
 def main():
-    slides = "".join([
+    # injeta o grão de realismo como último filho de cada slide
+    raw = [
         slide1(), slide2(), slide3(), slide4(), slide5(),
         slide6(), slide7(), slide8(), slide9(),
-    ])
+    ]
+    parts = []
+    for s in raw:
+        # insere o overlay de grão imediatamente antes do </div> que fecha o slide
+        idx = s.rfind("</div>")
+        parts.append(s[:idx] + GRAO_OVERLAY + s[idx:])
+    slides = f"<style>{REALISM_CSS}</style>" + "".join(parts)
     html = html_shell(slides, TOTAL, CAPTION)
     out = Path("/home/user/Meu-espa-o/previews/nucvision-ferrari-lambo.html")
     out.write_text(html, encoding="utf-8")
