@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Exporta os 9 slides do carrossel Ferrari/Lamborghini em 1080×1350px.
+Exporta os 8 slides do carrossel Ferrari/Lamborghini em 1080×1350px.
 Roda DEPOIS de gen_ferrari_lamborghini.py gerar o HTML.
 """
 import asyncio
@@ -9,7 +9,7 @@ from playwright.async_api import async_playwright
 
 INPUT  = Path("/home/user/Meu-espa-o/previews/nucvision-ferrari-lambo.html")
 OUT    = Path("/home/user/Meu-espa-o/output/ferrari-lamborghini")
-TOTAL  = 9
+TOTAL  = 8
 VW     = 420
 VH     = 525
 SCALE  = 1080 / 420
