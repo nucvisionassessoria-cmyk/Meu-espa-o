@@ -7,8 +7,8 @@ import asyncio
 from pathlib import Path
 from playwright.async_api import async_playwright
 
-INPUT  = Path("/home/user/Meu-espa-o/nucvision-googleposts.html")
-OUT    = Path("/home/user/Meu-espa-o")
+INPUT  = Path("/home/user/Meu-espa-o/previews/nucvision-googleposts.html")
+OUT    = Path("/home/user/Meu-espa-o/output/google-posts")
 TOTAL  = 10
 VW = VH = 420
 SCALE  = 1080 / 420

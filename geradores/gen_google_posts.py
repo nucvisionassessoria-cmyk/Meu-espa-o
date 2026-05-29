@@ -623,7 +623,7 @@ def main():
 </body>
 </html>"""
 
-    out = Path("/home/user/Meu-espa-o/nucvision-googleposts.html")
+    out = Path("/home/user/Meu-espa-o/previews/nucvision-googleposts.html")
     out.write_text(html, encoding="utf-8")
     print(f"✓ Preview: {out}")
 
