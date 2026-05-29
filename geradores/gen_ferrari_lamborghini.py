@@ -173,39 +173,45 @@ def slide1():
 # ── SLIDE 2 — O que aconteceu ──────────────────────────────────────────────────
 
 def slide2():
-    luce = photo_uri("FERRARI_LUCE_FRONT_3Q_16x9_RGB_WEB_SOCIALS_1920x1080-1000x1000.png")
+    luce = photo_uri("ferrari_luce_trim.png")
     return f'''<div class="slide" style="overflow:hidden;
-        background:linear-gradient(165deg,#141826 0%,{INK["deep"]} 55%,#0A0C16 100%);">
+        background:linear-gradient(165deg,#141826 0%,{INK["deep"]} 52%,#0A0C16 100%);">
       {dot_grid(color="rgba(255,255,255,0.05)")}
       {logo()}
 
-      <!-- FERRARI LUCE grande no topo, flutuando com halo -->
-      <div style="position:absolute;top:96px;left:50%;transform:translateX(-50%);
-                  width:300px;height:230px;z-index:0;
-                  background:radial-gradient(ellipse at 50% 55%,
-                    rgba(90,170,225,0.28),transparent 68%);filter:blur(6px);"></div>
-      <div style="position:absolute;top:64px;left:50%;transform:translateX(-50%);
-                  width:330px;z-index:2;
-                  -webkit-mask-image:radial-gradient(ellipse 90% 88% at 50% 50%,#000 70%,transparent 96%);
-                  mask-image:radial-gradient(ellipse 90% 88% at 50% 50%,#000 70%,transparent 96%);">
-        <img src="{luce}" style="width:100%;display:block;
-             filter:drop-shadow(0 14px 34px rgba(0,0,0,0.5));">
+      <!-- ZONA 1 · KICKER (topo, abaixo do logo) -->
+      <div style="position:absolute;top:60px;left:28px;right:28px;z-index:10;">
+        {kicker("O Que Aconteceu · 26 Mai 2026")}
       </div>
 
-      <!-- bloco de texto na metade de baixo -->
-      <div style="position:absolute;left:0;right:0;bottom:0;padding:0 28px 40px;z-index:10;">
-        {kicker("O Que Aconteceu · 26 Mai 2026")}
+      <!-- ZONA 2 · CARRO (terço central, respirando) -->
+      <div style="position:absolute;top:142px;left:50%;transform:translateX(-50%);
+                  width:300px;height:140px;z-index:0;
+                  background:radial-gradient(ellipse at 50% 55%,
+                    rgba(90,170,225,0.26),transparent 66%);filter:blur(6px);"></div>
+      <div style="position:absolute;top:120px;left:50%;transform:translateX(-50%);
+                  width:300px;z-index:2;
+                  filter:drop-shadow(0 16px 30px rgba(0,0,0,0.45));">
+        <img src="{luce}" style="width:100%;display:block;">
+      </div>
+
+      <!-- ZONA 3 · TEXTO (base, sem sobrepor o carro) -->
+      <div style="position:absolute;left:0;right:0;bottom:0;height:46%;z-index:8;
+                  background:linear-gradient(180deg,transparent 0%,
+                    rgba(10,12,22,0.55) 26%,#0A0C16 58%);"></div>
+      <div style="position:absolute;left:0;right:0;bottom:0;padding:0 28px 42px;z-index:10;">
         <div class="display" style="font-size:40px;color:#fff;line-height:0.92;margin-bottom:14px;">
-          A FERRARI LANÇOU<br>A <span style="color:{ACCENT["primary"]};">LUCE</span>.
+          A FERRARI LANÇOU<br>A <span style="background:{ACCENT["primary"]};color:#06121c;
+              padding:0 12px 4px;border-radius:8px;
+              box-shadow:0 4px 20px rgba(30,197,242,0.45);">LUCE</span>
         </div>
         <div style="font-family:{FONTS["body"]},sans-serif;font-size:13.5px;
-                    color:rgba(255,255,255,0.74);line-height:1.62;">
+                    color:rgba(255,255,255,0.76);line-height:1.62;max-width:320px;">
           Primeiro carro elétrico da marca, a €550 mil, desenhado com o
           ex-chefe de design da Apple. Resultado: comparado a Nissan nas redes,
           acusado de <strong style="color:#fff;">"destruir uma lenda"</strong> —
           e ações caindo <strong style="color:{ACCENT["primary"]};">8% em 24h</strong>.
         </div>
-        {hr(44, 18)}
       </div>
     </div>'''
 
