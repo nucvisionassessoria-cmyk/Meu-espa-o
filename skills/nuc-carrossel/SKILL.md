@@ -25,93 +25,83 @@ A regra mestra desta skill: **nada flutua, nada é liso, nada tem luz incoerente
 # SEÇÃO -1 — A SKILL É UM DIRETOR CRIATIVO, NÃO UMA EXECUTORA
 
 > **Esta seção roda ANTES DE TUDO — antes da narrativa, antes do design.
-> Decide se o carrossel PODE ser gerado, ou se precisa de material real primeiro.**
+> Não decide se gera ou não — decide o que pedir antes de gerar.**
 
 ## PRINCÍPIO MESTRE
-Composição perfeita NÃO resolve artificialidade. A "cara de IA" não vem da renderização
-— vem da ORIGEM do material. Uma peça toda sintética sobre um fato real sempre vai
-transmitir "isso foi gerado" em vez de "isso aconteceu", por melhor que esteja a luz.
+Elementos de design gerados são bem-vindos. O problema é quando a peça é **100% sintética
+sobre um fato real** — sem nenhuma âncora no mundo real. Isso transmite "isso foi inventado"
+em vez de "isso aconteceu", por melhor que esteja a luz e a composição.
 
-A referência que buscamos (ex.: V4) não cria a realidade do zero. Ela MISTURA design com
-elementos reais: prints, manchetes, fotos autênticas, selos, capturas, recortes documentais.
-É isso que gera credibilidade, familiaridade, contexto e conexão emocional.
+A referência que buscamos (ex.: V4) não substitui realidade por design — ela MISTURA os dois:
+prints, manchetes, fotos de imprensa, selos, capturas, recortes documentais ao lado do design.
+É essa mistura que gera credibilidade, familiaridade e conexão emocional.
 
-Portanto: **você não assume que tem todo o material necessário.** Você identifica o que
-falta e PEDE — como um diretor criativo faz, antes de produzir.
+Portanto: **antes de gerar, pergunte o que pode ser enriquecido com material real.**
+Elementos de design continuam. Âncoras reais entram ao lado deles.
 
 ---
 
-## ETAPA 0 — TRIAGEM DE DEPENDÊNCIA DE REALIDADE (antes de roteiro e design)
-Antes de qualquer outra coisa, classifique o tema do carrossel:
-
-**O conteúdo gira em torno de algo real e verificável?**
+## ETAPA 0 — TRIAGEM (antes de roteiro e design)
+O tema gira em torno de algo real e verificável?
 - pessoa pública (Hamilton, Musk, Toguro...)
 - empresa/marca (Ferrari, Meta, OpenAI, Mercado Livre...)
 - acontecimento/lançamento/notícia/evento
 - polêmica ou trend do momento
 - dado, citação, manchete ou declaração específica
 
-Se **NÃO** (tema é conceitual, atemporal, opinião genérica, educacional abstrato):
-→ pode seguir para a Seção 0 (narrativa) e gerar normalmente. Realismo via design basta.
+Se **NÃO** (tema conceitual, atemporal, educacional abstrato):
+→ pode seguir direto para a Seção 0. Design gerado basta.
 
-Se **SIM** → ative o protocolo de ativos reais abaixo. NÃO gere ainda.
+Se **SIM** → antes de começar o roteiro, pergunte ao usuário se há material real disponível.
 
 ---
 
-## PROTOCOLO DE ATIVOS REAIS (quando o tema depende da realidade)
-INTERROMPA o fluxo automático e fale com o usuário ANTES de gerar. Mensagem padrão:
+## PROTOCOLO DE ENRIQUECIMENTO (quando o tema é real)
+Não interrompa o projeto — enriqueça-o. Mensagem padrão:
 
-> "Esse carrossel é sobre [tema real]. Para aumentar a credibilidade e reduzir a
->  aparência artificial, recomendo usar elementos reais em vez de criar tudo do zero.
->  Você consegue me enviar algum destes materiais?
+> "Esse carrossel é sobre [tema real]. Já posso gerar, mas fica muito mais forte com
+>  algum elemento real junto — print, manchete, foto oficial. Você tem algum destes?
 >   • print da notícia / matéria
 >   • print do post ou tweet original
->   • foto real relacionada (oficial, de imprensa ou do evento)
->   • captura de tela (resultado, gráfico, manchete)
->   • imagem oficial do produto/pessoa/empresa
->  Se não tiver, me diga — eu adapto a abordagem."
+>   • foto real (imprensa, evento, produto oficial)
+>   • captura de tela (gráfico, resultado, manchete)
+>  Se não tiver, tudo bem — sigo sem e aviso se precisar adaptar algum slide."
 
-Só prossiga depois da resposta. Dois caminhos:
+Dois caminhos após a resposta:
 
-**A) Usuário envia material real** → use-o como ÂNCORA da peça. O elemento real é o
-herói visual (print/foto/manchete em destaque, em card com sombra real); o design da NUC
-emoldura, não substitui. É assim que se reduz artificialidade de verdade.
+**A) Usuário envia material real** → use-o como ÂNCORA visual. O elemento real entra em
+destaque (card com sombra projetada, manchete em overlay, print emoldurado); o design
+da NUC complementa e dá linguagem, não substitui a âncora. É assim que se elimina a
+"cara de gerado".
 
-**B) Usuário não tem material** → NUNCA fabrique manchete, citação, print ou produto e
-apresente como factual (foi o erro do "case LUCE / balão do Enzo Ferrari" — citação
-inventada apresentada como real). Em vez disso:
-- reposicione o conteúdo como **análise/opinião/leitura** ("o que esse movimento revela"),
-  não como reportagem;
-- marque visualmente qualquer elemento ilustrativo como conceitual (sem fingir ser print real);
-- ou sugira trocar de tema/ângulo para um que não dependa de evidência inexistente.
-Credibilidade nunca justifica inventar fato. Isso protege a marca de desinformação.
+**B) Usuário não tem material** → gere normalmente, mas com duas restrições:
+- **Não fabrique** manchete, citação, print ou dado e apresente **como factual**
+  (erro clássico: criar um balão de comentário com frase inventada e renderizar como
+  se fosse um print real de rede social).
+- Se algum slide precisar de "prova visual" que você não tem, marque-o claramente como
+  conceitual/ilustrativo — ou adapte o copy para análise/leitura, não reportagem.
+O design gerado continua — só não pode fingir ser evidência que não existe.
 
 ---
 
-## DETECTOR DE ARTIFICIALIDADE (rodar antes de aprovar QUALQUER peça)
-Mesmo em tema conceitual, antes de exportar, responda honestamente:
+## DETECTOR DE ARTIFICIALIDADE (rodar antes de exportar)
+Para peças sobre tema real, antes de exportar, responda:
 
-1. Essa arte parece feita por um designer humano com recursos reais?
-2. Existem elementos reais suficientes (foto/print/selo/manchete)?
-3. Existe alguma evidência visual concreta?
-4. Existe contexto visual do mundo real?
-5. Parece algo que alguém VIU acontecer?
-6. Ou parece apenas uma composição criada por IA?
+1. Existe ao menos um elemento real (foto/print/manchete/dado verificável) na peça?
+2. Algum elemento de design está sendo apresentado como se fosse evidência factual?
 
 **Veredito:**
-- Se a resposta honesta for "está parecendo só composição de IA" → INTERROMPA.
-  Não exporte. Volte ao usuário e sugira materiais reais (protocolo acima), ou
-  reposicione a peça para não depender de uma realidade que você está fabricando.
-- Se houver ao menos uma âncora real coerente (ou o tema for legitimamente conceitual)
-  → aprovado para seguir ao QA narrativo (Seção 0) e visual (Seções 1–8).
+- Sem nenhuma âncora real E peça parece reportagem → peça ao usuário algum material
+  antes de exportar, ou adapte o framing para análise/opinião.
+- Tem ao menos uma âncora real, OU tema é legitimamente conceitual → aprovado.
+- Design gerado nunca é problema em si — só é problema quando finge ser algo que não é.
 
 ---
 
 ## REGRA DE OURO
-A pergunta da skill deixou de ser "como eu gero este carrossel?".
-Passou a ser: **"quais recursos eu preciso para que este carrossel seja realmente forte —
-e quais deles eu ainda não tenho?"**
-Identifique o que falta. Peça o que falta. Só então produza.
+A pergunta não é "como gero este carrossel?".
+É: **"o que posso adicionar de real para que esta peça seja mais forte do que eu poderia
+gerar sozinho?"** Identifique. Peça. Misture. Depois produza.
 
 ---
 > **FIM DA SEÇÃO -1. Ordem de execução: Seção -1 → Seção 0 (narrativa) → Seções 1–8 (visual).**
