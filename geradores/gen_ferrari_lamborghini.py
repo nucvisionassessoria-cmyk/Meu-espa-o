@@ -199,7 +199,7 @@ def slide2():
       <div style="position:absolute;left:0;right:0;bottom:0;height:46%;z-index:8;
                   background:linear-gradient(180deg,transparent 0%,
                     rgba(10,12,22,0.55) 26%,#0A0C16 58%);"></div>
-      <div style="position:absolute;left:0;right:0;bottom:0;padding:0 28px 42px;z-index:10;">
+      <div style="position:absolute;left:0;right:0;bottom:0;padding:0 32px 52px;z-index:10;">
         <div class="display" style="font-size:40px;color:#fff;line-height:0.92;margin-bottom:14px;">
           A FERRARI LANÇOU<br>A <span style="background:{ACCENT["primary"]};color:#06121c;
               padding:0 12px 4px;border-radius:8px;
@@ -315,15 +315,14 @@ def slide4():
       <!-- ZONA 3 · TEXTO base -->
       <div style="position:absolute;left:0;right:0;bottom:0;height:44%;z-index:8;
                   background:linear-gradient(180deg,transparent,rgba(10,12,24,0.7) 36%,#0A0C18 65%);"></div>
-      <div style="position:absolute;left:0;right:0;bottom:0;padding:0 28px 42px;z-index:10;">
+      <div style="position:absolute;left:0;right:0;bottom:0;padding:0 32px 52px;z-index:10;">
         <div class="display" style="font-size:38px;color:#fff;line-height:0.92;margin-bottom:12px;">
           A FERRARI ABRIU MÃO<br>DA <span style="background:{ACCENT["primary"]};color:#06121c;
               padding:0 10px 4px;border-radius:8px;">ESSÊNCIA.</span>
         </div>
-        <div style="font-family:{FONTS["body"]},sans-serif;font-size:13px;
-                    color:rgba(255,255,255,0.62);line-height:1.6;">
-          Não foi erro de design. Foi abandonar o posicionamento que
-          construiu décadas de valor — sob pressão de tendência.
+        <div style="font-family:{FONTS["body"]},sans-serif;font-size:13.5px;
+                    color:rgba(255,255,255,0.66);line-height:1.6;max-width:300px;">
+          Não foi erro de design. Foi abrir mão do posicionamento sob pressão.
           <strong style="color:{ACCENT["primary"]};">O mercado sentiu na hora.</strong>
         </div>
       </div>
@@ -392,7 +391,7 @@ def slide5():
       <!-- ZONA 3 · BASE com frase conclusiva -->
       <div style="position:absolute;left:0;right:0;bottom:0;height:30%;z-index:8;
                   background:linear-gradient(180deg,transparent,rgba(5,6,10,0.75) 38%,{INK["void"]} 65%);"></div>
-      <div style="position:absolute;left:0;right:0;bottom:0;padding:0 28px 36px;z-index:10;">
+      <div style="position:absolute;left:0;right:0;bottom:0;padding:0 32px 52px;z-index:10;">
         <div style="font-family:{FONTS["body"]},sans-serif;font-size:13px;
                     color:rgba(255,255,255,0.62);line-height:1.55;">
           Sem campanha. Sem investimento. Só <strong style="color:#fff;">saber quem é</strong>
@@ -518,17 +517,15 @@ def slide8():
       <!-- ZONA 3 · TEXTO base -->
       <div style="position:absolute;left:0;right:0;bottom:0;height:50%;z-index:8;
                   background:linear-gradient(180deg,transparent,rgba(14,10,24,0.65) 32%,#0E0A18 60%);"></div>
-      <div style="position:absolute;left:0;right:0;bottom:0;padding:0 28px 44px;z-index:10;">
+      <div style="position:absolute;left:0;right:0;bottom:0;padding:0 32px 52px;z-index:10;">
         <div class="display" style="font-size:40px;color:#fff;line-height:0.90;margin-bottom:14px;">
           MARCA FORTE<br>NÃO SEGUE<br>TODA <span style="background:{ACCENT["primary"]};
             color:#06121c;padding:0 10px 4px;border-radius:8px;">TENDÊNCIA.</span>
         </div>
-        <div style="font-family:{FONTS["body"]},sans-serif;font-size:13px;
-                    color:rgba(255,255,255,0.60);line-height:1.60;">
-          A Ferrari tentou se modernizar e perdeu o mais valioso:
-          a certeza de que um Ferrari só pode ser um Ferrari.<br>
-          <strong style="color:rgba(255,255,255,0.85);">
-            A Lamborghini sabia quem era. E ganhou sem fazer nada.</strong>
+        <div style="font-family:{FONTS["body"]},sans-serif;font-size:13.5px;
+                    color:rgba(255,255,255,0.66);line-height:1.6;max-width:300px;">
+          A Lamborghini sabia quem era.
+          <strong style="color:#fff;">E ganhou sem fazer nada.</strong>
         </div>
       </div>
     </div>'''
