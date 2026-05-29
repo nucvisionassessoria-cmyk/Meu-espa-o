@@ -102,9 +102,19 @@ def slide1():
                   background:radial-gradient(ellipse,rgba(196,30,40,0.30),transparent 68%);
                   filter:blur(14px);"></div>
 
-      <!-- HAMILTON recortado — rosto + mãos no topo, corpo descendo -->
+      <!-- HAMILTON — dissolve nas laterais e embaixo, sem borda dura -->
       <div style="position:absolute;top:34px;left:50%;transform:translateX(-50%);
-                  width:102%;z-index:1;">
+                  width:102%;z-index:1;
+                  -webkit-mask-image:linear-gradient(to bottom,
+                    black 0%, black 55%, transparent 85%),
+                    linear-gradient(to right,
+                    transparent 0%, black 8%, black 92%, transparent 100%);
+                  -webkit-mask-composite:destination-in;
+                  mask-image:linear-gradient(to bottom,
+                    black 0%, black 55%, transparent 85%),
+                    linear-gradient(to right,
+                    transparent 0%, black 8%, black 92%, transparent 100%);
+                  mask-composite:intersect;">
         <img src="{hamilton}"
              style="width:100%;display:block;
                     filter:grayscale(1) contrast(1.12) brightness(1.0)
