@@ -119,8 +119,8 @@ def slide1():
       {noise(0.14, z=3)}
       {logo()}
 
-      <!-- comentário viral grifado — topo esquerdo, sobre a mão -->
-      <div style="position:absolute;top:58px;left:14px;z-index:12;">
+      <!-- comentário viral grifado — sobre o peito, rosto livre -->
+      <div style="position:absolute;top:212px;left:14px;z-index:12;">
         {bubble}
       </div>
 
