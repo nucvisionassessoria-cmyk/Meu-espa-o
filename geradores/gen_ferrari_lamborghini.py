@@ -92,9 +92,9 @@ def slide1():
     )
 
     return f'''<div class="slide" style="overflow:hidden;
-        background:radial-gradient(ellipse 120% 90% at 50% 30%,#1A0A0E 0%,#0A0A12 45%,#040509 100%);">
+        background:radial-gradient(ellipse 130% 100% at 50% 32%,#241016 0%,#12101C 45%,#0B0D16 100%);">
 
-      {dot_grid(color="rgba(255,255,255,0.045)", z=0)}
+      {dot_grid(color="rgba(255,255,255,0.06)", z=0)}
 
       <!-- glow vermelho dramático (clima Ferrari) atrás dele -->
       <div style="position:absolute;top:40px;left:50%;transform:translateX(-50%);
@@ -117,14 +117,20 @@ def slide1():
                   mask-composite:intersect;">
         <img src="{hamilton}"
              style="width:100%;display:block;
-                    filter:grayscale(1) contrast(1.12) brightness(1.0)
-                           drop-shadow(0 12px 40px rgba(0,0,0,0.6));">
+                    filter:grayscale(1) contrast(1.12) brightness(1.0);">
       </div>
 
       <!-- fade inferior para o título respirar sobre o corpo -->
       <div style="position:absolute;bottom:0;left:0;right:0;height:50%;z-index:2;
                   background:linear-gradient(180deg,transparent 0%,
-                    rgba(4,5,9,0.55) 40%,rgba(4,5,9,0.95) 72%,#040509 100%);"></div>
+                    rgba(11,13,22,0.55) 40%,rgba(11,13,22,0.95) 72%,#0B0D16 100%);"></div>
+
+      <!-- halo de luz atrás do carro (mata o bloco preto chapado) -->
+      <div style="position:absolute;bottom:120px;right:-40px;z-index:3;
+                  width:320px;height:260px;
+                  background:radial-gradient(ellipse at 55% 50%,
+                    rgba(90,170,225,0.30) 0%,rgba(90,170,225,0.10) 38%,transparent 70%);
+                  filter:blur(8px);pointer-events:none;"></div>
 
       <!-- FERRARI LUCE flutuando (em cor, contrastando com o P&B) -->
       <div style="position:absolute;bottom:150px;right:-26px;z-index:4;width:236px;
@@ -133,7 +139,7 @@ def slide1():
                   mask-image:radial-gradient(ellipse 82% 82% at 50% 50%,#000 62%,transparent 92%);
                   filter:drop-shadow(0 10px 30px rgba(0,0,0,0.55))
                          drop-shadow(0 0 26px rgba(70,160,220,0.35));">
-        <img src="{photo_uri('ferrari_luce_cutout.png')}" style="width:100%;display:block;">
+        <img src="{photo_uri('FERRARI_LUCE_FRONT_3Q_16x9_RGB_WEB_SOCIALS_1920x1080-1000x1000.png')}" style="width:100%;display:block;">
       </div>
 
       {noise(0.14, z=3)}
