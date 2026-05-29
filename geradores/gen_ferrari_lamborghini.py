@@ -219,116 +219,186 @@ def slide2():
 # ── SLIDE 3 — O ponto que ninguém viu ─────────────────────────────────────────
 
 def slide3():
-    p = pill("MERCADO.", 36)
-    return f'''<div class="slide" style="background:{INK["void"]};">
-      {noise(0.28)}
-      <!-- linha ciano vertical no centro -->
-      <div style="position:absolute;left:50%;top:0;bottom:0;width:1px;
-                  background:linear-gradient(180deg,transparent 5%,
-                  {ACCENT["primary"]} 25%,{ACCENT["primary"]} 75%,transparent 95%);
-                  transform:translateX(-50%);z-index:5;opacity:0.4;"></div>
+    luce = photo_uri("ferrari_luce_trim.png")
+    return f'''<div class="slide" style="overflow:hidden;background:{INK["void"]};">
+      {dot_grid(color="rgba(255,255,255,0.04)")}
       {logo()}
-      <div style="position:absolute;top:58px;left:0;right:0;bottom:0;
+
+      <!-- ZONA 1 · KICKER -->
+      <div style="position:absolute;top:60px;left:28px;z-index:10;">
+        {kicker("A Virada")}
+      </div>
+
+      <!-- ZONA 2 · LUCE full-bleed com overlay pesado, serve de fundo -->
+      <div style="position:absolute;top:0;left:0;right:0;bottom:0;z-index:1;overflow:hidden;">
+        <div style="position:absolute;top:80px;left:50%;transform:translateX(-52%) rotate(-8deg);
+                    width:460px;opacity:0.35;filter:grayscale(1) contrast(1.1);">
+          <img src="{luce}" style="width:100%;display:block;">
+        </div>
+        <!-- overlay que deixa os 40% de cima e de baixo escuros -->
+        <div style="position:absolute;inset:0;
+                    background:linear-gradient(180deg,
+                      {INK["void"]} 12%,transparent 38%,transparent 58%,{INK["void"]} 86%);"></div>
+      </div>
+
+      <!-- ZONA 3 · TEXTO centralizado, por cima do overlay -->
+      <div style="position:absolute;top:0;left:0;right:0;bottom:0;
                   display:flex;flex-direction:column;justify-content:center;
                   padding:0 28px;z-index:10;">
-        {kicker("A Virada")}
-        <div class="display" style="font-size:38px;color:rgba(255,255,255,0.35);
-                    line-height:1;margin-bottom:12px;">
+        <div class="display" style="font-size:38px;color:rgba(255,255,255,0.28);
+                    line-height:1;margin-bottom:10px;">
           ISSO NÃO É<br>SÓ POLÊMICA.
         </div>
+        <div style="width:44px;height:2px;background:{ACCENT["primary"]};
+                    border-radius:2px;margin-bottom:10px;"></div>
         <div class="display" style="font-size:38px;color:#fff;line-height:1;margin-bottom:20px;">
-          É UMA AULA DE {p}
+          É UMA AULA DE<br><span style="background:{ACCENT["primary"]};color:#06121c;
+            padding:0 12px 4px;border-radius:8px;">MERCADO.</span>
         </div>
         <div style="font-family:{FONTS["body"]},sans-serif;font-size:13.5px;
-                    color:rgba(255,255,255,0.58);line-height:1.6;">
+                    color:rgba(255,255,255,0.56);line-height:1.6;max-width:300px;">
           O que aconteceu com a Ferrari revela algo
           muito maior do que uma decisão de design ruim.
         </div>
       </div>
-      {overlay_vignette(0.35, z=3)}
     </div>'''
 
 
 # ── SLIDE 4 — Leitura estratégica ─────────────────────────────────────────────
 
 def slide4():
-    return f'''<div class="slide" style="background:{INK["rich"]};">
-      {dot_grid("rgba(30,197,242,0.06)", 36)}
-      {noise()}
+    ferrari_c = photo_uri("ferrari_classic_trim.png")
+    luce      = photo_uri("ferrari_luce_trim.png")
+    return f'''<div class="slide" style="overflow:hidden;
+        background:linear-gradient(160deg,#1A0608 0%,{INK["rich"]} 50%,#0A0C18 100%);">
+      {dot_grid("rgba(255,255,255,0.04)")}
       {logo()}
-      <div style="position:absolute;top:58px;left:0;right:0;bottom:0;
-                  display:flex;flex-direction:column;justify-content:center;
-                  padding:0 28px;z-index:10;">
+
+      <!-- ZONA 1 · KICKER -->
+      <div style="position:absolute;top:60px;left:28px;z-index:10;">
         {kicker("Leitura Estratégica")}
-        <div class="display" style="font-size:40px;color:#fff;
-                    line-height:0.95;margin-bottom:20px;">
-          A FERRARI<br>ABRIU MÃO<br>DA SUA<br>
-          <span style="color:{ACCENT["primary"]};">ESSÊNCIA.</span>
+      </div>
+
+      <!-- ZONA 2 · DOIS CARROS lado a lado (antes × depois) -->
+      <!-- halos -->
+      <div style="position:absolute;top:108px;left:16px;width:180px;height:120px;z-index:1;
+                  background:radial-gradient(ellipse,rgba(220,50,50,0.32),transparent 70%);
+                  filter:blur(8px);"></div>
+      <div style="position:absolute;top:120px;right:10px;width:160px;height:100px;z-index:1;
+                  background:radial-gradient(ellipse,rgba(90,170,225,0.22),transparent 70%);
+                  filter:blur(8px);"></div>
+
+      <!-- Ferrari clássica — esquerda, maior -->
+      <div style="position:absolute;top:88px;left:-20px;width:260px;z-index:2;
+                  filter:drop-shadow(0 10px 24px rgba(0,0,0,0.55));">
+        <img src="{ferrari_c}" style="width:100%;display:block;">
+      </div>
+      <!-- label ANTES -->
+      <div style="position:absolute;top:200px;left:16px;z-index:4;
+                  font-family:{FONTS["body"]},sans-serif;font-size:9px;font-weight:700;
+                  letter-spacing:0.18em;color:rgba(220,80,80,0.85);text-transform:uppercase;">
+        A ESSÊNCIA
+      </div>
+
+      <!-- Luce — direita, menor e acinzentada -->
+      <div style="position:absolute;top:136px;right:-14px;width:200px;z-index:2;
+                  filter:grayscale(0.6) brightness(0.75) drop-shadow(0 8px 20px rgba(0,0,0,0.5));">
+        <img src="{luce}" style="width:100%;display:block;">
+      </div>
+      <!-- label DEPOIS -->
+      <div style="position:absolute;top:220px;right:14px;z-index:4;
+                  font-family:{FONTS["body"]},sans-serif;font-size:9px;font-weight:700;
+                  letter-spacing:0.18em;color:rgba(150,150,180,0.75);text-transform:uppercase;">
+        A APOSTA
+      </div>
+
+      <!-- ZONA 3 · TEXTO base -->
+      <div style="position:absolute;left:0;right:0;bottom:0;height:44%;z-index:8;
+                  background:linear-gradient(180deg,transparent,rgba(10,12,24,0.7) 36%,#0A0C18 65%);"></div>
+      <div style="position:absolute;left:0;right:0;bottom:0;padding:0 28px 42px;z-index:10;">
+        <div class="display" style="font-size:38px;color:#fff;line-height:0.92;margin-bottom:12px;">
+          A FERRARI ABRIU MÃO<br>DA <span style="background:{ACCENT["primary"]};color:#06121c;
+              padding:0 10px 4px;border-radius:8px;">ESSÊNCIA.</span>
         </div>
-        <div style="font-family:{FONTS["body"]},sans-serif;font-size:13.5px;
-                    color:rgba(255,255,255,0.65);line-height:1.65;">
-          Não foi um erro de design.<br>
-          Foi uma decisão de abandonar o posicionamento
-          que construiu décadas de valor de marca —
-          sob pressão de uma tendência de mercado.
-        </div>
-        {hr(44, 18)}
-        <div style="font-family:{FONTS["body"]},sans-serif;font-size:12px;
-                    color:{ACCENT["primary"]};font-weight:600;margin-top:12px;">
-          O mercado sentiu. E reagiu na hora.
+        <div style="font-family:{FONTS["body"]},sans-serif;font-size:13px;
+                    color:rgba(255,255,255,0.62);line-height:1.6;">
+          Não foi erro de design. Foi abandonar o posicionamento que
+          construiu décadas de valor — sob pressão de tendência.
+          <strong style="color:{ACCENT["primary"]};">O mercado sentiu na hora.</strong>
         </div>
       </div>
-      {overlay_vignette(0.28, z=3)}
     </div>'''
 
 
 # ── SLIDE 5 — Lamborghini capitaliza ──────────────────────────────────────────
 
 def slide5():
-    # cards de comparação
-    card_ferrari = (
-        f'<div style="flex:1;background:rgba(255,80,80,0.08);border:1px solid rgba(255,80,80,0.25);'
-        f'border-radius:12px;padding:14px 12px;">'
-        f'<div style="font-family:{FONTS["body"]},sans-serif;font-size:9px;font-weight:700;'
-        f'letter-spacing:0.2em;color:rgba(255,80,80,0.8);text-transform:uppercase;margin-bottom:8px;">FERRARI</div>'
-        f'<div style="font-family:{FONTS["body"]},sans-serif;font-size:12px;'
-        f'color:rgba(255,255,255,0.65);line-height:1.5;">'
-        f'Lança o Luce.<br>Tenta seguir a tendência.<br>Perde 8% em bolsa.</div>'
-        f'<div style="font-size:20px;margin-top:10px;">📉</div>'
-        f'</div>'
-    )
-    card_lambo = (
-        f'<div style="flex:1;background:rgba(30,197,242,0.08);border:1px solid rgba(30,197,242,0.25);'
-        f'border-radius:12px;padding:14px 12px;">'
-        f'<div style="font-family:{FONTS["body"]},sans-serif;font-size:9px;font-weight:700;'
-        f'letter-spacing:0.2em;color:{ACCENT["primary"]};text-transform:uppercase;margin-bottom:8px;">LAMBORGHINI</div>'
-        f'<div style="font-family:{FONTS["body"]},sans-serif;font-size:12px;'
-        f'color:rgba(255,255,255,0.65);line-height:1.5;">'
-        f'Cancela seu EV.<br>Diz que foi a decisão certa.<br>Sai na frente.</div>'
-        f'<div style="font-size:20px;margin-top:10px;">📈</div>'
-        f'</div>'
-    )
-
-    return f'''<div class="slide" style="background:{INK["void"]};">
-      {noise(0.3)}
+    luce  = photo_uri("ferrari_luce_trim.png")
+    lambo = photo_uri("lamborghini_trim.png")
+    return f'''<div class="slide" style="overflow:hidden;background:{INK["void"]};">
+      {dot_grid(color="rgba(255,255,255,0.04)")}
       {logo()}
-      <div style="position:absolute;top:58px;left:0;right:0;bottom:0;
-                  display:flex;flex-direction:column;justify-content:center;
-                  padding:0 24px;z-index:10;">
+
+      <!-- ZONA 1 · KICKER + HEADLINE -->
+      <div style="position:absolute;top:58px;left:28px;right:28px;z-index:10;">
         {kicker("No Dia Seguinte")}
-        <div class="display" style="font-size:36px;color:#fff;
-                    line-height:0.95;margin-bottom:8px;">
-          A LAMBORGHINI<br>FEZ UM ÚNICO<br>
-          <span style="color:{ACCENT["primary"]};">MOVIMENTO.</span>
+        <div class="display" style="font-size:34px;color:#fff;line-height:0.92;margin-bottom:6px;">
+          A LAMBORGHINI FEZ<br>UM ÚNICO <span style="background:{ACCENT["primary"]};
+            color:#06121c;padding:0 10px 4px;border-radius:8px;">MOVIMENTO.</span>
         </div>
-        <div style="font-family:{FONTS["body"]},sans-serif;font-size:12.5px;
-                    color:rgba(255,255,255,0.55);margin-bottom:18px;line-height:1.5;">
-          Sem campanha. Sem investimento. Sem anúncio.<br>
-          Só uma frase do CEO: <em style="color:#fff;">"cancelar nosso elétrico foi a decisão certa."</em>
+        <div style="font-family:{FONTS["body"]},sans-serif;font-size:12px;
+                    color:rgba(255,255,255,0.5);line-height:1.45;margin-top:8px;">
+          <em style="color:rgba(255,255,255,0.8);">"Cancelar nosso elétrico foi a decisão certa."</em>
+          — CEO Lamborghini
         </div>
-        <div style="display:flex;gap:10px;">{card_ferrari}{card_lambo}</div>
       </div>
-      {overlay_vignette(0.3, z=3)}
+
+      <!-- ZONA 2 · DOIS CARROS frente a frente (linha divisória no centro) -->
+      <!-- divisor central -->
+      <div style="position:absolute;left:50%;top:210px;bottom:118px;width:1px;
+                  background:linear-gradient(180deg,transparent,rgba(30,197,242,0.5) 20%,
+                    rgba(30,197,242,0.5) 80%,transparent);z-index:6;"></div>
+
+      <!-- halos -->
+      <div style="position:absolute;top:196px;left:0;width:50%;height:180px;z-index:1;
+                  background:radial-gradient(ellipse at 60% 50%,rgba(90,170,225,0.2),transparent 70%);
+                  filter:blur(6px);"></div>
+      <div style="position:absolute;top:196px;right:0;width:50%;height:180px;z-index:1;
+                  background:radial-gradient(ellipse at 40% 50%,rgba(220,180,20,0.22),transparent 70%);
+                  filter:blur(6px);"></div>
+
+      <!-- Luce — esquerda, acinzentada (perdedor) -->
+      <div style="position:absolute;top:210px;left:-20px;width:230px;z-index:2;
+                  filter:grayscale(0.65) brightness(0.78) drop-shadow(0 8px 20px rgba(0,0,0,0.5));">
+        <img src="{luce}" style="width:100%;display:block;">
+      </div>
+      <div style="position:absolute;top:208px;left:14px;z-index:5;">
+        <div style="font-family:{FONTS["body"]},sans-serif;font-size:9px;font-weight:700;
+                    letter-spacing:0.18em;color:rgba(255,100,100,0.85);text-transform:uppercase;">
+          FERRARI · −8%</div>
+      </div>
+
+      <!-- Lambo — direita, em cor vibrante (vencedor) -->
+      <div style="position:absolute;top:226px;right:-14px;width:230px;z-index:2;
+                  filter:drop-shadow(0 10px 26px rgba(0,0,0,0.5));">
+        <img src="{lambo}" style="width:100%;display:block;">
+      </div>
+      <div style="position:absolute;top:224px;right:14px;z-index:5;text-align:right;">
+        <div style="font-family:{FONTS["body"]},sans-serif;font-size:9px;font-weight:700;
+                    letter-spacing:0.18em;color:{ACCENT["primary"]};text-transform:uppercase;">
+          LAMBO · NA FRENTE</div>
+      </div>
+
+      <!-- ZONA 3 · BASE com frase conclusiva -->
+      <div style="position:absolute;left:0;right:0;bottom:0;height:30%;z-index:8;
+                  background:linear-gradient(180deg,transparent,rgba(5,6,10,0.75) 38%,{INK["void"]} 65%);"></div>
+      <div style="position:absolute;left:0;right:0;bottom:0;padding:0 28px 36px;z-index:10;">
+        <div style="font-family:{FONTS["body"]},sans-serif;font-size:13px;
+                    color:rgba(255,255,255,0.62);line-height:1.55;">
+          Sem campanha. Sem investimento. Só <strong style="color:#fff;">saber quem é</strong>
+          — e não abrir mão disso.
+        </div>
+      </div>
     </div>'''
 
 
@@ -406,31 +476,46 @@ def slide7():
 # ── SLIDE 8 — Fechamento forte ────────────────────────────────────────────────
 
 def slide8():
-    return f'''<div class="slide" style="background:{INK["deep"]};">
-      {dot_grid("rgba(30,197,242,0.06)", 30)}
-      {noise(0.3)}
+    ferrari_c = photo_uri("ferrari_classic_trim.png")
+    return f'''<div class="slide" style="overflow:hidden;
+        background:linear-gradient(168deg,#180608 0%,#0E0A18 55%,{INK["void"]} 100%);">
+      {dot_grid("rgba(255,255,255,0.04)")}
       {logo()}
-      <div style="position:absolute;top:58px;left:0;right:0;bottom:0;
-                  display:flex;flex-direction:column;justify-content:center;
-                  padding:0 28px;z-index:10;">
+
+      <!-- ZONA 1 · KICKER -->
+      <div style="position:absolute;top:60px;left:28px;z-index:10;">
         {kicker("O Que Esse Case Revela")}
-        <div class="display" style="font-size:42px;color:#fff;
-                    line-height:0.95;margin-bottom:20px;">
-          MARCA FORTE<br>NÃO SEGUE<br>TODA {pill("TENDÊNCIA.", 36)}
+      </div>
+
+      <!-- ZONA 2 · Ferrari clássica no centro, glow vermelho, imponente -->
+      <div style="position:absolute;top:100px;left:50%;transform:translateX(-50%);
+                  width:380px;height:200px;z-index:0;
+                  background:radial-gradient(ellipse at 50% 55%,rgba(200,40,40,0.28),transparent 66%);
+                  filter:blur(10px);"></div>
+      <div style="position:absolute;top:80px;left:50%;transform:translateX(-52%);
+                  width:360px;z-index:2;
+                  -webkit-mask-image:radial-gradient(ellipse 94% 90% at 50% 50%,#000 68%,transparent 96%);
+                  mask-image:radial-gradient(ellipse 94% 90% at 50% 50%,#000 68%,transparent 96%);">
+        <img src="{ferrari_c}" style="width:100%;display:block;
+             filter:drop-shadow(0 14px 30px rgba(0,0,0,0.6));">
+      </div>
+
+      <!-- ZONA 3 · TEXTO base -->
+      <div style="position:absolute;left:0;right:0;bottom:0;height:50%;z-index:8;
+                  background:linear-gradient(180deg,transparent,rgba(14,10,24,0.65) 32%,#0E0A18 60%);"></div>
+      <div style="position:absolute;left:0;right:0;bottom:0;padding:0 28px 44px;z-index:10;">
+        <div class="display" style="font-size:40px;color:#fff;line-height:0.90;margin-bottom:14px;">
+          MARCA FORTE<br>NÃO SEGUE<br>TODA <span style="background:{ACCENT["primary"]};
+            color:#06121c;padding:0 10px 4px;border-radius:8px;">TENDÊNCIA.</span>
         </div>
-        <div style="font-family:{FONTS["body"]},sans-serif;font-size:13.5px;
-                    color:rgba(255,255,255,0.62);line-height:1.65;">
-          A Ferrari tentou modernizar e perdeu o que tinha de mais valioso:
-          a certeza de que um Ferrari só pode ser um Ferrari.<br><br>
-          A Lamborghini sabia quem era. E ganhou sem fazer nada.
-        </div>
-        {hr(44, 18)}
-        <div style="font-family:{FONTS["body"]},sans-serif;font-size:12px;
-                    color:rgba(255,255,255,0.38);margin-top:12px;">
-          Isso vale pra qualquer empresa — do supercarro à padaria da esquina.
+        <div style="font-family:{FONTS["body"]},sans-serif;font-size:13px;
+                    color:rgba(255,255,255,0.60);line-height:1.60;">
+          A Ferrari tentou se modernizar e perdeu o mais valioso:
+          a certeza de que um Ferrari só pode ser um Ferrari.<br>
+          <strong style="color:rgba(255,255,255,0.85);">
+            A Lamborghini sabia quem era. E ganhou sem fazer nada.</strong>
         </div>
       </div>
-      {overlay_vignette(0.3, z=3)}
     </div>'''
 
 
