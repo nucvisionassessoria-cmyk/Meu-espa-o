@@ -126,6 +126,16 @@ def slide1():
                   background:linear-gradient(180deg,transparent 0%,
                     rgba(4,5,9,0.55) 40%,rgba(4,5,9,0.95) 72%,#040509 100%);"></div>
 
+      <!-- FERRARI LUCE flutuando (em cor, contrastando com o P&B) -->
+      <div style="position:absolute;bottom:150px;right:-26px;z-index:4;width:236px;
+                  transform:rotate(-7deg);
+                  -webkit-mask-image:radial-gradient(ellipse 82% 82% at 50% 50%,#000 62%,transparent 92%);
+                  mask-image:radial-gradient(ellipse 82% 82% at 50% 50%,#000 62%,transparent 92%);
+                  filter:drop-shadow(0 10px 30px rgba(0,0,0,0.55))
+                         drop-shadow(0 0 26px rgba(70,160,220,0.35));">
+        <img src="{photo_uri('ferrari_luce_cutout.png')}" style="width:100%;display:block;">
+      </div>
+
       {noise(0.14, z=3)}
       {logo()}
 
