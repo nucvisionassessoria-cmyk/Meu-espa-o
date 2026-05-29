@@ -78,7 +78,8 @@ herói visual (print/foto/manchete em destaque, em card com sombra real); o desi
 emoldura, não substitui. É assim que se reduz artificialidade de verdade.
 
 **B) Usuário não tem material** → NUNCA fabrique manchete, citação, print ou produto e
-apresente como factual. Em vez disso:
+apresente como factual (foi o erro do "case LUCE / balão do Enzo Ferrari" — citação
+inventada apresentada como real). Em vez disso:
 - reposicione o conteúdo como **análise/opinião/leitura** ("o que esse movimento revela"),
   não como reportagem;
 - marque visualmente qualquer elemento ilustrativo como conceitual (sem fingir ser print real);
