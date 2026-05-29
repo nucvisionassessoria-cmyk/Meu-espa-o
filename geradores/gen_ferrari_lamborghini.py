@@ -60,18 +60,23 @@ def dot_grid(color="rgba(30,197,242,0.07)", sp=28, z=0):
             f'background-image:radial-gradient(circle,{color} 1.2px,transparent 1.2px);'
             f'background-size:{sp}px {sp}px;"></div>')
 
-def comment_bubble(text):
-    """Simula um print de comentário viral — estilo rede social."""
+def comment_bubble(text, highlight=False, max_w=205):
+    """Simula um print de comentário viral — estilo rede social.
+    highlight=True aplica grifo amarelo de marca-texto atrás das palavras."""
+    hl = ("background:linear-gradient(transparent 12%,#FFE600 12%,#FFE600 88%,transparent 88%);"
+          "box-decoration-break:clone;-webkit-box-decoration-break:clone;"
+          "padding:0 1px;") if highlight else ""
     return (
-        f'<div style="background:#fff;border-radius:14px;padding:12px 16px;'
-        f'max-width:280px;box-shadow:0 8px 32px rgba(0,0,0,0.45);">'
+        f'<div style="background:#fff;border-radius:14px;padding:12px 15px;'
+        f'max-width:{max_w}px;box-shadow:0 10px 36px rgba(0,0,0,0.5);">'
         f'<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">'
-        f'<div style="width:28px;height:28px;border-radius:50%;background:#e0e0e0;'
-        f'flex-shrink:0;"></div>'
-        f'<div style="width:80px;height:10px;background:#d0d0d0;border-radius:4px;"></div>'
+        f'<div style="width:26px;height:26px;border-radius:50%;'
+        f'background:#cfcfcf;filter:blur(0.5px);flex-shrink:0;"></div>'
+        f'<div style="width:96px;height:9px;background:#d4d4d4;border-radius:4px;filter:blur(1.2px);"></div>'
         f'</div>'
-        f'<div style="font-family:{FONTS["body"]},sans-serif;font-size:12.5px;'
-        f'color:#111;line-height:1.45;font-weight:500;">{text}</div>'
+        f'<div style="font-family:{FONTS["body"]},sans-serif;font-size:13px;'
+        f'color:#111;line-height:1.5;font-weight:600;">'
+        f'<span style="{hl}">{text}</span></div>'
         f'</div>'
     )
 
@@ -79,50 +84,59 @@ def comment_bubble(text):
 # ── SLIDE 1 — HOOK com foto do Hamilton ────────────────────────────────────────
 
 def slide1():
-    hamilton = photo_uri("Gemini_Generated_Image_bk8amybk8amybk8a.png")
+    hamilton = photo_uri("hamilton_cutout.png")
 
     bubble = comment_bubble(
-        "Enzo Ferrari deve estar se revirando<br>no túmulo neste exato momento."
+        "Enzo Ferrari deve estar se revirando no túmulo neste exato momento.",
+        highlight=True, max_w=215,
     )
 
-    return f'''<div class="slide" style="background:#000;overflow:hidden;">
-      <!-- foto Hamilton em P&B ocupando o fundo inteiro -->
-      <div style="position:absolute;inset:0;z-index:1;">
+    return f'''<div class="slide" style="overflow:hidden;
+        background:radial-gradient(ellipse 120% 90% at 50% 30%,#1A0A0E 0%,#0A0A12 45%,#040509 100%);">
+
+      {dot_grid(color="rgba(255,255,255,0.045)", z=0)}
+
+      <!-- glow vermelho dramático (clima Ferrari) atrás dele -->
+      <div style="position:absolute;top:40px;left:50%;transform:translateX(-50%);
+                  width:360px;height:320px;z-index:0;
+                  background:radial-gradient(ellipse,rgba(196,30,40,0.30),transparent 68%);
+                  filter:blur(14px);"></div>
+
+      <!-- HAMILTON recortado — rosto + mãos no topo, corpo descendo -->
+      <div style="position:absolute;top:34px;left:50%;transform:translateX(-50%);
+                  width:102%;z-index:1;">
         <img src="{hamilton}"
-             style="width:100%;height:100%;object-fit:cover;object-position:50% 15%;
-                    filter:grayscale(1) contrast(1.1) brightness(0.82);">
-        <!-- overlay gradiente para legibilidade do texto no bottom -->
-        <div style="position:absolute;inset:0;
-                    background:linear-gradient(180deg,
-                      rgba(0,0,0,0.35) 0%,
-                      transparent 30%,
-                      transparent 52%,
-                      rgba(0,0,0,0.92) 100%);"></div>
+             style="width:100%;display:block;
+                    filter:grayscale(1) contrast(1.12) brightness(1.0)
+                           drop-shadow(0 12px 40px rgba(0,0,0,0.6));">
       </div>
 
-      {noise(0.18, z=2)}
+      <!-- fade inferior para o título respirar sobre o corpo -->
+      <div style="position:absolute;bottom:0;left:0;right:0;height:50%;z-index:2;
+                  background:linear-gradient(180deg,transparent 0%,
+                    rgba(4,5,9,0.55) 40%,rgba(4,5,9,0.95) 72%,#040509 100%);"></div>
 
-      <!-- logo topo -->
+      {noise(0.14, z=3)}
       {logo()}
 
-      <!-- comentário viral — topo esquerdo -->
-      <div style="position:absolute;top:62px;left:18px;z-index:10;">
+      <!-- comentário viral grifado — topo esquerdo, sobre a mão -->
+      <div style="position:absolute;top:58px;left:14px;z-index:12;">
         {bubble}
       </div>
 
-      <!-- headline bottom -->
-      <div style="position:absolute;bottom:0;left:0;right:0;z-index:10;padding:0 22px 50px;">
-        <div class="display" style="font-size:28px;color:#fff;line-height:1;margin-bottom:4px;">
-          ABSOLUTE
-        </div>
-        <div class="display" style="font-size:72px;color:#fff;line-height:0.9;margin-bottom:16px;">
-          DECEP<span style="color:{ACCENT["primary"]};">ÇÃO.</span>
+      <!-- TÍTULO GIGANTE embaixo -->
+      <div style="position:absolute;bottom:0;left:0;right:0;z-index:11;padding:0 22px 38px;">
+        <div class="display" style="font-size:40px;color:#fff;line-height:0.92;
+                    text-shadow:0 4px 30px rgba(0,0,0,0.8);">ABSOLUTE</div>
+        <div class="display" style="font-size:62px;color:#fff;line-height:0.86;
+                    margin-bottom:18px;text-shadow:0 4px 30px rgba(0,0,0,0.8);">
+          DECEP<span style="color:{ACCENT["primary"]};">ÇÃO</span>
         </div>
         <div style="display:inline-flex;align-items:center;gap:8px;
-                    background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);
-                    padding:8px 18px;border-radius:999px;backdrop-filter:blur(8px);">
+                    background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.30);
+                    padding:9px 20px;border-radius:999px;backdrop-filter:blur(8px);">
           <span style="font-family:{FONTS["body"]},sans-serif;font-size:12px;
-                       color:#fff;font-weight:600;letter-spacing:0.08em;">
+                       color:#fff;font-weight:700;letter-spacing:0.08em;">
             PASSE PARA O LADO ››
           </span>
         </div>
