@@ -173,30 +173,40 @@ def slide1():
 # ── SLIDE 2 — O que aconteceu ──────────────────────────────────────────────────
 
 def slide2():
-    return f'''<div class="slide" style="background:{INK["deep"]};">
-      {dot_grid()}
-      {noise()}
+    luce = photo_uri("FERRARI_LUCE_FRONT_3Q_16x9_RGB_WEB_SOCIALS_1920x1080-1000x1000.png")
+    return f'''<div class="slide" style="overflow:hidden;
+        background:linear-gradient(165deg,#141826 0%,{INK["deep"]} 55%,#0A0C16 100%);">
+      {dot_grid(color="rgba(255,255,255,0.05)")}
       {logo()}
-      <div style="position:absolute;top:58px;left:0;right:0;bottom:0;
-                  display:flex;flex-direction:column;justify-content:center;
-                  padding:0 28px;z-index:10;">
-        {kicker("O Que Aconteceu")}
-        <div class="display" style="font-size:46px;color:#fff;margin-bottom:16px;">
-          26 DE MAIO<br>DE 2026.
-        </div>
-        <div style="font-family:{FONTS["body"]},sans-serif;font-size:14px;
-                    color:rgba(255,255,255,0.72);line-height:1.65;">
-          A Ferrari lança o <strong style="color:#fff;">Luce</strong> —
-          primeiro carro elétrico da marca, a €550 mil.<br><br>
-          Design feito com o ex-chefe de design da Apple.<br><br>
-          Resultado: comparado a Nissan nas redes.
-          O ex-CEO disse que estavam
-          <strong style="color:{ACCENT["primary"]};">"destruindo uma lenda".</strong>
-          Ações caíram <strong style="color:{ACCENT["primary"]};">8%</strong> em 24h.
-        </div>
-        {hr(44, 20)}
+
+      <!-- FERRARI LUCE grande no topo, flutuando com halo -->
+      <div style="position:absolute;top:96px;left:50%;transform:translateX(-50%);
+                  width:300px;height:230px;z-index:0;
+                  background:radial-gradient(ellipse at 50% 55%,
+                    rgba(90,170,225,0.28),transparent 68%);filter:blur(6px);"></div>
+      <div style="position:absolute;top:64px;left:50%;transform:translateX(-50%);
+                  width:330px;z-index:2;
+                  -webkit-mask-image:radial-gradient(ellipse 90% 88% at 50% 50%,#000 70%,transparent 96%);
+                  mask-image:radial-gradient(ellipse 90% 88% at 50% 50%,#000 70%,transparent 96%);">
+        <img src="{luce}" style="width:100%;display:block;
+             filter:drop-shadow(0 14px 34px rgba(0,0,0,0.5));">
       </div>
-      {overlay_vignette(0.3, z=3)}
+
+      <!-- bloco de texto na metade de baixo -->
+      <div style="position:absolute;left:0;right:0;bottom:0;padding:0 28px 40px;z-index:10;">
+        {kicker("O Que Aconteceu · 26 Mai 2026")}
+        <div class="display" style="font-size:40px;color:#fff;line-height:0.92;margin-bottom:14px;">
+          A FERRARI LANÇOU<br>A <span style="color:{ACCENT["primary"]};">LUCE</span>.
+        </div>
+        <div style="font-family:{FONTS["body"]},sans-serif;font-size:13.5px;
+                    color:rgba(255,255,255,0.74);line-height:1.62;">
+          Primeiro carro elétrico da marca, a €550 mil, desenhado com o
+          ex-chefe de design da Apple. Resultado: comparado a Nissan nas redes,
+          acusado de <strong style="color:#fff;">"destruir uma lenda"</strong> —
+          e ações caindo <strong style="color:{ACCENT["primary"]};">8% em 24h</strong>.
+        </div>
+        {hr(44, 18)}
+      </div>
     </div>'''
 
 
