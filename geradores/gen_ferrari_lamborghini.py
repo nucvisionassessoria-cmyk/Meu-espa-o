@@ -243,10 +243,12 @@ def slide4():
         </div>
       </div>
 
-      <!-- Lambo entrando em diagonal pela direita, sangrando para fora -->
-      <div style="position:absolute;top:182px;right:-46px;width:160px;height:120px;z-index:1;
-                  background:radial-gradient(ellipse,rgba(220,180,20,0.22),transparent 70%);filter:blur(8px);"></div>
-      <div class="subject" style="position:absolute;top:176px;right:-46px;width:340px;z-index:2;transform:rotate(-3deg);">
+      <!-- Lambo centralizada e contida, com leve inclinação -->
+      <div style="position:absolute;top:188px;left:50%;transform:translateX(-50%);
+                  width:300px;height:130px;z-index:1;
+                  background:radial-gradient(ellipse at 50% 60%,rgba(220,180,20,0.22),transparent 68%);filter:blur(8px);"></div>
+      <div class="subject" style="position:absolute;top:182px;left:50%;
+                  transform:translateX(-50%) rotate(-2deg);width:308px;z-index:2;">
         <img src="{lambo}" style="width:100%;display:block;">
       </div>
 
