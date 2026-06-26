@@ -190,10 +190,25 @@ Não troque o sistema tipográfico — ele é superior ao da concorrência.
 - Fluxo: preserve cima→baixo (kicker → headline → corpo → CTA).
 
 ## 5. TIPOGRAFIA E COPY
+
+### Tipografia
 - Contraste mínimo AA (4.5:1) em todo texto-chave. PROIBIDO preto-sobre-preto. De-ênfase ≥40%.
-- Revisão de copy obrigatória: concordância, ortografia, idioma único. "TODO SEMANA" ou
-  "ABSOLUTE DECEPÇÃO" reprovam a peça.
+- Fontes genéricas (Inter, Roboto, Arial) são PROIBIDAS. Use a condensada da marca na headline.
 - CTA com presença: fill sólido + glow OU sombra. Nunca cinza apagado.
+
+### Copy — regras anti-IA (incorporadas da taste-skill)
+- **Em-dash (`—`) é PROIBIDO.** É o maior sinal de texto gerado por IA. Use ponto, vírgula ou
+  ponto-e-vírgula. Zero tolerância.
+- **Registro único por carrossel.** Escolha UM tom (editorial/jornalístico, direto/técnico ou
+  provocativo/marketing) e mantenha do gancho ao CTA. Não misture.
+- **Revisão de copy obrigatória:** concordância, ortografia, idioma único (PT-BR). "TODO SEMANA"
+  ou "ABSOLUTE DECEPÇÃO" reprovam a peça.
+- **Dados precisos ou nada.** "99,9%", "1.234.567 usuários", "R$ 4,2 bilhões" sem fonte real =
+  proibido. Se não tem dado verificável, escreva como análise/opinião, não como notícia.
+- **Sem nomes/marcas genéricas.** "João Silva", "Empresa X", "Marca Y" sem identidade real são
+  proibidos. Use nomes reais ou omita.
+- **Um CTA, uma intenção.** Não acumule "Salva", "Segue" e "Comenta" no mesmo slide final.
+  Escolha uma ação.
 
 ## 6. PROVA E HONESTIDADE
 - Dado/case/manchete → ancore com ativo visual coerente (print/selo/gráfico).
@@ -213,6 +228,10 @@ Não troque o sistema tipográfico — ele é superior ao da concorrência.
 - ❌ Texto de baixo contraste / preto-sobre-preto.
 - ❌ Erro de português ou mistura de idiomas.
 - ❌ Fontes genéricas (Inter, Roboto, Arial, system). Use a condensada da marca.
+- ❌ Em-dash (`—`) em qualquer texto do slide. É o sinal #1 de IA.
+- ❌ Dados de precisão fake ("99,9%", "1.234.567") sem fonte real.
+- ❌ Registro de voz misturado (editorial + técnico + marketing no mesmo carrossel).
+- ❌ Múltiplos CTAs no slide final ("Salva + Segue + Comenta").
 - ❌ Carrossel virar lista de slides de texto sem âncora visual (ver "Âncora visual obrigatória").
 
 ## 8. CHECKLIST DE QA VISUAL — antes de exportar cada slide
@@ -226,8 +245,11 @@ Não troque o sistema tipográfico — ele é superior ao da concorrência.
 - [ ] Título ocluído/integrado à imagem?
 - [ ] Composição com assimetria/diagonal?
 - [ ] Texto-chave ≥ AA, nenhum preto-sobre-preto?
-- [ ] Copy revisada (ortografia, concordância, idioma único)?
-- [ ] CTA com presença forte?
+- [ ] Copy revisada (ortografia, concordância, idioma único PT-BR)?
+- [ ] Nenhum em-dash (`—`) em qualquer slide?
+- [ ] Dados numéricos têm fonte real ou estão marcados como análise/opinião?
+- [ ] Registro de voz único do gancho ao CTA?
+- [ ] CTA com presença forte e uma única intenção?
 
 ## 9. FLUXO DE TRABALHO
 1. Rode a SEÇÃO 0: defina arco, papéis, loops e o teste de remoção. NÃO desenhe antes.
