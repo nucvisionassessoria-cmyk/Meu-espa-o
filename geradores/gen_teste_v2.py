@@ -29,24 +29,15 @@ FONT_LINK = """
 """
 
 LOGO_B64 = base64.b64encode(
-    Path("/home/user/Meu-espa-o/assets/logo-nuc.png").read_bytes()
-).decode() if Path("/home/user/Meu-espa-o/assets/logo-nuc.png").exists() else ""
+    Path("/home/user/Meu-espa-o/assets/LOGO DA NUC VISION.png").read_bytes()
+).decode()
 
 def logo_html():
-    if LOGO_B64:
-        return f'''<div style="position:absolute;top:22px;left:0;right:0;display:flex;
-            justify-content:center;z-index:30;">
-            <img src="data:image/png;base64,{LOGO_B64}"
-                 style="height:24px;width:auto;
-                        filter:brightness(0) invert(1) drop-shadow(0 2px 8px rgba(0,0,0,0.6));">
-        </div>'''
-    # fallback: wordmark em texto
     return f'''<div style="position:absolute;top:22px;left:0;right:0;display:flex;
         justify-content:center;z-index:30;">
-        <span style="font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;
-                     letter-spacing:0.22em;color:rgba(255,255,255,0.85);text-transform:uppercase;">
-            NUC VISION
-        </span>
+        <img src="data:image/png;base64,{LOGO_B64}"
+             style="height:24px;width:auto;
+                    filter:brightness(0) invert(1) drop-shadow(0 2px 8px rgba(0,0,0,0.6));">
     </div>'''
 
 def kicker(txt):
