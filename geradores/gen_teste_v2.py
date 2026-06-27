@@ -75,7 +75,7 @@ GRAIN = '''<div style="position:absolute;inset:0;z-index:50;pointer-events:none;
     background-size:180px 180px;"></div>'''
 
 
-# ── SLIDE 1 · MODO A (condensada/impacto) ─────────────────────────────────────
+# ── SLIDE 1 · GANCHO ──────────────────────────────────────────────────────────
 def slide1():
     img = photo_b64("s1_dono_noite.png")
     return f'''
@@ -84,53 +84,57 @@ def slide1():
   <!-- foto full-bleed -->
   <div style="position:absolute;inset:0;z-index:0;">
     <img src="{img}" style="width:100%;height:100%;object-fit:cover;
-         filter:brightness(0.55) contrast(1.08) saturate(0.82);">
+         filter:brightness(0.50) contrast(1.06) saturate(0.78);">
   </div>
 
-  <!-- gradiente: pesado em cima e embaixo, janela no meio -->
+  <!-- gradiente: pesado em cima + base sólida embaixo -->
   <div style="position:absolute;inset:0;z-index:1;
     background:linear-gradient(180deg,
-      rgba(6,9,15,0.72) 0%,
-      transparent 30%,
-      transparent 52%,
-      rgba(6,9,15,0.68) 68%,
-      {INK} 92%);"></div>
+      rgba(6,9,15,0.80) 0%,
+      rgba(6,9,15,0.30) 35%,
+      transparent 55%,
+      rgba(6,9,15,0.72) 72%,
+      {INK} 94%);"></div>
 
-  <!-- grão -->
   {GRAIN}
-
   {logo_html()}
 
-  <!-- tag superior direita -->
-  <div style="position:absolute;top:54px;right:28px;z-index:20;
-    background:rgba(255,55,55,0.16);border:1px solid rgba(255,70,70,0.38);
-    border-radius:999px;padding:5px 13px;backdrop-filter:blur(6px);">
-    <span style="font-family:'Space Grotesk',sans-serif;font-size:9px;font-weight:700;
-                 letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,120,120,0.9);">
-      3 anos sem férias
-    </span>
+  <!-- conteúdo — bloco central superior -->
+  <div style="position:absolute;top:62px;left:32px;right:32px;z-index:20;">
+
+    <!-- kicker -->
+    {kicker("Diagnóstico")}
+
+    <!-- setup line: sans pequena, contextualiza -->
+    <div style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:500;
+                color:rgba(255,255,255,0.55);letter-spacing:0.01em;
+                text-transform:uppercase;margin-top:6px;line-height:1.3;">
+      Você construiu um negócio.
+    </div>
+
+    <!-- payoff: serif italic grande, o golpe emocional -->
+    <div style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;
+                font-size:56px;line-height:0.88;color:#fff;margin-top:8px;">
+      Ou uma prisão<br>
+      <span style="color:{CYAN};">com CNPJ?</span>
+    </div>
+
   </div>
 
-  <!-- conteúdo principal — topo esquerdo -->
-  <div style="position:absolute;top:56px;left:32px;z-index:20;max-width:260px;">
-    {kicker("O Diagnóstico")}
-
-    <!-- MODO A: Anton condensada, caixa-alta, impacto -->
-    <div style="font-family:'Anton',sans-serif;font-size:50px;line-height:0.88;
-                color:#fff;text-transform:uppercase;letter-spacing:0.01em;">
-      SE VOCÊ<br>
-      PARA,<br>
-      A EMPRESA<br>
-      <span style="background:{CYAN};color:#06121c;
-                   padding:1px 10px 6px;border-radius:8px;display:inline-block;line-height:0.9;
-                   box-shadow:0 6px 20px rgba(30,197,242,0.4);">PARA.</span>
-    </div>
+  <!-- tag flutuante — elemento dramático -->
+  <div style="position:absolute;top:54px;right:28px;z-index:20;
+    background:rgba(255,55,55,0.14);border:1px solid rgba(255,70,70,0.35);
+    border-radius:999px;padding:5px 14px;backdrop-filter:blur(8px);">
+    <span style="font-family:'Space Grotesk',sans-serif;font-size:9px;font-weight:700;
+                 letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,110,110,0.88);">
+      3 anos sem férias
+    </span>
   </div>
 
   <!-- insight container — rodapé -->
   <div style="position:absolute;bottom:32px;left:32px;right:32px;z-index:20;">
     {insight_box(
-      "Você construiu um negócio. Ou uma prisão com CNPJ?",
+      "Se você para, a empresa para.",
       "O sinal mais claro apareceu numa segunda-feira de janeiro."
     )}
   </div>
@@ -138,57 +142,65 @@ def slide1():
 </div>'''
 
 
-# ── SLIDE 2 · MODO B (serif italic/elegância) ─────────────────────────────────
+# ── SLIDE 2 · REVELAÇÃO ───────────────────────────────────────────────────────
 def slide2():
     img = photo_b64("s6_dispensavel.png")
     return f'''
 <div style="width:{VW}px;height:{VH}px;position:relative;overflow:hidden;background:#07090c;">
 
-  <!-- foto full-bleed com tratamento suave -->
+  <!-- foto full-bleed -->
   <div style="position:absolute;inset:0;z-index:0;">
     <img src="{img}" style="width:100%;height:100%;object-fit:cover;
-         filter:brightness(0.48) contrast(1.06) saturate(0.75);">
+         filter:brightness(0.44) contrast(1.05) saturate(0.70);">
   </div>
 
-  <!-- vinheta suave: mais leve que o S1, menos dramático -->
+  <!-- gradiente: janela no centro, escuro nas pontas -->
   <div style="position:absolute;inset:0;z-index:1;
     background:linear-gradient(180deg,
-      rgba(7,9,12,0.60) 0%,
-      transparent 28%,
-      transparent 50%,
-      rgba(7,9,12,0.65) 68%,
-      #07090c 90%);"></div>
+      rgba(7,9,12,0.72) 0%,
+      rgba(7,9,12,0.18) 32%,
+      transparent 52%,
+      rgba(7,9,12,0.68) 72%,
+      #07090c 92%);"></div>
 
-  <!-- dot grid sutil -->
+  <!-- dot grid mínimo -->
   <div style="position:absolute;inset:0;z-index:2;pointer-events:none;
-    background-image:radial-gradient(circle,rgba(255,255,255,0.028) 1px,transparent 1px);
-    background-size:26px 26px;"></div>
+    background-image:radial-gradient(circle,rgba(255,255,255,0.022) 1px,transparent 1px);
+    background-size:28px 28px;"></div>
 
   {GRAIN}
-
   {logo_html()}
 
   <!-- conteúdo principal -->
-  <div style="position:absolute;top:56px;left:32px;right:32px;z-index:20;">
+  <div style="position:absolute;top:62px;left:32px;right:32px;z-index:20;">
+
     {kicker("A Revelação")}
 
-    <!-- MODO B: Playfair Display italic, mixed-case, elegância -->
+    <!-- setup line: contextualiza a virada -->
+    <div style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:500;
+                color:rgba(255,255,255,0.52);letter-spacing:0.01em;
+                text-transform:uppercase;margin-top:6px;line-height:1.3;">
+      O objetivo não é ser indispensável.
+    </div>
+
+    <!-- payoff: serif italic, a virada emocional -->
     <div style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;
-                font-size:48px;line-height:0.92;color:#fff;margin-top:4px;">
-      O objetivo<br>é você ser<br>
+                font-size:54px;line-height:0.88;color:#fff;margin-top:8px;">
+      É você ser<br>
       <span style="color:{CYAN};">dispensável.</span>
     </div>
 
-    <!-- linha de contraste suave abaixo da headline -->
-    <div style="margin-top:16px;width:44px;height:1.5px;
-                background:linear-gradient(90deg,{CYAN},transparent);opacity:0.6;"></div>
+    <!-- divisor sutil após headline -->
+    <div style="margin-top:20px;width:38px;height:1px;
+                background:{CYAN};opacity:0.45;"></div>
+
   </div>
 
-  <!-- insight container — rodapé -->
+  <!-- insight container — rodapé, variante com borda ciano -->
   <div style="position:absolute;bottom:32px;left:32px;right:32px;z-index:20;">
     {insight_box(
       "Não é abandono. É liberdade.",
-      "Quando a empresa funciona sem você presente, você escolhe onde colocar sua energia. Isso se constrói.",
+      "Quando a empresa funciona sem você, você escolhe onde colocar sua energia.",
       accent=True
     )}
   </div>
