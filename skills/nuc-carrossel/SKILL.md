@@ -176,18 +176,75 @@ Feather + light wrap (vide 2.2). Nunca borda dura/serrilhada/halo. Asset sujo �
 
 ## 3. IDENTIDADE NUC (preservar — é o trunfo)
 - Tema: dark editorial noturno. Fundos #06–0E (quase preto azulado), não preto puro.
-- Accent: ciano `#1EC5F2` (hex oficial, alinhado ao design_system). Em kicker, highlight box, light wrap.
-- Tipografia: condensada PESADA, CAIXA-ALTA, nas headlines. Hierarquia: kicker fino ciano →
-  headline branca massiva → corpo cinza.
-- Highlight box: fundo ciano + texto escuro, em UMA palavra-chave por slide.
-Não troque o sistema tipográfico — ele é superior ao da concorrência.
+- Accent: ciano `#1EC5F2` (hex oficial). **Uso cirúrgico: 1 a 2 palavras por slide.** Não pintar
+  kicker, highlight E light wrap ao mesmo tempo. Escolha onde o ciano vai — e pare.
+- Logo: presente em TODOS os slides, centrada no topo, tamanho 24-28px, filter brightness(0) invert(1).
+  Discreta, porém visível. Não compete com o conteúdo.
+- Paleta por slide: fundo escuro + branco + UM acento ciano. Máximo 3 tons ativos por slide.
+
+### 3.1 SISTEMA TIPOGRÁFICO EVOLUÍDO (novo padrão obrigatório)
+A headline principal passa a ter DOIS modos. Escolha um por slide conforme o beat narrativo:
+
+**Modo A — Impacto (headlines de GANCHO e VIRADA):**
+- Condensada pesada, caixa-alta. Mantém a presença de autoridade NUC.
+- Use quando o beat pede força, provocação, ruptura.
+- Exemplo: `"SE VOCÊ PARA, A EMPRESA PARA."`
+
+**Modo B — Elegância (headlines de CURIOSIDADE, REVELAÇÃO, INSIGHT):**
+- Serif display, italic, mixed-case. Fonte: `'Playfair Display'` ou `'Cormorant Garamond'` (Google Fonts).
+- Tamanho grande (42-56px), color #fff ou #F5F0E8 (creme quente).
+- Use quando o beat pede profundidade, sedução, insight.
+- Exemplo: `"<em>constrói seu crescimento?</em>"`
+
+**Hierarquia dos 3 níveis (inviolável):**
+1. **Kicker** — sans-serif, 9-10px, uppercase, letter-spacing 0.2em, ciano, linha decorativa à esquerda.
+2. **Headline** — Modo A ou B. Uma frase. Nunca dois conceitos.
+3. **Insight container** — ver Seção 3.2. Nunca texto solto abaixo da headline.
+
+PROIBIDO: quarto nível de texto (headline + subtítulo + body + bridge = poluição). Se precisar de
+mais informação, ela vai dentro do insight container, não como bloco adicional.
+
+### 3.2 INSIGHT CONTAINER (novo elemento obrigatório)
+Todo slide que não for CTA puro DEVE ter um insight container no rodapé.
+
+Estrutura:
+```css
+.insight-box {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 14px;
+  padding: 14px 18px;
+  backdrop-filter: blur(8px);
+  /* Variante de destaque: */
+  /* background: rgba(30,197,242,0.10); border-color: rgba(30,197,242,0.25); */
+}
+```
+
+O container tem:
+- **Linha bold** (12-13px, #fff, weight 600): o insight principal em 1 frase.
+- **Linha normal** (11-12px, rgba(255,255,255,0.55)): contexto ou continuação. Opcional.
+
+Não use `bridge()` e `body()` flutuantes — tudo entra no container. O texto solto abaixo da
+headline é o padrão antigo que gerava sensação de poluição e frieza.
+
+### 3.3 RESPIRAÇÃO VISUAL (novo parâmetro obrigatório)
+- Padding lateral: mínimo 28px, ideal 32px. Nunca 20px ou menos.
+- Padding inferior antes do container: mínimo 16px entre a headline e a caixa.
+- O container sempre fica a ≥28px da borda inferior.
+- Máximo 60% da área do slide ocupada por conteúdo. Os outros 40% são ar.
+- PROIBIDO: headline + 2 blocos de texto + bridge + body todos empilhados. É poluição.
+  Regra: se precisar de mais de 3 elementos no slide, remova um.
 
 ## 4. COMPOSIÇÃO (saia do empilhamento central simétrico)
 - Integração tipo↔imagem: título OCLUI parte do sujeito (z-index intercalado). Proibido
   título preso em retângulo flutuante isolado da cena.
 - Assimetria: quebre a simetria em ≥1 eixo (diagonal, sobreposição, sangria pra fora).
 - Profundidade de cards: ao empilhar fotos/cards, gire (`rotate(-2deg)`) e sobreponha com sombra.
-- Fluxo: preserve cima→baixo (kicker → headline → corpo → CTA).
+- Fluxo fixo (inviolável): **kicker → headline → [imagem integrada] → insight container**.
+  A caixa de contexto fica SEMPRE no rodapé. Nunca inverter essa ordem.
+- Imagem como metáfora: a foto/visual precisa ARGUMENTAR, não decorar. Antes de escolher a
+  imagem, pergunte: "essa imagem reforça o argumento do slide ou só preenche espaço?" Se só
+  preenche espaço, troque ou remova.
 
 ## 5. TIPOGRAFIA E COPY
 
@@ -233,6 +290,13 @@ Não troque o sistema tipográfico — ele é superior ao da concorrência.
 - ❌ Registro de voz misturado (editorial + técnico + marketing no mesmo carrossel).
 - ❌ Múltiplos CTAs no slide final ("Salva + Segue + Comenta").
 - ❌ Carrossel virar lista de slides de texto sem âncora visual (ver "Âncora visual obrigatória").
+- ❌ Headline em condensada pesada em todos os slides (alterne Modo A e Modo B conforme o beat).
+- ❌ Texto de corpo e bridge flutuando soltos abaixo da headline (tudo vai no insight container).
+- ❌ Mais de 3 elementos de texto empilhados (kicker + headline + container = máximo padrão).
+- ❌ Ciano em mais de 2 elementos por slide (kicker + uma palavra na headline = limite).
+- ❌ Logo ausente em qualquer slide.
+- ❌ Padding lateral inferior a 28px — sufoca o layout e mata a sensação premium.
+- ❌ Imagem decorativa sem argumento (visual que não reforça o beat narrativo).
 
 ## 8. CHECKLIST DE QA VISUAL — antes de exportar cada slide
 - [ ] Slide tem âncora visual (não é texto puro, salvo insight/CTA)?
@@ -250,6 +314,14 @@ Não troque o sistema tipográfico — ele é superior ao da concorrência.
 - [ ] Dados numéricos têm fonte real ou estão marcados como análise/opinião?
 - [ ] Registro de voz único do gancho ao CTA?
 - [ ] CTA com presença forte e uma única intenção?
+- [ ] Tipografia no modo certo para o beat (Modo A = impacto, Modo B = elegância)?
+- [ ] Insight container presente e estruturado (linha bold + linha secundária opcional)?
+- [ ] Texto solto (body/bridge flutuante) eliminado — tudo dentro do container?
+- [ ] Ciano limitado a 1-2 elementos por slide (não saturado)?
+- [ ] Logo visível em todos os slides?
+- [ ] Padding lateral ≥ 28px em todos os slides?
+- [ ] Imagem argumenta o beat (não só decora)?
+- [ ] Máximo 60% da área com conteúdo (40% de ar)?
 
 ## 9. FLUXO DE TRABALHO
 1. Rode a SEÇÃO 0: defina arco, papéis, loops e o teste de remoção. NÃO desenhe antes.
