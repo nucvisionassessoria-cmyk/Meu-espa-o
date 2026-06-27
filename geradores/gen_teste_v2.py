@@ -105,16 +105,16 @@ def slide1():
     <!-- kicker -->
     {kicker("Diagnóstico")}
 
-    <!-- setup line: sans pequena, contextualiza -->
-    <div style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:500;
-                color:rgba(255,255,255,0.55);letter-spacing:0.01em;
-                text-transform:uppercase;margin-top:6px;line-height:1.3;">
+    <!-- setup line: presente, legível, mas claramente diferente do payoff -->
+    <div style="font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:600;
+                color:rgba(255,255,255,0.78);letter-spacing:0.02em;
+                text-transform:uppercase;margin-top:6px;line-height:1.35;">
       Você construiu um negócio.
     </div>
 
     <!-- payoff: serif italic grande, o golpe emocional -->
     <div style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;
-                font-size:56px;line-height:0.88;color:#fff;margin-top:8px;">
+                font-size:54px;line-height:0.88;color:#fff;margin-top:10px;">
       Ou uma prisão<br>
       <span style="color:{CYAN};">com CNPJ?</span>
     </div>
@@ -176,16 +176,16 @@ def slide2():
 
     {kicker("A Revelação")}
 
-    <!-- setup line: contextualiza a virada -->
-    <div style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:500;
-                color:rgba(255,255,255,0.52);letter-spacing:0.01em;
-                text-transform:uppercase;margin-top:6px;line-height:1.3;">
+    <!-- setup line: presente, legível, mas claramente diferente do payoff -->
+    <div style="font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:600;
+                color:rgba(255,255,255,0.78);letter-spacing:0.02em;
+                text-transform:uppercase;margin-top:6px;line-height:1.35;">
       O objetivo não é ser indispensável.
     </div>
 
     <!-- payoff: serif italic, a virada emocional -->
     <div style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;
-                font-size:54px;line-height:0.88;color:#fff;margin-top:8px;">
+                font-size:54px;line-height:0.88;color:#fff;margin-top:10px;">
       É você ser<br>
       <span style="color:{CYAN};">dispensável.</span>
     </div>
