@@ -1,5 +1,5 @@
 ---
-name: nuc-carrossel
+name: Carrossel da NUC Vision
 description: >
   Gera carrosséis editoriais (Instagram, 1080x1350) da NUC Vision a partir de assets
   enviados pelo usuário. Pipeline: Python monta HTML com imagens inline em base64; o HTML
