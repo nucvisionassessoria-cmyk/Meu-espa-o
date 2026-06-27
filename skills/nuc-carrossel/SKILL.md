@@ -178,31 +178,33 @@ Feather + light wrap (vide 2.2). Nunca borda dura/serrilhada/halo. Asset sujo �
 - Tema: dark editorial noturno. Fundos #06–0E (quase preto azulado), não preto puro.
 - Accent: ciano `#1EC5F2` (hex oficial). **Uso cirúrgico: 1 a 2 palavras por slide.** Não pintar
   kicker, highlight E light wrap ao mesmo tempo. Escolha onde o ciano vai — e pare.
-- Logo: presente em TODOS os slides, centrada no topo, tamanho 24-28px, filter brightness(0) invert(1).
-  Discreta, porém visível. Não compete com o conteúdo.
+- Logo: presente em TODOS os slides, centrada no topo, **56px**, filter brightness(0) invert(1)
+  drop-shadow(0 2px 10px rgba(0,0,0,0.7)). Usa sempre `LOGO_URI` do `design_system.py`.
+  Visível com presença, sem competir com o conteúdo.
 - Paleta por slide: fundo escuro + branco + UM acento ciano. Máximo 3 tons ativos por slide.
 
-### 3.1 SISTEMA TIPOGRÁFICO EVOLUÍDO (novo padrão obrigatório)
-A headline principal passa a ter DOIS modos. Escolha um por slide conforme o beat narrativo:
+### 3.1 SISTEMA TIPOGRÁFICO (padrão oficial definitivo — aprovado em 27/06/2026)
 
-**Modo A — Impacto (headlines de GANCHO e VIRADA):**
-- Condensada pesada, caixa-alta. Mantém a presença de autoridade NUC.
-- Use quando o beat pede força, provocação, ruptura.
-- Exemplo: `"SE VOCÊ PARA, A EMPRESA PARA."`
+**Fonte de display obrigatória: `Cormorant Garamond` italic bold**
+- Google Fonts: `Cormorant+Garamond:ital,wght@1,600;1,700`
+- Estilo Didone: altíssimo contraste entre traços finos (hairlines) e hastes grossas.
+- Sempre italic. Sempre mixed-case (nunca caixa-alta nessa fonte).
+- Tamanho: 58-64px. Line-height: 0.86.
+- É A única fonte para headline principal. Proibido usar Anton, Playfair Display ou qualquer outra.
 
-**Modo B — Elegância (headlines de CURIOSIDADE, REVELAÇÃO, INSIGHT):**
-- Serif display, italic, mixed-case. Fonte: `'Playfair Display'` ou `'Cormorant Garamond'` (Google Fonts).
-- Tamanho grande (42-56px), color #fff ou #F5F0E8 (creme quente).
-- Use quando o beat pede profundidade, sedução, insight.
-- Exemplo: `"<em>constrói seu crescimento?</em>"`
+**Fonte de suporte: `Space Grotesk`**
+- Kicker, setup line, insight container, CTA.
+- Nunca usada para headline principal.
 
 **Hierarquia dos 3 níveis (inviolável):**
-1. **Kicker** — sans-serif, 9-10px, uppercase, letter-spacing 0.2em, ciano, linha decorativa à esquerda.
-2. **Headline** — Modo A ou B. Uma frase. Nunca dois conceitos.
-3. **Insight container** — ver Seção 3.2. Nunca texto solto abaixo da headline.
+1. **Kicker** — Space Grotesk, 9.5px, uppercase, letter-spacing 0.22em, cor ciano, linha à esquerda.
+2. **Setup line** — Space Grotesk, 17px, weight 600, uppercase, rgba(255,255,255,0.75). Contextualiza
+   a headline. Presente e legível, mas claramente subordinada ao payoff.
+3. **Payoff (headline)** — Cormorant Garamond italic bold, 62px. O golpe emocional do slide.
 
-PROIBIDO: quarto nível de texto (headline + subtítulo + body + bridge = poluição). Se precisar de
-mais informação, ela vai dentro do insight container, não como bloco adicional.
+Depois da headline: **insight container** (Seção 3.2). Nunca texto solto.
+
+PROIBIDO: Anton, Playfair Display, caixa-alta na headline Cormorant, quarto nível de texto.
 
 ### 3.2 INSIGHT CONTAINER (novo elemento obrigatório)
 Todo slide que não for CTA puro DEVE ter um insight container no rodapé.
@@ -290,7 +292,7 @@ headline é o padrão antigo que gerava sensação de poluição e frieza.
 - ❌ Registro de voz misturado (editorial + técnico + marketing no mesmo carrossel).
 - ❌ Múltiplos CTAs no slide final ("Salva + Segue + Comenta").
 - ❌ Carrossel virar lista de slides de texto sem âncora visual (ver "Âncora visual obrigatória").
-- ❌ Headline em condensada pesada em todos os slides (alterne Modo A e Modo B conforme o beat).
+- ❌ Anton ou Playfair Display em qualquer headline — apenas Cormorant Garamond italic.
 - ❌ Texto de corpo e bridge flutuando soltos abaixo da headline (tudo vai no insight container).
 - ❌ Mais de 3 elementos de texto empilhados (kicker + headline + container = máximo padrão).
 - ❌ Ciano em mais de 2 elementos por slide (kicker + uma palavra na headline = limite).
@@ -314,7 +316,7 @@ headline é o padrão antigo que gerava sensação de poluição e frieza.
 - [ ] Dados numéricos têm fonte real ou estão marcados como análise/opinião?
 - [ ] Registro de voz único do gancho ao CTA?
 - [ ] CTA com presença forte e uma única intenção?
-- [ ] Tipografia no modo certo para o beat (Modo A = impacto, Modo B = elegância)?
+- [ ] Headline em Cormorant Garamond italic bold, mixed-case, 62px?
 - [ ] Insight container presente e estruturado (linha bold + linha secundária opcional)?
 - [ ] Texto solto (body/bridge flutuante) eliminado — tudo dentro do container?
 - [ ] Ciano limitado a 1-2 elementos por slide (não saturado)?
