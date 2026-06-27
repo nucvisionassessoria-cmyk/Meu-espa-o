@@ -34,7 +34,7 @@ def logo_html():
     return f'''<div style="position:absolute;top:20px;left:0;right:0;display:flex;
         justify-content:center;z-index:30;">
         <img src="{LOGO_URI}"
-             style="height:28px;width:auto;
+             style="height:56px;width:auto;
                     filter:brightness(0) invert(1) drop-shadow(0 2px 10px rgba(0,0,0,0.7));">
     </div>'''
 
