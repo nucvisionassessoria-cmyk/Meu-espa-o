@@ -332,3 +332,323 @@ headline é o padrão antigo que gerava sensação de poluição e frieza.
 4. Rode o QA narrativo (Seção 0) e o QA visual (Seção 8).
 5. Exporte via Playwright. Entregue os PNG 1080x1350.
 6. Se um asset impedir o padrão (recorte sujo, baixa resolução), avise e peça o correto.
+
+=================================================================================
+# SEÇÃO 10 — DOUTRINA NARRATIVA COMPLETA (framework aprovado pelo fundador)
+=================================================================================
+
+## PRINCÍPIO FUNDAMENTAL
+Sua função não é criar carrosséis bonitos ou chamativos. É criar carrosséis estratégicos,
+profundos e conectados, com narrativa progressiva. O objetivo é transformar uma ideia, tema
+ou dor em uma sequência que conduza o leitor por um raciocínio claro: início, desenvolvimento,
+virada de percepção e conclusão.
+
+O leitor precisa terminar pensando: **"Agora eu entendi."**
+Não: "Gostei de algumas frases."
+
+---
+
+## 10.1 O ERRO CENTRAL QUE ESTA SEÇÃO CORRIGE
+
+O erro mais comum: o slide 1 traz gancho forte, mas os slides seguintes parecem posts
+independentes. O leitor vê frases boas, mas não sente uma linha de raciocínio sendo construída.
+
+Isso acontece quando:
+- Slide 1 abre uma promessa
+- Slide 2 não responde essa promessa
+- Slide 3 abre outro tema
+- Slide 4 traz outra provocação
+- O final não fecha a ideia inicial
+
+**Um carrossel bom não é uma coleção de frases fortes. É uma sequência de raciocínio.**
+Cada slide existe por causa do anterior e prepara o próximo.
+
+---
+
+## 10.2 O QUE É UM CARROSSEL CONECTADO
+
+Cada slide funciona como um degrau. O leitor sobe um degrau por vez: começa com uma tensão,
+entende o problema, descobre a causa, percebe a consequência, enxerga uma nova forma de pensar
+e termina com uma direção clara.
+
+Lógica correta:
+- Slide 1: abre a promessa principal
+- Slide 2: começa a pagar essa promessa
+- Slide 3: aprofunda a causa
+- Slide 4: mostra a consequência
+- Slide 5: gera virada de percepção
+- Slide 6: apresenta o caminho
+- Slide final: fecha o raciocínio e conduz para ação ou reflexão
+
+---
+
+## 10.3 REGRAS DE CADA SLIDE
+
+Cada slide precisa:
+1. Continuar o raciocínio anterior
+2. Responder uma pergunta aberta pelo slide anterior
+3. Desenvolver a tese central
+4. Preparar o próximo slide
+5. Ensinar algo com clareza
+6. Ter profundidade suficiente para não parecer raso
+7. Ser curto o bastante para ser lido com facilidade
+
+Equilíbrio: **Profundo o suficiente para ensinar. Simples o suficiente para ser lido.**
+
+---
+
+## 10.4 REGRA DA PROMESSA E PAGAMENTO
+
+Todo gancho cria uma promessa. Essa promessa precisa ser paga nos slides seguintes.
+
+Se o slide 1 diz "O problema da sua empresa pode não ser falta de cliente", o slide 2
+PRECISA começar a explicar qual é o verdadeiro problema.
+
+ERRADO: "Você já pensou que delegar é importante?" (abre outro assunto)
+CORRETO: "O problema pode estar no que acontece depois que o cliente demonstra interesse."
+
+- Slide 1 promete
+- Slide 2 começa a pagar
+- Slide 3 explica a causa
+- Slide 4 mostra o impacto
+- Slide 5 muda a percepção
+- Slide 6 aponta o caminho
+- Slide final fecha a tese
+
+NUNCA crie novo gancho forte no slide 2 se não for continuação direta do slide 1.
+
+---
+
+## 10.5 DENSIDADE IDEAL DE TEXTO
+
+Cada slide deve ter:
+- **Título/frase principal:** 6 a 16 palavras
+- **Texto de apoio:** 20 a 45 palavras
+- **Uma ideia central por slide** (no máximo duas complementares)
+- Linguagem clara, forte e objetiva
+
+Evite: slides com apenas uma frase curta, parágrafos densos, frases genéricas sem ensino.
+
+Exemplo FRACO: "O dono virou gargalo."
+
+Versão CORRETA:
+> Título: "O dono virou o gargalo da própria empresa."
+> Apoio: Quando toda decisão, aprovação e correção precisa passar por ele, a empresa deixa
+> de funcionar como operação e passa a depender da presença constante de uma única pessoa.
+
+---
+
+## 10.6 ARQUITETURA NARRATIVA OBRIGATÓRIA (antes de criar qualquer slide)
+
+Não comece criando slides. Primeiro construa a estrutura:
+
+**Preencha antes de escrever qualquer slide:**
+1. Tema central:
+2. Tese do carrossel:
+3. Promessa do primeiro slide:
+4. Estado inicial do leitor:
+5. Estado final desejado:
+6. Principal dor abordada:
+7. Principal crença errada que será quebrada:
+8. Principal percepção que precisa ser criada:
+9. Principal consequência que precisa ser mostrada:
+10. Caminho ou direção que será apresentada:
+11. Conclusão que o leitor deve tirar:
+
+**Depois, crie o mapa de continuidade (tabela obrigatória):**
+
+| Slide | Função narrativa | Pergunta que responde | Ideia central | Conexão com anterior | Como prepara o próximo |
+|---|---|---|---|---|---|
+
+Se algum slide não tiver conexão clara com o anterior, reescreva antes de avançar.
+
+---
+
+## 10.7 FUNÇÕES NARRATIVAS DISPONÍVEIS
+
+Cada slide tem UMA função. Não crie slides apenas porque a frase ficou bonita.
+
+Funções válidas:
+- Abrir tensão / Apresentar o problema / Explicar a causa / Mostrar a consequência
+- Quebrar uma crença / Gerar identificação / Dar contexto / Apresentar contraste
+- Mostrar erro comum / Explicar mecanismo / Reenquadrar a visão do leitor
+- Apontar direção / Dar exemplo / Resumir o raciocínio / Conduzir para ação
+
+---
+
+## 10.8 ESTRUTURA POR NÚMERO DE SLIDES
+
+**7 slides:**
+1. Tensão principal (abre a promessa)
+2. Pagamento inicial da promessa
+3. Causa real
+4. Consequência prática
+5. Reenquadramento
+6. Caminho
+7. Conclusão e CTA
+
+**8 slides:**
+1. Gancho central
+2. Explicação imediata
+3. Causa
+4. Como aparece na prática
+5. Consequência
+6. Reenquadramento
+7. Caminho
+8. Fechamento/CTA
+
+---
+
+## 10.9 ARCOS NARRATIVOS
+
+Escolha UM arco por carrossel. Não misture.
+
+**Arco 1 — Diagnóstico:** revela problema escondido
+> Sinal visível → o que parece ser → o que realmente é → causa → consequência → caminho → conclusão
+
+**Arco 2 — Causa e consequência:** explica por que o problema acontece
+> Problema → causa → como aparece → consequência no dia a dia → consequência no crescimento → o que muda → próximo passo
+
+**Arco 3 — Mito e verdade:** quebra crença errada
+> Mito → por que parece fazer sentido → onde falha → verdade mais profunda → exemplo → nova forma de pensar → CTA
+
+**Arco 4 — Erro invisível:** mostra o que o público faz sem perceber
+> Erro → por que ninguém percebe → como prejudica → onde aparece → como corrigir → o que muda → conclusão
+
+**Arco 5 — Antes e depois mental:** muda percepção do leitor
+> Como pensa hoje → por que isso limita → nova forma de enxergar → como aplicar → benefício → exemplo → fechamento
+
+**Arco 6 — Caminho estratégico:** ensina um processo
+> Situação problemática → ponto 1 → ponto 2 → ponto 3 → como organizar → como aplicar → resumo prático
+
+---
+
+## 10.10 CONECTORES NATURAIS ENTRE SLIDES
+
+Use quando fizer sentido para manter a continuidade:
+- "Isso acontece porque..."
+- "Na prática, isso aparece quando..."
+- "A consequência é simples..."
+- "O problema começa quando..."
+- "Por isso, antes de buscar mais X, é preciso entender Y."
+- "É aqui que a empresa começa a perder força."
+- "Quando esse ponto fica claro, a pergunta muda."
+- "Então o problema não é apenas X. É Y."
+- "Sem essa clareza, qualquer ação vira aposta."
+
+EVITE começar slides com perguntas desconectadas:
+"Mas será que você sabe delegar?" / "Você sabe o que é processo?" / "Já parou para pensar?"
+Essas frases quebram a continuidade se não responderem o slide anterior.
+
+---
+
+## 10.11 PROIBIÇÃO DE MINI-GANCHOS INDEPENDENTES
+
+PROIBIDO transformar cada slide em novo gancho. Exemplo do que NÃO fazer:
+> Slide 1: "O dono não deveria estar 100% preso."
+> Slide 2: "Delegar é difícil."
+> Slide 3: "Você sabe o que é processo?"
+> Slide 4: "O atendimento pode estar matando sua venda."
+> Slide 5: "Tráfego pago não salva empresa bagunçada."
+
+Esses slides são 5 posts diferentes. Não é carrossel. É lista.
+
+---
+
+## 10.12 REGRA DA TESE ÚNICA
+
+Cada carrossel tem apenas UMA tese central. Todos os slides servem a ela. Se um slide não
+fortalece a tese, remova ou reescreva.
+
+Exemplos de teses válidas:
+- "O problema não é falta de lead, é falta de processo."
+- "O dono vira gargalo quando tudo depende da cabeça dele."
+- "Tráfego pago não corrige uma operação comercial desorganizada."
+- "Crescer sem processo aumenta o caos."
+- "A empresa não precisa apenas vender mais. Precisa entender onde está travando."
+
+---
+
+## 10.13 TESTE DA PERGUNTA PENDENTE
+
+Cada slide deve deixar uma pergunta natural. O próximo slide deve respondê-la.
+
+> Slide 1: "O problema pode não ser falta de cliente."
+> Pergunta: "Então qual é o problema?"
+> Slide 2: "O problema pode estar no caminho entre o interesse e a compra."
+> Pergunta: "O que acontece nesse caminho?"
+> Slide 3: "O lead chega, mas não recebe condução para avançar."
+> Pergunta: "E qual o impacto disso?"
+> Slide 4: "A empresa perde oportunidades que ela mesma pagou para atrair."
+
+---
+
+## 10.14 TESTE DA CLAREZA FINAL
+
+O leitor precisa sair diferente. Verifique:
+
+Antes do carrossel: "Preciso vender mais."
+Depois do carrossel: "Talvez esteja perdendo vendas porque não tenho processo para conduzir
+os leads que já chegam."
+
+Se o carrossel não gera uma clareza nova, está fraco.
+
+---
+
+## 10.15 FORMATO DE ENTREGA OBRIGATÓRIO
+
+Entregue sempre nesta ordem:
+
+**1. Tese central** (uma frase)
+**2. Arco narrativo escolhido** + por que foi escolhido
+**3. Arquitetura narrativa** (os 11 campos da Seção 10.6)
+**4. Mapa de continuidade** (tabela)
+**5. Carrossel final** no formato:
+
+> ### Slide X
+> **Título:** [frase principal forte]
+> **Texto de apoio:** [explicação curta com profundidade e conexão narrativa]
+
+**6. Auditoria de continuidade** — responda:
+- A promessa do slide 1 foi paga?
+- O slide 2 responde diretamente o slide 1?
+- Existe algum slide que parece post isolado?
+- O texto tem profundidade suficiente?
+- O leitor termina com clareza nova?
+- Qual frase resume o aprendizado final?
+
+---
+
+## 10.16 PROIBIÇÕES ESPECÍFICAS
+
+Não faça:
+- Novo gancho em cada slide
+- Slides com apenas frases de impacto sem explicação
+- Promessa que não é paga
+- Slide 2 desconectado do slide 1
+- Slide final que não fecha a tese
+- Misturar várias teses no mesmo carrossel
+- Frases bonitas que não desenvolvem raciocínio
+- CTA antes de desenvolver o raciocínio
+- Texto longo demais que ninguém lê
+- Frases genéricas ("processo é importante", "delegar é fundamental")
+
+---
+
+## 10.17 TESTE FINAL OBRIGATÓRIO
+
+Antes de finalizar, faça esta pergunta:
+
+**"Se eu ler todos os slides em sequência, eles formam uma única linha de raciocínio ou
+parecem frases boas colocadas uma depois da outra?"**
+
+Se parecer frases boas colocadas uma depois da outra: reescreva.
+
+O carrossel só está pronto quando:
+- Slide 1 abre uma promessa
+- Slide 2 responde essa promessa
+- Cada slide aprofunda o anterior
+- O texto tem profundidade suficiente
+- Nenhum slide parece post isolado
+- O final fecha a tese
+- O leitor termina com clareza nova que não tinha antes
