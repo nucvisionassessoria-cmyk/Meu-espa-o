@@ -106,7 +106,7 @@ def slide1():
                   border-radius:999px;padding:5px 13px;backdrop-filter:blur(6px);">
         <span style="font-family:{FONTS["body"]},sans-serif;font-size:9px;font-weight:700;
                      letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,120,120,0.95);">
-          3 anos sem ferias
+          3 anos sem férias
         </span>
       </div>
 
@@ -114,12 +114,12 @@ def slide1():
 
       <!-- texto topo esquerdo -->
       <div style="position:absolute;top:58px;left:26px;z-index:20;max-width:260px;">
-        {kicker_line("O Diagnostico")}
-        {headline("SE VOCE<br>PARA, A<br>EMPRESA " + hl("PARA."), size=46, mt=8)}
+        {kicker_line("O Diagnóstico")}
+        {headline("SE VOCÊ<br>PARA, A<br>EMPRESA " + hl("PARA."), size=46, mt=8)}
       </div>
 
       <div style="position:absolute;bottom:0;left:0;right:0;z-index:20;padding:0 26px 36px;">
-        {body("Voce construiu um negocio. Ou construiu uma prisao com CNPJ?")}
+        {body("Você construiu um negócio. Ou construiu uma prisão com CNPJ?")}
         {bridge("O sinal mais claro apareceu numa segunda-feira de janeiro.")}
       </div>
 
@@ -153,7 +153,7 @@ def slide2():
 
       <div style="position:absolute;top:58px;left:26px;z-index:10;max-width:225px;">
         {kicker_line("O Paradoxo")}
-        {headline("NEGOCIO<br>CRESCE.<br>DONO " + hl("AFUNDA."), size=40, mt=8)}
+        {headline("NEGÓCIO<br>CRESCE.<br>DONO " + hl("AFUNDA."), size=40, mt=8)}
       </div>
 
       <!-- dois stats verticais -->
@@ -177,7 +177,7 @@ def slide2():
       </div>
 
       <div style="position:absolute;bottom:0;left:0;right:0;z-index:10;padding:0 26px 36px;">
-        {bridge("Ate que chegou o dia que ele nao podia levantar da cama.")}
+        {bridge("Até que chegou o dia que ele não podia levantar da cama.")}
       </div>
 
       {GRAO_OVERLAY}
@@ -222,7 +222,7 @@ def slide3():
 
       <div style="position:absolute;bottom:0;left:0;right:0;z-index:20;padding:0 26px 36px;">
         {body("Clientes sem resposta. Equipe paralisada. Pedidos represados. Uma gripe revelou a fragilidade de tudo que ele construiu.")}
-        {bridge("O problema nao era falta de funcionario. Era outra coisa.")}
+        {bridge("O problema não era falta de funcionário. Era outra coisa.")}
       </div>
 
       {GRAO_OVERLAY}
@@ -259,11 +259,11 @@ def slide4():
 
       <div style="position:absolute;top:58px;left:26px;z-index:10;">
         {kicker_line("A Causa Real")}
-        {headline("NAO E FALTA<br>DE " + hl("EQUIPE."), size=40, mt=8)}
+        {headline("NÃO É FALTA<br>DE " + hl("EQUIPE."), size=40, mt=8)}
       </div>
 
       <div style="position:absolute;bottom:0;left:0;right:0;z-index:10;padding:0 26px 40px;">
-        {body("E falta de estrutura. Quando tudo depende de uma unica engrenagem central, qualquer abalo trava o sistema inteiro.", mt=0)}
+        {body("É falta de estrutura. Quando tudo depende de uma única engrenagem central, qualquer abalo trava o sistema inteiro.", mt=0)}
         {bridge("Empresas que escalam fizeram uma coisa diferente.")}
       </div>
 
@@ -305,8 +305,8 @@ def slide5():
       <div style="position:absolute;bottom:0;left:0;right:0;z-index:10;padding:0 26px 36px;">
         {kicker_line("O Modelo")}
         {headline("CADA UM<br>SABE O<br>QUE " + hl("FAZER."), size=42, mt=8)}
-        {body("Processos documentados. Papeis claros. Decisoes descentralizadas. Sem o dono precisar ser consultado para tudo.", mt=12)}
-        {bridge("Mas tem um detalhe que ninguem conta sobre essa transicao.")}
+        {body("Processos documentados. Papéis claros. Decisões descentralizadas. Sem o dono precisar ser consultado para tudo.", mt=12)}
+        {bridge("Mas tem um detalhe que ninguém conta sobre essa transição.")}
       </div>
 
       {GRAO_OVERLAY}
@@ -334,13 +334,13 @@ def slide6():
       {logo()}
 
       <div style="position:absolute;top:58px;left:26px;z-index:20;max-width:280px;">
-        {kicker_line("A Revelacao")}
-        {headline("O OBJETIVO<br>E VOCE SER<br>" + hl("DISPENSAVEL."), size=38, mt=8)}
+        {kicker_line("A Revelação")}
+        {headline("O OBJETIVO<br>É VOCÊ SER<br>" + hl("DISPENSÁVEL."), size=38, mt=8)}
       </div>
 
       <div style="position:absolute;bottom:0;left:0;right:0;z-index:20;padding:0 26px 40px;">
-        {body("Nao e abandono. E liberdade. Quando a empresa funciona sem voce presente, voce pode escolher onde colocar sua energia.", mt=0)}
-        {body("Isso nao acontece por acaso. Precisa ser construido.", mt=8, color="rgba(255,255,255,0.45)")}
+        {body("Não é abandono. É liberdade. Quando a empresa funciona sem você presente, você pode escolher onde colocar sua energia.", mt=0)}
+        {body("Isso não acontece por acaso. Precisa ser construído.", mt=8, color="rgba(255,255,255,0.45)")}
         {bridge("E exatamente aqui que a NUC Vision entra.")}
       </div>
 
@@ -385,11 +385,11 @@ def slide7():
           </div>
           <div style="display:flex;align-items:center;gap:10px;">
             <div style="width:6px;height:6px;border-radius:50%;background:{ACCENT["primary"]};flex-shrink:0;"></div>
-            <div style="font-family:{FONTS["body"]},sans-serif;font-size:12px;font-weight:600;color:rgba(255,255,255,0.8);">Estrutura de gestao e times</div>
+            <div style="font-family:{FONTS["body"]},sans-serif;font-size:12px;font-weight:600;color:rgba(255,255,255,0.8);">Estrutura de gestão e times</div>
           </div>
           <div style="display:flex;align-items:center;gap:10px;">
             <div style="width:6px;height:6px;border-radius:50%;background:{ACCENT["primary"]};flex-shrink:0;"></div>
-            <div style="font-family:{FONTS["body"]},sans-serif;font-size:12px;font-weight:600;color:rgba(255,255,255,0.8);">Cultura que funciona sem voce</div>
+            <div style="font-family:{FONTS["body"]},sans-serif;font-size:12px;font-weight:600;color:rgba(255,255,255,0.8);">Cultura que funciona sem você</div>
           </div>
         </div>
       </div>
@@ -422,7 +422,7 @@ def slide8():
       {logo()}
 
       <div style="position:absolute;top:72px;left:26px;right:26px;z-index:10;">
-        {kicker_line("Proximo Passo")}
+        {kicker_line("Próximo Passo")}
 
         <div style="font-family:{FONTS["display"]},sans-serif;font-size:48px;line-height:0.88;
                     color:#fff;text-transform:uppercase;margin-top:10px;">
@@ -439,7 +439,7 @@ def slide8():
                   background:linear-gradient(90deg,rgba(30,197,242,0.4),transparent);"></div>
 
       <div style="position:absolute;top:288px;left:26px;right:26px;z-index:10;">
-        {body("A NUC Vision trabalha com empresarios que querem crescer sem depender de si mesmos para tudo. Se esse e o seu momento, vamos conversar.", mt=0, maxw=340)}
+        {body("A NUC Vision trabalha com empresários que querem crescer sem depender de si mesmos para tudo. Se esse é o seu momento, vamos conversar.", mt=0, maxw=340)}
       </div>
 
       <!-- CTA -->
