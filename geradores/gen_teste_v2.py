@@ -3,8 +3,10 @@
 Teste do novo padrão visual NUC v2.
 2 slides: S1 Modo A (condensada/impacto) + S2 Modo B (serif/elegância).
 """
-import base64, asyncio
+import sys, base64, asyncio
 from pathlib import Path
+sys.path.insert(0, "/home/user/Meu-espa-o")
+from design_system import LOGO_URI
 from playwright.async_api import async_playwright
 
 FOTOS   = Path("/home/user/Meu-espa-o/fotos/geradas")
@@ -28,16 +30,12 @@ FONT_LINK = """
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600;1,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 """
 
-LOGO_B64 = base64.b64encode(
-    Path("/home/user/Meu-espa-o/assets/LOGO DA NUC VISION.png").read_bytes()
-).decode()
-
 def logo_html():
-    return f'''<div style="position:absolute;top:22px;left:0;right:0;display:flex;
+    return f'''<div style="position:absolute;top:20px;left:0;right:0;display:flex;
         justify-content:center;z-index:30;">
-        <img src="data:image/png;base64,{LOGO_B64}"
-             style="height:24px;width:auto;
-                    filter:brightness(0) invert(1) drop-shadow(0 2px 8px rgba(0,0,0,0.6));">
+        <img src="{LOGO_URI}"
+             style="height:28px;width:auto;
+                    filter:brightness(0) invert(1) drop-shadow(0 2px 10px rgba(0,0,0,0.7));">
     </div>'''
 
 def kicker(txt):
