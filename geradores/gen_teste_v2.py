@@ -25,7 +25,7 @@ def photo_b64(name):
 FONT_LINK = """
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:ital,wght@1,700;1,900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600;1,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 """
 
 LOGO_B64 = base64.b64encode(
@@ -99,30 +99,29 @@ def slide1():
   {GRAIN}
   {logo_html()}
 
-  <!-- conteúdo — bloco central superior -->
-  <div style="position:absolute;top:62px;left:32px;right:32px;z-index:20;">
+  <!-- conteúdo — bloco superior, respiro generoso do logo -->
+  <div style="position:absolute;top:72px;left:32px;right:32px;z-index:20;">
 
-    <!-- kicker -->
     {kicker("Diagnóstico")}
 
-    <!-- setup line: presente, legível, mas claramente diferente do payoff -->
+    <!-- setup line: legível, presente, mas subordinada -->
     <div style="font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:600;
-                color:rgba(255,255,255,0.78);letter-spacing:0.02em;
-                text-transform:uppercase;margin-top:6px;line-height:1.35;">
+                color:rgba(255,255,255,0.75);letter-spacing:0.02em;
+                text-transform:uppercase;margin-top:10px;line-height:1.35;">
       Você construiu um negócio.
     </div>
 
-    <!-- payoff: serif italic grande, o golpe emocional -->
-    <div style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;
-                font-size:54px;line-height:0.88;color:#fff;margin-top:10px;">
+    <!-- payoff: Cormorant Garamond italic — alto contraste, elegante -->
+    <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;
+                font-size:62px;line-height:0.86;color:#fff;margin-top:10px;">
       Ou uma prisão<br>
       <span style="color:{CYAN};">com CNPJ?</span>
     </div>
 
   </div>
 
-  <!-- tag flutuante — elemento dramático -->
-  <div style="position:absolute;top:54px;right:28px;z-index:20;
+  <!-- pill: movido para baixo, dentro da zona segura, não compete -->
+  <div style="position:absolute;bottom:130px;right:32px;z-index:20;
     background:rgba(255,55,55,0.14);border:1px solid rgba(255,70,70,0.35);
     border-radius:999px;padding:5px 14px;backdrop-filter:blur(8px);">
     <span style="font-family:'Space Grotesk',sans-serif;font-size:9px;font-weight:700;
@@ -172,20 +171,20 @@ def slide2():
   {logo_html()}
 
   <!-- conteúdo principal -->
-  <div style="position:absolute;top:62px;left:32px;right:32px;z-index:20;">
+  <div style="position:absolute;top:72px;left:32px;right:32px;z-index:20;">
 
     {kicker("A Revelação")}
 
-    <!-- setup line: presente, legível, mas claramente diferente do payoff -->
+    <!-- setup line -->
     <div style="font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:600;
-                color:rgba(255,255,255,0.78);letter-spacing:0.02em;
-                text-transform:uppercase;margin-top:6px;line-height:1.35;">
+                color:rgba(255,255,255,0.75);letter-spacing:0.02em;
+                text-transform:uppercase;margin-top:10px;line-height:1.35;">
       O objetivo não é ser indispensável.
     </div>
 
-    <!-- payoff: serif italic, a virada emocional -->
-    <div style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;
-                font-size:54px;line-height:0.88;color:#fff;margin-top:10px;">
+    <!-- payoff: Cormorant Garamond italic -->
+    <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;
+                font-size:62px;line-height:0.86;color:#fff;margin-top:10px;">
       É você ser<br>
       <span style="color:{CYAN};">dispensável.</span>
     </div>
