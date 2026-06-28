@@ -70,11 +70,27 @@ Atribua a cada slide um e apenas um papel. Nenhum slide pode ser "mais uma infor
 O número de slides de ESCALADA varia com o tema (carrossel típico: 6–10 slides).
 Ordem dos papéis é fixa: gancho → curiosidade → escalada → virada → revelação → insight → CTA.
 
-## ETAPA C — REGRA DO LOOP ABERTO (o motor da retenção)
-Todo slide, EXCETO os dois finais (insight e CTA), é PROIBIDO de se resolver.
-Cada slide tem duas partes:
-- **Entrega parcial:** responde um pedaço do que o slide anterior abriu.
-- **Ponte (open loop):** abre uma nova lacuna que SÓ o próximo slide fecha.
+## ETAPA C — REGRA DO LOOP ABERTO + PONTE COSTURADA (motor da retenção)
+
+**Pensa em página de livro, não em slides.** Cada slide é uma estrofe da mesma página: começa
+respondendo o anterior e termina puxando o próximo. A história inteira do carrossel precisa
+ser legível em voz alta, na sequência, como um único texto contínuo — só que comprimido.
+
+Cada slide tem TRÊS partes obrigatórias:
+- **Abertura de conexão** (1 frase curta): começa respondendo/confirmando a ponte do slide anterior.
+  Não pode começar com headline solta nem com nova provocação. Tem que parecer continuação.
+- **Entrega parcial:** desenvolve um pedaço da promessa.
+- **Ponte (open loop):** última linha — abre a lacuna que SÓ o próximo slide fecha. Geralmente
+  destacada visualmente (itálico, cor, ou box separado) para sinalizar transição.
+
+**Teste da leitura corrida:** leia em sequência só (abertura de conexão + ponte) de cada slide.
+Tem que soar como um parágrafo fluido. Se virar lista de frases desconectadas, está errado —
+reescreva as transições ANTES de qualquer pixel.
+
+Exemplo correto (3 slides em sequência):
+- S1 ponte: *"está no que acontece depois."*
+- S2 abertura: *"Depois do interesse, é onde quase toda venda morre."* → ponte: *"esse vazamento tem etapas claras."*
+- S3 abertura: *"São essas:"* → lista → ponte: *"nada disso é falta de cliente."*
 
 Técnicas de ponte (use uma por transição):
 - Pergunta não respondida ("...mas o que ninguém viu foi o que veio depois.")
