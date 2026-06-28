@@ -47,22 +47,15 @@ PROMPTS = {
     ),
 }
 
-from google.genai import types
-
 for filename, prompt in PROMPTS.items():
     print(f"→ Gerando {filename}...")
-    response = client.models.generate_content(
-        model="gemini-2.5-flash-image",
-        contents=[prompt],
+    response = client.models.generate_images(
+        model="imagen-4.0-generate-001",
+        prompt=prompt,
+        config={"number_of_images": 1, "aspect_ratio": "3:4"},
     )
-    saved = False
-    for part in response.candidates[0].content.parts:
-        if getattr(part, "inline_data", None) and part.inline_data.data:
-            (OUT / filename).write_bytes(part.inline_data.data)
-            print(f"  ✓ salva em {OUT / filename}")
-            saved = True
-            break
-    if not saved:
-        print(f"  ✗ sem imagem retornada: {response.candidates[0].content.parts}")
+    img = response.generated_images[0].image
+    img.save(str(OUT / filename))
+    print(f"  ✓ salva em {OUT / filename}")
 
 print("\n✓ Todas as imagens geradas.")
