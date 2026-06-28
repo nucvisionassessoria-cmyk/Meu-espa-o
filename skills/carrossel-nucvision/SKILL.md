@@ -183,6 +183,30 @@ Feather + light wrap (vide 2.2). Nunca borda dura/serrilhada/halo. Asset sujo �
   Visível com presença, sem competir com o conteúdo.
 - Paleta por slide: fundo escuro + branco + UM acento ciano. Máximo 3 tons ativos por slide.
 
+### 3.0 PADRÃO DE FEED SEMANAL (regra de publicação)
+O feed do @nucvision segue padrão xadrez fixo: **Seg → Escuro | Qua → Escuro | Sex → Claro**.
+Isso cria colunas visuais organizadas quando o perfil é visitado.
+
+**Slide ESCURO (padrão — Seg e Qua):**
+- Fundo: #06090F (base) / #0b0f1e (cards)
+- Texto: #ffffff principal, rgba(255,255,255,0.75) secundário
+- Logo: brightness(0) invert(1) — versão branca
+- Accent: ciano #1EC5F2
+
+**Slide CLARO (Sex — e quebras internas de ritmo):**
+- Fundo: #EEF3F8 (off-white azulado)
+- Texto principal: #1A2E4D (azul escuro da marca)
+- Texto secundário: rgba(26,46,77,0.60)
+- Divisores/bordas: #D4DFE9
+- Logo: versão original (sem invert — escura sobre fundo claro)
+- Accent: ciano #1EC5F2 (mantém o mesmo — funciona nos dois fundos)
+- Insight container claro: background rgba(30,197,242,0.08), border rgba(30,197,242,0.20)
+
+**Quebras internas de ritmo (dentro de qualquer carrossel):**
+- A cada 3-4 slides escuros, inserir 1 slide claro para descanso visual
+- Slides de dados/listas são candidatos naturais para versão clara
+- Nunca fazer carrossel 100% claro nem 100% escuro — variação é obrigatória
+
 ### 3.1 SISTEMA TIPOGRÁFICO (padrão oficial definitivo — aprovado em 27/06/2026)
 
 **Fonte de display obrigatória: `Cormorant Garamond` italic bold**
