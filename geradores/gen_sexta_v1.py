@@ -315,7 +315,7 @@ def s7():
 
 # ── S8 CTA (Lucas, claro — variação clara do padrão V4) ─────────────────────
 def s8():
-    lucas = b64(FOTOS / "lucas_2_cutout.png")
+    lucas = b64(FOTOS / "lucas_1_cutout.png")
     return f'''
 <div style="width:{VW}px;height:{VH}px;position:relative;overflow:hidden;
             background:radial-gradient(ellipse 60% 80% at 75% 60%, #DBE8F2 0%, {LIGHT_BG} 60%, #E2EAF1 100%);">
