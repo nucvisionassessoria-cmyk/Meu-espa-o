@@ -333,51 +333,45 @@ def s8():
     background:radial-gradient(ellipse 60% 50% at 50% 35%, rgba(30,197,242,0.25) 0%, transparent 65%);
     filter:blur(20px);"></div>
 
-  <div style="position:absolute;right:-12%;bottom:-2%;height:90%;z-index:10;">
+  <div style="position:absolute;right:-22%;bottom:-2%;height:82%;z-index:10;">
     <img src="{iago}" style="height:100%;width:auto;
          filter:brightness(1.02) contrast(1.06) saturate(1.02)
                 drop-shadow(0 8px 24px rgba(0,0,0,0.6))
                 drop-shadow(0 0 18px rgba(30,197,242,0.20));">
   </div>
 
-  <div style="position:absolute;right:8%;bottom:8%;width:55%;height:12%;z-index:9;
+  <div style="position:absolute;right:0;bottom:6%;width:50%;height:10%;z-index:9;
     background:radial-gradient(closest-side, rgba(0,0,0,0.55), transparent 75%);
     filter:blur(14px);"></div>
 
   {GRAIN}
   {logo(dark=True)}
 
-  <div style="position:absolute;top:88px;left:28px;right:52%;z-index:20;">
+  <div style="position:absolute;top:88px;left:28px;right:36%;z-index:20;">
     {kicker("NUC Vision")}
-    <div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:600;
-                color:rgba(255,255,255,0.72);letter-spacing:0.02em;text-transform:uppercase;
-                margin-bottom:14px;">
-      E aí o jogo muda.
-    </div>
     <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;
-                font-size:32px;line-height:0.98;color:#fff;">
-      Crescer não é só<br>
-      atrair mais.<br>
-      É <span style="color:{CYAN};">desperdiçar<br>menos.</span>
+                font-size:30px;line-height:1.02;color:#fff;">
+      Crescer não é atrair mais.<br>
+      É <span style="color:{CYAN};">desperdiçar menos.</span>
     </div>
-    <div style="font-family:'Space Grotesk',sans-serif;font-size:11.5px;font-weight:400;
+    <div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:400;
                 color:rgba(255,255,255,0.78);line-height:1.6;margin-top:18px;">
       A NUC entra <span style="color:#fff;font-weight:600;">antes</span> do marketing,
       organiza o núcleo da empresa e prepara a operação para receber, conduzir e converter o que já chega.
     </div>
   </div>
 
-  <div style="position:absolute;left:28px;bottom:32px;z-index:20;width:48%;">
+  <div style="position:absolute;left:28px;bottom:30px;z-index:20;width:62%;">
     <div style="font-family:'Space Grotesk',sans-serif;font-size:9px;font-weight:700;
                 letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.45);
                 margin-bottom:8px;">
-      Iago · Sócio
+      Iago · Sócio NUC Vision
     </div>
     <div style="background:{CYAN};color:{INK};font-family:'Space Grotesk',sans-serif;
-                font-size:10.5px;font-weight:700;letter-spacing:0.10em;text-transform:uppercase;
-                padding:13px 16px;border-radius:999px;text-align:center;
-                box-shadow:0 6px 22px rgba(30,197,242,0.40);">
-      Diagnóstico · @nucvision
+                font-size:10px;font-weight:700;letter-spacing:0.10em;text-transform:uppercase;
+                padding:13px 14px;border-radius:999px;text-align:center;
+                box-shadow:0 6px 22px rgba(30,197,242,0.40);line-height:1.3;">
+      Comenta <span style="font-weight:800;">NÚCLEO</span> e te mando o diagnóstico
     </div>
   </div>
 </div>'''
