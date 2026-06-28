@@ -199,6 +199,64 @@ Feather + light wrap (vide 2.2). Nunca borda dura/serrilhada/halo. Asset sujo �
   Visível com presença, sem competir com o conteúdo.
 - Paleta por slide: fundo escuro + branco + UM acento ciano. Máximo 3 tons ativos por slide.
 
+### 2.6 SLIDE DE AUTORIDADE (CTA) — padrão V4
+
+Todo carrossel termina num slide de autoridade humanizada inspirado no padrão V4 Company:
+- **Pessoa real recortada** (rembg) ocupando 100% da altura, encostando do topo à base
+  pela direita, com `right` negativo (~-12%) para sangrar parcialmente fora do frame.
+  Sem etiqueta de cargo ("Iago Sócio NUC") — a pessoa fala por si.
+- **Glow ciano radial** atrás dela (`radial-gradient` em #0d2540) para integrar à cena escura.
+- **Texto à esquerda**: kicker + headline Cormorant em 2 linhas no máximo (proibido
+  quebrar palavras) + parágrafo de apoio curto.
+- **CTA barra full-width** na base (`position:absolute;left:0;right:0;bottom:0`),
+  fundo ciano, padding 20px 26px, texto centralizado, **sem seta** (é o último slide,
+  não tem pra onde ir).
+- **Copy do CTA é contextual ao tema** do carrossel, nunca genérico. Padrão:
+  "Reconheceu sua empresa? Comenta `[PALAVRA-CHAVE DO TEMA]` e a gente conversa."
+  A palavra-chave em caixa-alta + bold é a ativação. Exemplos:
+  - Tema estrutura → `ESTRUTURA`
+  - Tema processo → `PROCESSO`
+  - Tema time → `EQUIPE`
+  Variantes de abertura aceitas: "Reconheceu sua empresa?", "Se identificou?",
+  "Sua empresa precisa disso?", "É a sua realidade?".
+- **Proibido**: "Quer saber mais?", "Clique no link da bio", "Diagnóstico gratuito"
+  (genérico), "Te mando o material" (não vamos mandar nada — o objetivo é abrir conversa).
+
+### 2.8 LEGENDA DO POST (entrega obrigatória)
+
+Todo carrossel é entregue com a legenda pronta para colar no Instagram. A legenda NÃO
+é resumo do carrossel — é um complemento que dá contexto, aprofunda 1 ponto, e fecha
+com o mesmo CTA do último slide. Estrutura:
+
+- **Linha 1 (gancho da legenda)**: frase forte que não repete a headline do slide 1.
+  Pode ser uma provocação, dado ou pergunta que faz quem leu o carrossel parar.
+- **Corpo (3 a 6 linhas curtas)**: aprofunda UM ângulo do tema que o carrossel não
+  desenvolveu por inteiro. Cada parágrafo é uma linha em branco separando. Tom
+  editorial NUC, sem em-dash, sem clichê.
+- **Linha de fechamento**: amarra com a tese central.
+- **CTA da legenda**: idêntico ao CTA do último slide, com a palavra-chave em
+  CAIXA-ALTA. Sempre pede para comentar a palavra. Nunca link, nunca DM direto.
+- **Hashtags**: 5 a 10 no final, sem encher. Mix de nicho (estrutura, gestão,
+  crescimento, núcleo) + ICP (donodenegocio, pequenaempresa, empresario).
+
+Tamanho ideal: 80 a 140 palavras no corpo. Proibido legenda gigante de scroll.
+
+### 2.7 ROTAÇÃO DE SÓCIOS POR DIA DA SEMANA
+
+Padrão fixo de quem aparece no slide de autoridade:
+
+| Dia | Sócio | Pasta |
+|---|---|---|
+| Segunda | Iago | `fotos/iago_*` |
+| Quarta | Derick | `fotos/derick_*` |
+| Sexta | Lucas | `fotos/lucas_*` |
+
+**Exceção (coerência > regra):** se o tema/cena do carrossel pedir um perfil específico
+que combine melhor (ex: tema sobre atendimento → faz mais sentido uma atendente mulher
+real ou gerada via Imagen 4), ignore a rotação naquele dia e use o personagem que
+serve a narrativa. A coerência visual vem antes da rotação. Em qualquer outro caso,
+respeite a tabela.
+
 ### 3.0 PADRÃO DE FEED SEMANAL (regra de publicação)
 O feed do @nucvision segue padrão xadrez fixo: **Seg → Escuro | Qua → Escuro | Sex → Claro**.
 Isso cria colunas visuais organizadas quando o perfil é visitado.

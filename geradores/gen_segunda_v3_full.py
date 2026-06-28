@@ -359,18 +359,13 @@ def s8():
   </div>
 
   <div style="position:absolute;left:0;right:0;bottom:0;z-index:30;
-              background:{CYAN};padding:20px 26px;
-              display:flex;align-items:center;justify-content:space-between;gap:14px;
+              background:{CYAN};padding:20px 26px;text-align:center;
               box-shadow:0 -10px 32px rgba(0,0,0,0.45);">
     <div style="font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;
-                color:{INK};line-height:1.25;letter-spacing:0.005em;">
-      Se interessou? Comenta <span style="font-weight:800;">EU QUERO</span><br>
-      <span style="font-weight:500;font-size:12.5px;">e a gente entra em contato.</span>
+                color:{INK};line-height:1.3;letter-spacing:0.005em;">
+      Reconheceu sua empresa? Comenta <span style="font-weight:800;">ESTRUTURA</span>
+      <span style="font-weight:500;font-size:13px;">e a gente conversa.</span>
     </div>
-    <div style="background:{INK};color:{CYAN};width:42px;height:42px;border-radius:50%;
-                display:flex;align-items:center;justify-content:center;
-                font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;
-                flex-shrink:0;">→</div>
   </div>
 </div>'''
 
