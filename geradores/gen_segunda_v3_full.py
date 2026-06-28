@@ -333,46 +333,43 @@ def s8():
     background:radial-gradient(ellipse 60% 50% at 50% 35%, rgba(30,197,242,0.25) 0%, transparent 65%);
     filter:blur(20px);"></div>
 
-  <div style="position:absolute;right:-8%;bottom:78px;height:80%;z-index:10;">
-    <img src="{iago}" style="height:100%;width:auto;
+  <div style="position:absolute;right:-12%;bottom:0;height:100%;z-index:10;
+              display:flex;align-items:flex-end;">
+    <img src="{iago}" style="height:100%;width:auto;display:block;
          filter:brightness(1.02) contrast(1.06) saturate(1.02)
                 drop-shadow(0 8px 24px rgba(0,0,0,0.6))
                 drop-shadow(0 0 18px rgba(30,197,242,0.20));">
   </div>
 
-  <div style="position:absolute;right:0;bottom:84px;width:60%;height:10%;z-index:9;
-    background:radial-gradient(closest-side, rgba(0,0,0,0.55), transparent 75%);
-    filter:blur(14px);"></div>
-
   {GRAIN}
   {logo(dark=True)}
 
-  <div style="position:absolute;top:88px;left:28px;right:48%;z-index:20;">
+  <div style="position:absolute;top:92px;left:28px;right:42%;z-index:20;">
     {kicker("NUC Vision")}
     <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;
-                font-size:30px;line-height:1.02;color:#fff;">
-      Crescer não é<br>atrair mais.<br>
-      É <span style="color:{CYAN};">desperdiçar<br>menos.</span>
+                font-size:30px;line-height:1.04;color:#fff;">
+      Crescer não é atrair mais.<br>
+      É <span style="color:{CYAN};">desperdiçar menos.</span>
     </div>
-    <div style="font-family:'Space Grotesk',sans-serif;font-size:11.5px;font-weight:400;
-                color:rgba(255,255,255,0.78);line-height:1.6;margin-top:16px;">
+    <div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:400;
+                color:rgba(255,255,255,0.80);line-height:1.6;margin-top:18px;">
       A NUC entra <span style="color:#fff;font-weight:600;">antes</span> do marketing
-      e organiza o núcleo da empresa para que ela receba, conduza e converta o que já chega.
+      e organiza o núcleo da empresa para receber, conduzir e converter o que já chega.
     </div>
   </div>
 
-  <div style="position:absolute;left:0;right:0;bottom:0;z-index:25;
-              background:{CYAN};padding:18px 24px;
+  <div style="position:absolute;left:0;right:0;bottom:0;z-index:30;
+              background:{CYAN};padding:20px 26px;
               display:flex;align-items:center;justify-content:space-between;gap:14px;
-              box-shadow:0 -8px 28px rgba(30,197,242,0.30);">
-    <div style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;
-                color:{INK};line-height:1.25;letter-spacing:0.01em;">
+              box-shadow:0 -10px 32px rgba(0,0,0,0.45);">
+    <div style="font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;
+                color:{INK};line-height:1.25;letter-spacing:0.005em;">
       Se interessou? Comenta <span style="font-weight:800;">EU QUERO</span><br>
-      <span style="font-weight:500;">e a gente entra em contato.</span>
+      <span style="font-weight:500;font-size:12.5px;">e a gente entra em contato.</span>
     </div>
-    <div style="background:{INK};color:{CYAN};width:36px;height:36px;border-radius:50%;
+    <div style="background:{INK};color:{CYAN};width:42px;height:42px;border-radius:50%;
                 display:flex;align-items:center;justify-content:center;
-                font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;
+                font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;
                 flex-shrink:0;">→</div>
   </div>
 </div>'''
