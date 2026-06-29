@@ -1,116 +1,81 @@
-# Setup único — Apify scraper do @v4company
+# Setup Apify — status: CONFIGURADO ✓
 
-Depois desses 5 passos (~15 min), seu único trabalho semanal é abrir o chat
-e pedir "me dá as artes trends da semana". O resto roda sozinho.
+A integração Apify deste repositório **já está configurada** automaticamente
+via API. Os recursos criados na conta `nucvision` do Apify estão registrados
+em `config.json`. Você não precisa criar actor, task ou schedule manualmente.
 
----
+## O que já existe (não mexa)
 
-## 1. Criar conta Apify (2 min)
+| Recurso       | ID                  | Nome                          |
+|---------------|---------------------|-------------------------------|
+| Actor         | `shu8hvrXbJbY3Eb9W` | `apify/instagram-scraper`     |
+| Actor Task    | `j2tmGjNuaE08d2pWa` | `v4company-weekly`            |
+| Schedule      | `kIXAD0b5O93wcer8k` | `v4company-weekly-schedule`   |
+| Próxima execução automática | — | toda segunda às 06:00 UTC (≈ 03:00 BRT) |
 
-Vai em <https://apify.com> → **Sign up** → use o login do Google
-(`nucvisionassessoria@gmail.com` mesmo). O plano gratuito dá **$5 de crédito
-por mês**, o que cobre semanas inteiras de scraping do V4 com folga.
+A task roda o `apify/instagram-scraper` apontado para
+`https://www.instagram.com/v4company/` com limite de 30 posts dos últimos
+7 dias. Cada execução gera um dataset novo — a skill busca sempre o
+último run bem-sucedido da task quando precisa dos dados.
 
-## 2. Abrir o actor `apify/instagram-scraper` (1 min)
+## Único passo que falta — env var APIFY_TOKEN
 
-Console Apify → **Store** → busca por "Instagram Scraper" → escolhe o
-oficial **apify/instagram-scraper** (azul, com selo verificado) → **Try
-for free**.
+Pra eu conseguir ler o dataset nas próximas sessões (sem você ter que
+colar o token toda vez), precisa salvar o token nas **Variáveis de
+ambiente** do environment Claude Code on the web.
 
-## 3. Configurar o input do actor (3 min)
-
-Cola o JSON abaixo no campo "Input" (modo JSON):
-
-```json
-{
-  "directUrls": ["https://www.instagram.com/v4company/"],
-  "resultsType": "posts",
-  "resultsLimit": 30,
-  "addParentData": false,
-  "enhanceUserSearchWithFacebookPage": false,
-  "isUserReelFeedURL": false,
-  "isUserTaggedFeedURL": false,
-  "onlyPostsNewerThan": "7 days"
-}
-```
-
-Salva. (`resultsLimit: 30` é gordura — V4 publica 5–15/semana, com 30 a
-gente nunca perde nada.)
-
-## 4. Criar o schedule semanal (4 min)
-
-Console Apify → **Schedules** → **Create new schedule**.
-
-- **Name:** `v4company-weekly`
-- **Cron:** `0 6 * * 1` (toda segunda-feira às 6h UTC ≈ 3h Brasília)
-- **Actor:** `apify/instagram-scraper`
-- **Input:** mesmo JSON do passo 3
-- **Storage:** cria um **dataset named** novo chamado `v4company_weekly`
-  (Settings do schedule → "Save dataset as named dataset" → nome:
-  `v4company_weekly`). Isso garante que o dataset não muda de ID toda semana.
-
-Salva e ativa.
-
-Roda **uma vez manualmente** agora (`Run schedule now`) pra ter dado já
-hoje, sem esperar até segunda. Vai consumir ~$0.05 do crédito.
-
-## 5. Pegar token e ID, salvar no ambiente (5 min)
-
-### 5a. Gerar o token
-Console Apify → canto superior direito (avatar) → **Settings** →
-**Integrations** → **Personal API tokens** → **Create new token**.
-- Nome: `claude-code-readonly`
-- Permissões: marca apenas **Read** em Actors, Datasets, Key-value stores.
-- Copia o token (formato `apify_api_...`).
-
-### 5b. Pegar o ID do dataset
-Console Apify → **Storage** → **Datasets** → clica em `v4company_weekly` →
-copia o ID que aparece na URL (formato sem hífen, ~17 caracteres).
-
-### 5c. Salvar no ambiente Claude Code on the web
-Abre as configurações do seu **environment** no Claude Code on the web
-(o painel onde você gerencia a conexão deste repo) → **Environment
-variables** → adiciona dois:
+**Onde:** mesma tela onde você liberou o "Acesso à rede" — descer até o
+campo **"Variáveis de ambiente"** e adicionar uma linha:
 
 ```
 APIFY_TOKEN=apify_api_xxxxxxxxxxxx
-APIFY_V4_DATASET_ID=xxxxxxxxxxxxx
 ```
 
-Salva. Pronto.
+(substituindo pelo token real)
 
----
+**Sobre o aviso "não adicione segredos":** o aviso é para ambientes
+compartilhados com outros colaboradores. Se você é o único usando este
+environment (caso normal pra workspace pessoal), o risco prático é zero —
+ninguém mais tem acesso. Se em algum momento você adicionar outras pessoas
+no environment, rotacione o token (gere um novo no Apify e revogue o antigo).
 
-## Como vai funcionar daqui pra frente
+## Como verificar que tá tudo certo
 
-Toda segunda 6h UTC o Apify roda sozinho, varre os últimos 7 dias do
-`@v4company`, grava no dataset `v4company_weekly` (sobrescreve com o lote
-novo). Quando você abrir o chat e pedir "me dá as artes trends da semana",
-eu:
+Numa sessão futura, basta pedir "**me dá as artes trends da semana**".
+A skill vai:
 
-1. Chamo `GET https://api.apify.com/v2/datasets/${APIFY_V4_DATASET_ID}/items?token=${APIFY_TOKEN}`
-2. Baixo as imagens dos posts em `scratchpad/v4-week/`.
-3. Rodo as 4 etapas da skill (ranking → engenharia reversa → adaptação).
-4. Decido se é MODO HYPE ou MODO TREND.
-5. Passo o roteiro pra `nuc-carrossel` produzir os PNGs.
-6. Te entrego as artes prontas.
+1. Ler `APIFY_TOKEN` do ambiente.
+2. Buscar o último run da task `v4company-weekly` via API.
+3. Carregar os posts do dataset, baixar imagens.
+4. Rodar as 4 etapas (ranking → engenharia reversa → adaptação → hand-off).
+5. Entregar as artes via `nuc-carrossel`.
 
-## Custo esperado
+## Custo real
 
-- Free tier: $5/mês de crédito.
-- Custo médio: ~$0.05–0.15 por execução do schedule (instagram-scraper).
-- 4 execuções/mês = ~$0.20–0.60.
-- Sobra crédito pra rodar manual quando quiser.
+Primeira execução de teste consumiu ~$0.05 de crédito (13 segundos de
+runtime). Estimativa mensal:
+- 4 execuções automáticas (1 por semana) × ~$0.10 = **$0.40/mês**
+- + execuções manuais que você pedir
+- Total dentro do crédito gratuito de **$5/mês**
 
-## O que fazer se o Apify falhar
+## O que fazer se algo quebrar
 
-Se eu chamar o dataset e vier vazio (schedule não rodou, token expirou,
-actor com erro), eu te aviso na hora e ofereço o fallback manual:
+| Sintoma                                | Provável causa                        | Ação                                                        |
+|---------------------------------------|---------------------------------------|-------------------------------------------------------------|
+| Skill diz "APIFY_TOKEN não encontrado" | Env var não salvou                    | Voltar nas configs e adicionar de novo                      |
+| Skill diz "task sem runs recentes"    | Schedule desligado / falhou           | Console Apify → Schedules → reativar                        |
+| Dataset vem vazio                     | Instagram alterou layout do perfil    | Atualizar versão do actor; pode esperar fix da Apify        |
+| Skill diz "token inválido"            | Token expirado / revogado             | Gerar token novo no Apify e atualizar env var               |
 
-> "O Apify não retornou dados. Quer me mandar 3–5 prints do feed V4 da
-> semana e a gente segue assim hoje?"
+## Comandos úteis (debug manual)
 
-## Renovação do token
+```bash
+# Último run da task
+curl -s "https://api.apify.com/v2/actor-tasks/j2tmGjNuaE08d2pWa/runs?status=SUCCEEDED&limit=1&token=${APIFY_TOKEN}"
 
-Tokens Apify não expiram, mas podem ser revogados manualmente. Se um dia
-parar de funcionar, repete o passo 5a e atualiza o env var.
+# Items do dataset de um run
+curl -s "https://api.apify.com/v2/datasets/<datasetId>/items?token=${APIFY_TOKEN}&clean=true&format=json"
+
+# Disparar um run agora (sem esperar segunda)
+curl -s -X POST "https://api.apify.com/v2/actor-tasks/j2tmGjNuaE08d2pWa/runs?token=${APIFY_TOKEN}"
+```

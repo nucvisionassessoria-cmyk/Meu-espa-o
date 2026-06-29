@@ -1,0 +1,20 @@
+{
+  "apify": {
+    "actorId": "shu8hvrXbJbY3Eb9W",
+    "actorName": "apify/instagram-scraper",
+    "taskId": "j2tmGjNuaE08d2pWa",
+    "taskName": "v4company-weekly",
+    "scheduleId": "kIXAD0b5O93wcer8k",
+    "scheduleName": "v4company-weekly-schedule",
+    "scheduleCron": "0 6 * * 1",
+    "scheduleTimezone": "UTC",
+    "targetProfile": "https://www.instagram.com/v4company/",
+    "resultsLimit": 30,
+    "onlyPostsNewerThan": "1 week"
+  },
+  "_notes": {
+    "tokenEnvVar": "APIFY_TOKEN — token Apify read-only, configurado nas Variaveis de ambiente do environment Claude Code on the web",
+    "howToFetchLatestRun": "GET /v2/actor-tasks/{taskId}/runs?status=SUCCEEDED&limit=1 -> r.data.items[0].defaultDatasetId -> GET /v2/datasets/{datasetId}/items",
+    "howToReplayManually": "POST /v2/actor-tasks/{taskId}/runs (dispara um run novo agora)"
+  }
+}
