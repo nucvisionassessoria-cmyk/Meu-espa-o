@@ -327,7 +327,7 @@ def s8():
     filter:blur(20px);"></div>
   <div style="position:absolute;top:0;left:0;right:0;height:3px;background:{CYAN};z-index:10;"></div>
 
-  <div style="position:absolute;right:-14%;bottom:0;height:100%;z-index:10;
+  <div style="position:absolute;right:-32%;bottom:64px;height:84%;z-index:10;
               display:flex;align-items:flex-end;">
     <img src="{lucas}" style="height:100%;width:auto;display:block;
          filter:brightness(1.06) contrast(1.05) saturate(1.02)
@@ -338,14 +338,14 @@ def s8():
   {GRAIN_LIGHT}
   {logo(dark=False)}
 
-  <div style="position:absolute;top:92px;left:28px;right:42%;z-index:20;">
+  <div style="position:absolute;top:92px;left:28px;right:48%;z-index:20;">
     {kicker("NUC Vision", dark=False)}
     <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;
                 font-size:28px;line-height:1.02;color:{LIGHT_TEXT};">
       Marketing vem depois.<br>
       <span style="color:{CYAN};">Sempre depois.</span>
     </div>
-    <div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:400;
+    <div style="font-family:'Space Grotesk',sans-serif;font-size:11.5px;font-weight:400;
                 color:{LIGHT_SUB};line-height:1.6;margin-top:18px;">
       A NUC entra antes do marketing para deixar a empresa pronta para
       <span style="color:{LIGHT_TEXT};font-weight:600;">escalar com segurança.</span>

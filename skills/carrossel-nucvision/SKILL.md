@@ -199,6 +199,59 @@ Feather + light wrap (vide 2.2). Nunca borda dura/serrilhada/halo. Asset sujo �
   Visível com presença, sem competir com o conteúdo.
 - Paleta por slide: fundo escuro + branco + UM acento ciano. Máximo 3 tons ativos por slide.
 
+### 2.5 DIREÇÃO VISUAL — QUANDO USAR CADA REGISTRO (anti-vício)
+
+A skill PROÍBE cair no automatismo "café + mesa + notebook = humanização". Esse
+registro tem hora certa. Quem decide o registro visual é a função narrativa do slide.
+
+**3 registros possíveis, em ordem de ousadia:**
+
+**A) STILL LIFE COTIDIANO** (mesa, café, notebook, post-its, caderno)
+Quando usar: slides de **método, processo, planejamento, ferramenta** (S2 contexto
+calmo, S4 causa operacional, S7 caminho/checklist, S8 fechamento sereno).
+Quando NÃO usar: slides de **gancho, virada, consequência, dor humana**.
+
+**B) PESSOA REAL** (sócio recortado, empresário no ambiente, atendente, time)
+Quando usar: slides que falam de uma **experiência humana específica** — dor do
+dono, sobrecarga, decisão, autoridade. Sempre que o tema for vivido por alguém.
+S1 que abre tema sobre pressão precisa de pessoa, não de café.
+S8 de autoridade NUC sempre tem o sócio.
+
+**C) METÁFORA SURREAL / CONCEITUAL** (poltrona no morro, cadeiras de cinema vazias,
+iceberg, cadeira de diretor sob spotlight, megafone com flor, escada para o nada)
+Quando usar: slides de **impacto, virada, polêmica, conceito abstrato**. Quando o
+ponto é argumentar uma ideia que o cotidiano não consegue ilustrar. Aqui é onde
+o carrossel vira ARTE editorial e foge do feed previsível. **Toda semana, pelo
+menos UM slide do carrossel deve usar este registro** — caso contrário, o carrossel
+está visualmente seguro demais.
+
+Inspirações de metáfora surreal (catalogadas a partir de referências aprovadas):
+- Poltrona de couro em topo de morro ao pôr do sol → tema "agência só faz post"
+- Fileira de cadeiras de cinema vazias → tema "o que a agência não faz"
+- Iceberg com tipografia gigante invadindo → tema "estratégia acima do visual"
+- Cadeira de diretor sob spotlight no escuro → tema "quem constrói o crescimento"
+- Pilha de cadeiras desabando → tema "crescimento sem base"
+- Trilhos paralelos no nada → tema "processo vs improviso"
+- Megafone vintage com objeto frágil ao lado → tema "marketing amplifica problema"
+
+**REGRA DE OURO:** Antes de gerar qualquer imagem, pergunte: "essa imagem
+surpreende ou é previsível?". Se for previsível, escale o conceito UM NÍVEL.
+Mesa de trabalho → mesa flutuando no oceano. Cadeira do dono → cadeira sob
+spotlight teatral. Notebook → notebook com tela quebrada na areia da praia.
+O ridículo controlado é melhor que o cotidiano seguro.
+
+**Tipografia também é direção visual:** em slides de impacto e virada, a
+headline PODE e DEVE invadir a imagem (ocluir parte do sujeito, sangrar para
+fora, ocupar 60% da área). Em slides cotidianos (still life), tipografia mais
+contida. A inspiração V4 (iceberg com "A Cut entrega") mostra: o texto não tem
+medo de cobrir a foto quando o ponto é forte.
+
+**Paleta:** ciano é accent, não obrigatório em todo elemento. Permitido em
+slides específicos usar **paleta complementar** (verde escuro saturado, vermelho
+terracota, azul oceano profundo) desde que o ciano da NUC apareça em pelo menos
+1 elemento (linha superior, kicker, ou palavra de destaque). Variar a paleta
+entre carrosséis evita feed monotônico.
+
 ### 2.6 SLIDE DE AUTORIDADE (CTA) — padrão V4
 
 Todo carrossel termina num slide de autoridade humanizada inspirado no padrão V4 Company:
