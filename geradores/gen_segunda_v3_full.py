@@ -115,7 +115,7 @@ def s2():
 def s3():
     items = [
         ("01", "O cliente chama."),
-        ("02", "A resposta demora horas. Ou um dia."),
+        ("02", "A resposta demora horas, ou um dia."),
         ("03", "O atendimento muda conforme quem responde."),
         ("04", "O follow-up depende da memória de alguém."),
         ("05", "O lead esfria antes de virar proposta."),
