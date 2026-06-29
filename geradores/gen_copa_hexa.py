@@ -38,7 +38,7 @@ def photo_uri(name):
     mime = {"jpg":"jpeg","jpeg":"jpeg","png":"png","webp":"webp"}.get(ext,"jpeg")
     return f"data:image/{mime};base64,{base64.b64encode(p.read_bytes()).decode()}"
 
-def logo(white=True, size=22, top=20, color=None):
+def logo(white=True, size=28, top=18, color=None):
     if color:
         flt = f"filter:brightness(0) saturate(100%) invert({1 if white else 0}) drop-shadow(0 2px 8px rgba(0,0,0,0.45));"
     else:
@@ -229,24 +229,23 @@ def slide4():
                   color:rgba(255,223,0,0.10);line-height:1;letter-spacing:-0.04em;">
         24
       </div>
-      <div style="position:absolute;top:170px;left:24px;right:24px;z-index:12;text-align:center;">
+      <div style="position:absolute;top:140px;left:24px;right:24px;z-index:12;text-align:center;">
         <div class="display" style="font-family:{FONTS["display"]},sans-serif;
-                    font-size:46px;color:{BRANCO};line-height:0.95;letter-spacing:-0.01em;">
+                    font-size:42px;color:{BRANCO};line-height:0.95;letter-spacing:-0.01em;">
           A NARRATIVA<br>DO HEXA JÁ<br>{hl_yellow("ESTAVA PRONTA")}
         </div>
-        <div style="margin-top:14px;font-family:{FONTS["display"]},sans-serif;
-                    font-size:30px;color:rgba(255,255,255,0.85);line-height:1.05;">
+        <div style="margin-top:12px;font-family:{FONTS["display"]},sans-serif;
+                    font-size:26px;color:rgba(255,255,255,0.85);line-height:1;">
           HÁ 24 ANOS.
         </div>
       </div>
-      <div style="position:absolute;bottom:46px;left:28px;right:28px;z-index:12;text-align:center;">
-        <div style="font-family:{FONTS["body"]},sans-serif;font-size:13px;font-weight:500;
+      <div style="position:absolute;bottom:38px;left:28px;right:28px;z-index:12;text-align:center;">
+        <div style="font-family:{FONTS["body"]},sans-serif;font-size:12px;font-weight:500;
                     color:rgba(255,255,255,0.72);line-height:1.5;">
-          Maior campeã das Copas. Vinte e quatro anos sem o título.<br>
-          Melhor técnico da história no comando.<br>
-          A história mais fácil de contar do planeta.
+          Maior campeã. 24 anos sem o título.<br>
+          Melhor técnico da história no comando.
         </div>
-        {bridge("A Nike ignorou tudo isso e foi inventar outra.")}
+        {bridge("A Nike ignorou tudo isso e foi inventar outra história.")}
       </div>
       {overlay_vignette(0.4,z=3)}
     </div>'''
@@ -304,25 +303,30 @@ def slide6():
     return f'''<div class="slide" style="overflow:hidden;
         background:radial-gradient(ellipse at 50% 50%,#FFE948 0%,{AMARELO} 50%,#D4B300 100%);">
       {logo(white=False, color=AZUL)}
-      <div style="position:absolute;top:78px;left:0;right:0;text-align:center;z-index:10;">
+      <div style="position:absolute;top:70px;left:0;right:0;text-align:center;z-index:10;">
         {kicker("05 · A REVELAÇÃO", color=AZUL)}
       </div>
-      <div style="position:absolute;top:130px;left:24px;right:24px;z-index:12;">
+      <div style="position:absolute;top:120px;left:22px;right:22px;z-index:12;">
         <div class="display" style="font-family:{FONTS["display"]},sans-serif;
-                    font-size:48px;color:{AZUL};line-height:0.95;letter-spacing:-0.01em;">
+                    font-size:36px;color:{AZUL};line-height:0.96;letter-spacing:-0.01em;">
           QUEM ENTENDE<br>O HEXA COMO<br><span style="background:{AZUL};color:{AMARELO};
-                    padding:1px 10px 6px;border-radius:6px;">NARRATIVA</span><br>
-          NÃO COMO EVENTO,
+                    padding:1px 12px 6px;border-radius:6px;">NARRATIVA</span>
         </div>
         <div class="display" style="font-family:{FONTS["display"]},sans-serif;
-                    font-size:38px;color:rgba(0,39,118,0.85);line-height:0.95;
-                    margin-top:10px;letter-spacing:-0.01em;">
+                    font-size:26px;color:rgba(0,39,118,0.7);line-height:1;
+                    margin-top:14px;letter-spacing:-0.01em;">
+          E NÃO COMO EVENTO,
+        </div>
+        <div class="display" style="font-family:{FONTS["display"]},sans-serif;
+                    font-size:32px;color:{AZUL};line-height:0.96;
+                    margin-top:14px;letter-spacing:-0.01em;">
           PEGA O REBOTE<br>SEM PATROCINAR<br>A SELEÇÃO.
         </div>
       </div>
-      <div style="position:absolute;bottom:32px;left:28px;right:28px;z-index:12;text-align:center;">
-        <div style="font-family:{FONTS["body"]},sans-serif;font-size:13px;font-weight:500;
-                    color:{AZUL};line-height:1.5;">
+      <div style="position:absolute;bottom:42px;left:28px;right:28px;z-index:12;text-align:center;">
+        <div style="height:1px;background:rgba(0,39,118,0.28);margin-bottom:14px;"></div>
+        <div style="font-family:{FONTS["body"]},sans-serif;font-size:12.5px;font-weight:600;
+                    color:{AZUL};line-height:1.4;font-style:italic;">
           O jogo é mais simples do que a Nike fez parecer.
         </div>
       </div>
@@ -336,29 +340,29 @@ def slide7():
     return f'''<div class="slide" style="overflow:hidden;
         background:linear-gradient(180deg,#000A1F 0%,{AZUL} 100%);">
       {logo()}
-      <div style="position:absolute;top:90px;left:0;right:0;text-align:center;z-index:10;">
+      <div style="position:absolute;top:72px;left:0;right:0;text-align:center;z-index:10;">
         {kicker("06 · O INSIGHT")}
       </div>
       <!-- Quote marks gigantes atras -->
-      <div style="position:absolute;top:30px;left:18px;
-                  font-family:{FONTS["display"]},sans-serif;font-size:260px;
+      <div style="position:absolute;top:8px;left:14px;
+                  font-family:{FONTS["display"]},sans-serif;font-size:200px;
                   color:rgba(255,223,0,0.10);line-height:1;z-index:2;">"</div>
-      <div style="position:absolute;top:170px;left:28px;right:28px;z-index:12;">
+      <div style="position:absolute;top:124px;left:24px;right:24px;z-index:12;">
         <div class="display" style="font-family:{FONTS["display"]},sans-serif;
-                    font-size:42px;color:{BRANCO};line-height:0.98;letter-spacing:-0.01em;">
+                    font-size:34px;color:{BRANCO};line-height:0.98;letter-spacing:-0.01em;">
           VOCÊ NÃO PRECISA<br>DO {hl_yellow("AMARELINHO")}<br>NA CAMISA.
         </div>
+        <div style="height:1px;background:rgba(255,223,0,0.40);margin:22px 0;"></div>
         <div class="display" style="font-family:{FONTS["display"]},sans-serif;
-                    font-size:42px;color:{AMARELO};line-height:0.98;margin-top:14px;
+                    font-size:34px;color:{AMARELO};line-height:0.98;
                     letter-spacing:-0.01em;">
-          PRECISA DELE<br>NA HISTÓRIA<br>QUE VOCÊ CONTA.
+          PRECISA DELE<br>NA HISTÓRIA QUE<br>VOCÊ CONTA.
         </div>
       </div>
-      <div style="position:absolute;bottom:46px;left:28px;right:28px;z-index:12;">
-        <div style="height:1px;background:rgba(255,223,0,0.32);margin-bottom:14px;"></div>
-        <div style="font-family:{FONTS["body"]},sans-serif;font-size:12px;font-weight:600;
-                    color:rgba(255,255,255,0.62);line-height:1.5;
-                    letter-spacing:0.06em;text-transform:uppercase;">
+      <div style="position:absolute;bottom:42px;left:28px;right:28px;z-index:12;text-align:center;">
+        <div style="font-family:{FONTS["body"]},sans-serif;font-size:11px;font-weight:600;
+                    color:rgba(255,255,255,0.55);line-height:1.5;
+                    letter-spacing:0.18em;text-transform:uppercase;">
           NUC Vision · Marketing, Vendas & Performance
         </div>
       </div>
@@ -379,15 +383,13 @@ def slide8():
         {kicker("DA COMISSÃO TÉCNICA · NUC VISION")}
       </div>
       <!-- Trio com tratamento sepia/amarelo overlay para clima de campo -->
-      <div style="position:absolute;top:100px;left:50%;transform:translateX(-50%);
-                  width:260px;height:200px;z-index:11;overflow:hidden;border-radius:14px;
+      <div style="position:absolute;top:88px;left:50%;transform:translateX(-50%);
+                  width:230px;height:160px;z-index:11;overflow:hidden;border-radius:12px;
                   box-shadow:0 18px 44px rgba(0,0,0,0.55),inset 0 0 0 2px {AMARELO};">
         <div style="position:absolute;inset:0;background:
-            linear-gradient(180deg,rgba(0,156,59,0.15) 0%,rgba(0,39,118,0.45) 100%),
+            linear-gradient(180deg,rgba(0,156,59,0.10) 0%,rgba(0,39,118,0.35) 100%),
             url('{trio}') center/cover no-repeat;
             filter:contrast(1.05) saturate(1.1);"></div>
-        <div style="position:absolute;inset:0;background:
-            radial-gradient(ellipse at 50% 30%,transparent 40%,rgba(0,0,0,0.45) 100%);"></div>
       </div>
       <!-- Confete amarelo -->
       <div style="position:absolute;top:60px;left:30px;width:14px;height:6px;
@@ -396,18 +398,18 @@ def slide8():
                   background:{AMARELO};transform:rotate(25deg);z-index:5;"></div>
       <div style="position:absolute;top:88px;right:48px;width:10px;height:4px;
                   background:{BRANCO};transform:rotate(-30deg);z-index:5;"></div>
-      <div style="position:absolute;top:200px;left:18px;width:8px;height:4px;
+      <div style="position:absolute;top:230px;left:18px;width:8px;height:4px;
                   background:{AMARELO};transform:rotate(45deg);z-index:5;"></div>
       <div style="position:absolute;top:280px;right:14px;width:12px;height:4px;
                   background:{BRANCO};transform:rotate(-10deg);z-index:5;"></div>
       <!-- Headline + CTA -->
-      <div style="position:absolute;bottom:120px;left:24px;right:24px;z-index:12;text-align:center;">
+      <div style="position:absolute;top:268px;left:22px;right:22px;z-index:12;text-align:center;">
         <div class="display" style="font-family:{FONTS["display"]},sans-serif;
-                    font-size:38px;color:{BRANCO};line-height:0.95;letter-spacing:-0.01em;
+                    font-size:34px;color:{BRANCO};line-height:0.95;letter-spacing:-0.01em;
                     text-shadow:0 4px 14px rgba(0,0,0,0.5);">
           FRAMEWORK DE MARCA<br>PRA COPA · {hl_yellow("GRÁTIS")}
         </div>
-        <div style="margin-top:12px;font-family:{FONTS["body"]},sans-serif;font-size:13px;
+        <div style="margin-top:10px;font-family:{FONTS["body"]},sans-serif;font-size:12.5px;
                     font-weight:500;color:rgba(255,255,255,0.86);line-height:1.45;
                     text-shadow:0 2px 6px rgba(0,0,0,0.4);">
           Como pegar o rebote do Hexa sem patrocinar a seleção.
