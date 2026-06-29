@@ -12,12 +12,18 @@ mas são guardadas aqui no repo para não se perderem entre sessões.
   profundidade por blur, grão, color match). Usa `geradores/nuc_realism.py`.
 - **`radar-trends-nuc/`** — Radar de trends e roteiro estratégico (Fases A/B/C:
   estratégia → curadoria visual → montagem).
+- **`oportunista-trend/`** — Radar oportunista semanal sobre `@v4company`.
+  Puxa métricas via Windsor.ai (Instagram organic), ranqueia por saves+shares,
+  comentários/alcance e watch_time, escolhe a publicação mais alinhada ao
+  ICP NUC, faz engenharia reversa da estrutura e devolve um roteiro adaptado
+  para a `nuc-carrossel` produzir.
 
 ## Como reinstalar (novo ambiente / nova sessão)
 
 ```bash
 cp -r skills/nuc-carrossel       /root/.claude/skills/
 cp -r skills/radar-trends-nuc    /root/.claude/skills/
+cp -r skills/oportunista-trend   /root/.claude/skills/
 ```
 
 O Claude Code detecta automaticamente qualquer diretório com `SKILL.md`
