@@ -64,11 +64,11 @@ def s1():
   {logo(dark=True)}
   <div style="position:absolute;left:30px;right:30px;bottom:28px;z-index:20;">
     <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;
-                font-size:42px;line-height:0.95;color:#fff;letter-spacing:-0.01em;
+                font-size:38px;line-height:1.0;color:#fff;letter-spacing:-0.01em;
                 text-shadow:0 2px 18px rgba(0,0,0,0.55);">
       Mais clientes não consertam<br>
-      uma operação que <span style="color:{CYAN};">não<br>
-      converte quem já entra.</span>
+      uma operação que<br>
+      <span style="color:{CYAN};">não converte quem já entra.</span>
     </div>
     <div style="font-family:'Space Grotesk',sans-serif;font-size:12.5px;font-weight:400;
                 color:rgba(255,255,255,0.80);line-height:1.55;margin-top:14px;max-width:340px;">
