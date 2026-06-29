@@ -13,10 +13,13 @@ mas são guardadas aqui no repo para não se perderem entre sessões.
 - **`radar-trends-nuc/`** — Radar de trends e roteiro estratégico (Fases A/B/C:
   estratégia → curadoria visual → montagem).
 - **`oportunista-trend/`** — Radar oportunista semanal sobre `@v4company`.
-  Puxa métricas via Windsor.ai (Instagram organic), ranqueia por saves+shares,
-  comentários/alcance e watch_time, escolhe a publicação mais alinhada ao
-  ICP NUC, faz engenharia reversa da estrutura e devolve um roteiro adaptado
-  para a `nuc-carrossel` produzir.
+  Lê o dataset de um schedule Apify semanal (`apify/instagram-scraper`),
+  ranqueia por sinais públicos (comentários/likes, view count), classifica
+  modo (HYPE vs TREND) com inspeção visual da imagem do post, e devolve
+  roteiro adaptado pra `nuc-carrossel` produzir. Em MODO HYPE rouba palette
+  e códigos visuais do evento (Copa, Olimpíada etc.). Setup único do Apify
+  em `oportunista-trend/SETUP-APIFY.md`. Windsor entra só pro tracking do
+  pós-publicação NUC.
 
 ## Como reinstalar (novo ambiente / nova sessão)
 

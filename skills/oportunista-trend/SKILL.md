@@ -1,19 +1,22 @@
 ---
 name: oportunista-trend
 description: >
-  Radar oportunista semanal sobre o perfil @v4company. Detecta a publicação
-  da semana de maior potencial via Windsor.ai (Instagram organic — saves+shares,
-  comentários/alcance, watch_time) e a transforma em post NUC usando UM DE
-  DOIS MODOS: (1) MODO HYPE — quando o V4 está surfando um evento cultural
-  forte (Copa do Mundo, eleição, Oscar, Carnaval, lançamento esportivo etc.),
-  esta skill "rouba como artista" os códigos visuais do evento (palette do
-  evento, atletas/figuras, vocabulário de torcida) para a NUC pegar o mesmo
-  rebote de hype; (2) MODO TREND — para qualquer publicação não-evento, copia
-  só a ESTRUTURA narrativa e devolve com identidade visual NUC integralmente
-  preservada. Em qualquer modo, a produção visual final é delegada à skill
-  `nuc-carrossel`. Use quando o usuário pedir "oportunista da semana",
-  "analisa o V4", "roubar estrutura/visual do V4", "trend semanal V4",
-  "o que rodou no V4 essa semana". Cadência sugerida: 1x/semana.
+  Radar oportunista semanal sobre o perfil @v4company. Lê o dataset de um
+  schedule semanal Apify (actor `apify/instagram-scraper`) que coleta os
+  posts públicos do V4 com imagem, caption, likes e comentários. Detecta a
+  publicação da semana de maior potencial via sinais públicos
+  (commentsCount/likesCount, volume de comentários reais, view count em
+  reels) e a transforma em post NUC usando UM DE DOIS MODOS: (1) MODO HYPE —
+  quando o V4 está surfando um evento cultural forte (Copa do Mundo,
+  Olimpíada, eleição, Carnaval, premiação), esta skill "rouba como artista"
+  os códigos visuais do evento (palette, figuras, vocabulário de torcida)
+  pra NUC pegar o mesmo rebote de hype; (2) MODO TREND — pra qualquer
+  publicação não-evento, copia só a ESTRUTURA narrativa e devolve com
+  identidade visual NUC integral. Em qualquer modo, a produção visual final
+  é delegada à `nuc-carrossel`. Windsor.ai é usado só pro lado NUC
+  (tracking pós-publicação). Use quando o usuário pedir "oportunista da
+  semana", "artes trends da semana", "analisa o V4", "roubar estrutura/visual
+  do V4". Cadência sugerida: 1x/semana. Setup único em SETUP-APIFY.md.
 ---
 
 # SKILL: OPORTUNISTA-TREND — V4 → NUC (HYPE OU TREND)
@@ -108,68 +111,98 @@ antes de adaptar.
 
 ---
 
-## FONTE DE DADOS — WINDSOR.AI
+## FONTES DE DADOS — DOIS LADOS, DUAS FONTES
 
-Conector: **Instagram (organic)** do Windsor.ai, filtrado para `@v4company`.
+### Lado V4 (peer/concorrente) — APIFY
+O Instagram (via Meta Graph API) só devolve métricas das contas que
+autorizaram o app. `@v4company` não autorizou e nunca vai autorizar —
+Windsor não enxerga isso. A fonte certa pro lado V4 é um scraper público:
 
-Tools MCP usadas (nesta ordem):
-1. `mcp__Windsor_ai__get_connectors` — confirma instagram conectado E
-   `@v4company` autorizado nessa conta.
-2. `mcp__Windsor_ai__get_fields` — descobre os campos disponíveis.
-3. `mcp__Windsor_ai__get_data` — puxa publicações dos últimos 7 dias.
+**Actor:** `apify/instagram-scraper` (rodando em schedule semanal).
+**Setup do usuário:** ver `SETUP-APIFY.md`.
 
-Campos mínimos (se faltar algum, reportar e seguir com o que tem):
-`date`, `permalink`, `media_type` (carrossel/reels/feed), `caption`,
-`reach`, `likes`, `comments`, `saves`, `shares`, `views`, `avg_watch_time`
-(reels), **`media_url` ou `thumbnail_url`** (essencial para extrair os
-códigos visuais do MODO HYPE).
+**Variáveis de ambiente esperadas no runtime:**
+- `APIFY_TOKEN` — token de API read-only da conta Apify.
+- `APIFY_V4_DATASET_ID` — ID do dataset onde o schedule semanal grava
+  os resultados (também aceita `APIFY_V4_ACTOR_ID` pra pegar o último run).
 
-### Por que `media_url` é crítico
-Sem ver a imagem do post V4, é impossível decidir entre HYPE e TREND com
-confiança e impossível extrair palette/figura. Se o Windsor não devolver
-`media_url`, a skill ABRE o `permalink` (Instagram público) e inspeciona
-o thumbnail antes de classificar o modo. Sem nenhuma visão visual da peça
-→ marca como MODO TREND por segurança e avisa "modo decidido sem inspeção
-visual — confirme antes de produzir".
+**Chamada que a skill faz:**
+```
+GET https://api.apify.com/v2/datasets/${APIFY_V4_DATASET_ID}/items
+    ?token=${APIFY_TOKEN}&clean=true&format=json
+```
+Devolve JSON com (campos por item, conforme actor):
+`url` (permalink), `timestamp`, `caption`, `likesCount`, `commentsCount`,
+`type` (Image/Video/Sidecar), `displayUrl` (imagem principal),
+`videoUrl` (se reel), `videoViewCount`, `images[]` (carrossel),
+`ownerUsername`.
 
-### Edge case — V4 não autorizado no Windsor da conta
-Se `get_connectors` mostrar instagram conectado mas sem `@v4company`, ou
-`get_data` voltar vazio → parar e perguntar:
+**O que NÃO vem (limitação pública):** `saves`, `shares`, `reach`,
+`watch_time`. Isso é dado privado do dono — nenhum scraper público pega.
+Pra ranking, a skill usa só os sinais visíveis:
+1. `commentsCount / likesCount` → taxa de discussão (proxy para
+   saves+shares, que normalmente correlaciona).
+2. `likesCount` absoluto → atenção bruta.
+3. (Reels) `videoViewCount` → reach proxy.
 
-> "@v4company não está autorizado neste Windsor. Você quer:
-> (a) autorizar agora — eu gero a URL via `get_connector_authorization_url`;
-> (b) seguir só com sinais públicos (alcance estimado por likes+comentários
-> visíveis no permalink) — relatório com nota de limitação?"
+Se em algum momento o V4 expor mais sinais (BFF público, embed widget),
+a skill incorpora — mas hoje é esse o teto.
 
-Nunca inventar métrica. Nunca completar com memória/treino.
+### Lado NUC (own/casa) — WINDSOR.AI
+Pro tracking de como o post adaptado performa DEPOIS de publicado, e pra
+calibrar a skill ao longo do tempo (entender o que funciona pra NUC), a
+fonte é Windsor.
+
+Conector: `instagram` (organic), conta `nucvision` (id `17841477107725223`).
+
+Tools MCP usadas:
+1. `mcp__Windsor_ai__get_data` — puxa as métricas reais (`media_saved`,
+   `media_shares`, `media_reach`, `media_reel_avg_watch_time`) dos
+   carrosséis NUC publicados via esta skill.
+2. Compara performance NUC pós-publicação vs. o post-fonte V4 — ratio
+   de eco. Isso vira aprendizado pra próxima semana.
+
+Esse loop de calibração é OPCIONAL no primeiro mês (sem dado histórico
+ainda). A partir do segundo mês a skill começa a usar isso pra refinar
+escolhas.
 
 ---
 
 ## PROTOCOLO SEMANAL — 4 ETAPAS
 
 ### ETAPA 1 — COLETA
-Puxa todas as publicações de `@v4company` nos últimos 7 dias (janela móvel
-a partir de hoje). Mantém todos os campos por publicação.
+Lê o dataset Apify do schedule semanal (chamada documentada acima em
+"Lado V4 — APIFY"). Filtra `timestamp` nos últimos 7 dias. Mantém
+`url`, `timestamp`, `caption`, `likesCount`, `commentsCount`, `type`,
+`displayUrl`, `videoUrl`, `videoViewCount`.
+
+Pra cada item, baixa a imagem (`displayUrl`) localmente em
+`scratchpad/v4-week/` pra inspeção visual posterior (palette, figura,
+mode classification).
 
 ### ETAPA 2 — RANKING + CLASSIFICAÇÃO DE MODO
-Score = PERFORMANCE (Windsor) × ALINHAMENTO (avaliação textual).
+Score = PERFORMANCE (sinais públicos) × ALINHAMENTO (avaliação textual).
 
-**Performance, em ordem de força:**
-1. `(saves + shares) / reach` — valor real percebido.
-2. `comments / reach` — taxa de discussão.
-3. Reels: `avg_watch_time / video_length` — retenção.
-4. `likes / reach` — tiebreaker apenas.
+**Performance — sinais públicos disponíveis, em ordem de força:**
+1. `commentsCount / likesCount` → taxa de discussão (proxy de saves+shares).
+2. `likesCount` absoluto → atenção bruta.
+3. Reels: `videoViewCount` → reach proxy.
+4. Volume de comentários >150 com 2+ palavras → discussão real (não bot).
+
+**Por que não usamos saves/shares/reach:** Meta não expõe esses dados
+publicamente. Nenhum scraper pega. A skill assume essa cegueira e
+compensa com o sinal de comentários, que historicamente correlaciona.
 
 **Alinhamento NUC (0–10):** legenda + tema vs ICP NUC (empresário/PME,
 dono de serviço, gestor — comercial, funil, posicionamento, autoridade).
-Conteúdo interno V4 (cultura, vaga, recado institucional, dicas para
+Conteúdo interno V4 (cultura, vaga, recado institucional, dicas pra
 começar agência) tem alinhamento baixo mesmo que tenha bombado.
 
 **Vencedora:** melhor combinação com alinhamento ≥ 6. Empate técnico →
-`saves+shares` decide.
+`commentsCount` decide.
 
-**Classificação de MODO da vencedora** (HYPE ou TREND) usando a lista de
-sinais acima, com inspeção visual da `media_url`.
+**Classificação de MODO da vencedora** (HYPE ou TREND) com inspeção
+visual da imagem baixada em `scratchpad/v4-week/`.
 
 Documenta o ranking inteiro + a classificação de modo (não só a escolhida).
 O usuário precisa poder discordar.
@@ -251,11 +284,15 @@ A `nuc-carrossel` assume daí (produção, QA, export PNG).
    interno, vaga, comunicado institucional, dicas para começar agência) →
    reporta "sem oportunidade clara essa semana" e ENCERRA. Não força só
    pra cumprir cadência.
-4. **Dados sempre do Windsor.** Sem invenção de métrica, sem completar com
-   memória. Sem Windsor → sem ranking → reporta.
-5. **Modo HYPE só dispara com inspeção visual da peça V4.** Sem ver a
-   imagem, default = MODO TREND. Hype mal classificado vira post fora de
-   janela e parece desespero.
+4. **Dados sempre do Apify dataset configurado.** Sem invenção de métrica,
+   sem completar com memória/treino. Se o dataset não estiver disponível
+   (token inválido, schedule falhou, dataset vazio) → reporta o erro
+   específico e pede ao usuário pra checar a Apify, ou aceita print no
+   chat como fallback manual.
+5. **Modo HYPE só dispara com inspeção visual da peça V4** (imagem baixada
+   via `displayUrl` em `scratchpad/v4-week/`). Sem ver a imagem, default
+   = MODO TREND. Hype mal classificado vira post fora de janela e parece
+   desespero.
 6. **NUC só aparece no CTA + assinatura**, em ambos os modos. Nada de
    "aqui na NUC fazemos" no meio.
 7. **Produção visual é da `nuc-carrossel`.** Esta skill não desenha slide,
