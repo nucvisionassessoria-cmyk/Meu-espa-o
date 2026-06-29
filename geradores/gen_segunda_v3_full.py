@@ -67,8 +67,8 @@ def s1():
                 font-size:42px;line-height:0.95;color:#fff;letter-spacing:-0.01em;
                 text-shadow:0 2px 18px rgba(0,0,0,0.55);">
       Mais clientes não consertam<br>
-      uma operação que<br>
-      <span style="color:{CYAN};">não conduz.</span>
+      uma operação que <span style="color:{CYAN};">não<br>
+      converte quem já entra.</span>
     </div>
     <div style="font-family:'Space Grotesk',sans-serif;font-size:12.5px;font-weight:400;
                 color:rgba(255,255,255,0.80);line-height:1.55;margin-top:14px;max-width:340px;">
