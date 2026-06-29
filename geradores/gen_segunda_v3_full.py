@@ -52,27 +52,27 @@ GRAIN_LIGHT = '''<div style="position:absolute;inset:0;z-index:50;pointer-events
 
 # ── S1 IMPACTO ───────────────────────────────────────────────────────────────
 def s1():
-    img = b64("v3_s1_mesa_demanda.png")
+    img = b64("seg_s1_empresaria.png")
     return f'''
 <div style="width:{VW}px;height:{VH}px;position:relative;overflow:hidden;background:{INK};">
   <div style="position:absolute;inset:0;z-index:0;">
-    <img src="{img}" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.78) contrast(1.05) saturate(0.95);">
+    <img src="{img}" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.72) contrast(1.06) saturate(0.92);">
   </div>
   <div style="position:absolute;inset:0;z-index:1;
-    background:linear-gradient(180deg, rgba(6,9,15,0.15) 0%, rgba(6,9,15,0.05) 35%, rgba(6,9,15,0.55) 65%, rgba(6,9,15,0.95) 100%);"></div>
+    background:linear-gradient(180deg, rgba(6,9,15,0.18) 0%, rgba(6,9,15,0.08) 35%, rgba(6,9,15,0.62) 65%, rgba(6,9,15,0.96) 100%);"></div>
   {GRAIN}
   {logo(dark=True)}
   <div style="position:absolute;left:30px;right:30px;bottom:28px;z-index:20;">
     <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;
                 font-size:42px;line-height:0.95;color:#fff;letter-spacing:-0.01em;
-                text-shadow:0 2px 18px rgba(0,0,0,0.5);">
+                text-shadow:0 2px 18px rgba(0,0,0,0.55);">
       Mais clientes não consertam<br>
       uma operação que<br>
       <span style="color:{CYAN};">não conduz.</span>
     </div>
     <div style="font-family:'Space Grotesk',sans-serif;font-size:12.5px;font-weight:400;
-                color:rgba(255,255,255,0.78);line-height:1.55;margin-top:14px;max-width:340px;">
-      Você acha que precisa de tráfego. Mas o problema raramente está em quem chega.
+                color:rgba(255,255,255,0.80);line-height:1.55;margin-top:14px;max-width:340px;">
+      Você acha que precisa de tráfego, mas o problema raramente está em quem chega.
     </div>
     <div style="margin-top:14px;">{bridge("Está no que acontece depois.")}</div>
   </div>
@@ -229,9 +229,9 @@ def s5():
   </div>
   <div style="position:absolute;left:30px;right:30px;bottom:78px;z-index:20;">
     <div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:400;
-                color:rgba(255,255,255,0.75);line-height:1.6;">
-      Cada novo cliente vira mais uma cobrança, mais uma decisão, mais um pedido na sua cabeça.
-      Mais demanda não trouxe crescimento. <span style="color:#fff;font-weight:600;">Trouxe peso.</span>
+                color:rgba(255,255,255,0.78);line-height:1.6;">
+      Cada novo cliente vira mais uma decisão, mais uma cobrança, mais um pedido na sua cabeça.
+      Vender mais virou <span style="color:#fff;font-weight:600;">trabalhar mais</span>, não crescer.
     </div>
   </div>
   <div style="position:absolute;left:30px;right:30px;bottom:24px;z-index:20;">
