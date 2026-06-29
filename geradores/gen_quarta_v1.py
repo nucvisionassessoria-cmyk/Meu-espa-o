@@ -50,7 +50,7 @@ GRAIN_LIGHT = '''<div style="position:absolute;inset:0;z-index:50;pointer-events
 
 # ── S1 IMPACTO ───────────────────────────────────────────────────────────────
 def s1():
-    img = b64(GER / "qua_s1_dono_noite.png")
+    img = b64(GER / "qua_s1_dono_homem.png")
     return f'''
 <div style="width:{VW}px;height:{VH}px;position:relative;overflow:hidden;background:{INK};">
   <div style="position:absolute;inset:0;z-index:0;">
@@ -62,15 +62,14 @@ def s1():
   {logo(dark=True)}
   <div style="position:absolute;left:30px;right:30px;bottom:28px;z-index:20;">
     <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;
-                font-size:40px;line-height:0.96;color:#fff;letter-spacing:-0.01em;
+                font-size:38px;line-height:1.0;color:#fff;letter-spacing:-0.01em;
                 text-shadow:0 2px 18px rgba(0,0,0,0.55);">
       Sua empresa não cresce<br>
-      porque você é<br>
-      <span style="color:{CYAN};">bom demais.</span>
+      porque você é <span style="color:{CYAN};">bom demais.</span>
     </div>
     <div style="font-family:'Space Grotesk',sans-serif;font-size:12.5px;font-weight:400;
                 color:rgba(255,255,255,0.80);line-height:1.55;margin-top:14px;max-width:340px;">
-      Você acha que é dedicação. Provavelmente virou dependência.
+      Você acha que é dedicação, provavelmente virou dependência.
     </div>
     <div style="margin-top:14px;">{bridge("É um problema antes de ser uma virtude.")}</div>
   </div>
@@ -169,7 +168,7 @@ def s4():
     </div>
     <div style="font-family:'Space Grotesk',sans-serif;font-size:11.5px;font-weight:400;
                 color:{LIGHT_SUB};line-height:1.65;margin-top:16px;">
-      Time pode até trabalhar bem. Mas se ninguém é dono de etapa nenhuma, qualquer
+      Time pode até trabalhar bem, mas se ninguém é dono de etapa nenhuma, qualquer
       travamento volta pra cima de uma única pessoa.
       <span style="color:{LIGHT_TEXT};font-weight:600;">E essa pessoa é sempre quem fundou.</span>
     </div>
@@ -201,24 +200,26 @@ def s5():
     {kicker("O efeito invisível")}
     <div style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;
                 color:rgba(255,255,255,0.80);letter-spacing:0.02em;text-transform:uppercase;">
-      A estatística silenciosa
+      Quando o dono falta
     </div>
   </div>
-  <div style="position:absolute;left:30px;right:30px;top:158px;z-index:20;
-              display:flex;align-items:flex-start;gap:14px;">
+  <div style="position:absolute;left:30px;right:30px;top:165px;z-index:20;
+              display:flex;align-items:flex-start;gap:18px;">
     <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;
-                font-size:130px;line-height:0.82;color:{CYAN};
-                text-shadow:0 0 60px rgba(30,197,242,0.30);">7</div>
-    <div style="padding-top:30px;">
+                font-size:160px;line-height:0.82;color:{CYAN};
+                text-shadow:0 0 60px rgba(30,197,242,0.30);">1</div>
+    <div style="padding-top:42px;">
       <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;
-                  font-size:96px;line-height:0.82;color:#fff;">de 10</div>
+                  font-size:24px;line-height:1.0;color:#fff;">
+        ausência basta<br>para a operação<br>parar.
+      </div>
     </div>
   </div>
   <div style="position:absolute;left:30px;right:30px;bottom:78px;z-index:20;">
     <div style="font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:400;
                 color:rgba(255,255,255,0.78);line-height:1.6;">
-      empresas que faturam até R$ 200k/mês têm um único ponto de falha real:
-      <span style="color:#fff;font-weight:600;">o dono.</span> Se ele para, a operação para.
+      Não é porque o time é ruim. É porque a empresa nunca foi feita para
+      <span style="color:#fff;font-weight:600;">funcionar sem você.</span>
     </div>
   </div>
   <div style="position:absolute;left:30px;right:30px;bottom:24px;z-index:20;">
@@ -273,7 +274,7 @@ def s7():
         ("Mapeie", "tudo que SÓ você decide hoje."),
         ("Classifique", "o que é regra, critério ou decisão sua."),
         ("Defina", "1 responsável por área crítica."),
-        ("Cadência", "de revisão semanal ou quinzenal."),
+        ("Crie", "cadência de revisão semanal ou quinzenal."),
         ("Reserve", "4h por semana fora da operação."),
     ]
     cards = "".join(f'''

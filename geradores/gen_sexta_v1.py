@@ -73,7 +73,7 @@ def s1():
                 font-size:36px;line-height:0.98;color:{LIGHT_TEXT};letter-spacing:-0.01em;">
       Marketing não conserta<br>
       empresa quebrada.<br>
-      <span style="color:{CYAN};">Acelera o que já está lá.</span>
+      <span style="color:{CYAN};">Acelera o que já existe.</span>
     </div>
     <div style="font-family:'Space Grotesk',sans-serif;font-size:12.5px;font-weight:400;
                 color:{LIGHT_SUB};line-height:1.6;margin-top:14px;max-width:340px;">
@@ -100,7 +100,7 @@ def s2():
     {kicker("A pergunta certa", dark=False)}
     <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;
                 font-size:26px;line-height:1.02;color:{LIGHT_TEXT};">
-      É: <span style="color:{CYAN};">"o que minha operação entrega bem hoje?"</span>
+      <span style="color:{CYAN};">"O que minha operação entrega bem hoje?"</span>
     </div>
     <div style="font-family:'Space Grotesk',sans-serif;font-size:11.5px;font-weight:400;
                 color:{LIGHT_SUB};line-height:1.65;margin-top:18px;">
@@ -274,7 +274,7 @@ def s7():
         ("Padronização", "do que entrega valor."),
         ("Promessa", "coerente com a entrega."),
         ("Estrutura", "comercial pronta para volume."),
-        ("Marketing", "só agora — e como combustível."),
+        ("Marketing", "só agora, e como combustível."),
     ]
     cards = "".join(f'''
       <div style="display:flex;align-items:baseline;gap:10px;padding:8px 0;
