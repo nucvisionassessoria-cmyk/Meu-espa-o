@@ -234,6 +234,18 @@ Inspirações de metáfora surreal (catalogadas a partir de referências aprovad
 - Trilhos paralelos no nada → tema "processo vs improviso"
 - Megafone vintage com objeto frágil ao lado → tema "marketing amplifica problema"
 
+**REGRA DE EQUILÍBRIO (inviolável):** Máximo **2 slides surreais por carrossel**
+(de 8 slides). Os outros devem ser still life refinado, retrato real ou layout
+editorial clássico. **Carrossel 100% surreal quebra a coerência com o S8
+institucional** (sócio NUC com a polo, foto realista) — o leitor sente um
+carrossel "de arte" que termina num "comercial". Errado.
+
+A surreal entra como ponto de virada visual em momentos específicos: a CAPA
+(S1) pode ser surreal se o gancho é provocativo, OU a CONSEQUÊNCIA (S5) pode
+ser surreal se o ponto é dramático, OU os dois — mas nunca mais que isso.
+Slides de contexto, sintoma, causa, virada e caminho mantêm o registro
+editorial real, pra pavimentar visualmente até o S8 institucional sem ruptura.
+
 **REGRA DE OURO:** Antes de gerar qualquer imagem, pergunte: "essa imagem
 surpreende ou é previsível?". Se for previsível, escale o conceito UM NÍVEL.
 Mesa de trabalho → mesa flutuando no oceano. Cadeira do dono → cadeira sob
