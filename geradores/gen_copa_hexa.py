@@ -106,42 +106,55 @@ def tatica_bg():
 
 
 # =============================================================================
-# SLIDE 1 — GANCHO: "A Nike acabou de gastar R$ 200 mi pra errar a camisa do Hexa"
+# SLIDE 1 — GANCHO: figura central Vinicius beijando escudo (do V4) +
+# tipografia NUC + atmosfera Copa (laranja stadium do V4)
 # =============================================================================
 def slide1():
+    vini = photo_uri("copa_vinicius_escudo.jpg")
     return f'''<div class="slide" style="overflow:hidden;
-        background:radial-gradient(ellipse 130% 90% at 50% 100%,#013D1A 0%,{AZUL} 60%,#000A1F 100%);">
+        background:radial-gradient(ellipse 130% 95% at 50% 30%,#C7510B 0%,#7E2606 60%,#1A0500 100%);">
+      <!-- Foto Vinicius full-bleed - posicionada para mostrar face acima -->
+      <div style="position:absolute;top:0;left:0;right:0;bottom:0;z-index:2;
+                  background:url('{vini}') center 0%/cover no-repeat;
+                  filter:contrast(1.06) saturate(1.08) brightness(0.98);"></div>
+      <!-- Vinheta escura nos cantos -->
+      <div style="position:absolute;inset:0;z-index:3;
+                  background:radial-gradient(ellipse 120% 90% at 50% 30%,
+                    transparent 35%,rgba(0,0,0,0.45) 78%,rgba(0,0,0,0.8) 100%);"></div>
+      <!-- Sombra inferior PESADA - cobre da metade pra baixo, ancora a tipografia -->
+      <div style="position:absolute;bottom:0;left:0;right:0;height:55%;z-index:4;
+                  background:linear-gradient(180deg,transparent 0%,
+                    rgba(0,10,31,0.75) 35%,rgba(0,10,31,0.96) 100%);"></div>
       {flag_stripe(top=True, height=6)}
       {logo()}
-      <div style="position:absolute;top:62px;left:0;right:0;text-align:center;z-index:10;">
-        <div style="font-family:{FONTS["body"]},sans-serif;font-size:10px;font-weight:700;
+      <div style="position:absolute;top:60px;left:0;right:0;text-align:center;z-index:10;">
+        <div style="display:inline-block;padding:6px 14px;background:rgba(0,0,0,0.55);
+                    backdrop-filter:blur(6px);border-radius:4px;
+                    font-family:{FONTS["body"]},sans-serif;font-size:9.5px;font-weight:700;
                     letter-spacing:0.28em;text-transform:uppercase;color:{AMARELO};">
           LEITURA DE MERCADO · COPA 2026
         </div>
       </div>
-      <!-- Big silhueta troféu/escudo no fundo, sutil -->
-      <div style="position:absolute;top:140px;left:50%;transform:translateX(-50%);
-                  font-family:{FONTS["display"]},sans-serif;font-size:340px;
-                  color:rgba(255,223,0,0.06);line-height:1;z-index:2;">★</div>
-      <div style="position:absolute;top:115px;left:24px;right:24px;z-index:12;">
+      <!-- Headline embaixo, dentro da sombra. Encolhida pra deixar a face livre -->
+      <div style="position:absolute;bottom:90px;left:20px;right:20px;z-index:12;">
         <div class="display" style="font-family:{FONTS["display"]},sans-serif;
-                    font-size:54px;color:{BRANCO};line-height:0.92;letter-spacing:-0.01em;">
-          A NIKE<br>ACABOU DE<br>{hl_yellow("ERRAR")}<br>A CAMISA<br>DO HEXA.
+                    font-size:40px;color:{BRANCO};line-height:0.94;letter-spacing:-0.01em;
+                    text-shadow:0 4px 18px rgba(0,0,0,0.6);">
+          A NIKE ACABOU<br>DE {hl_yellow("ERRAR")}<br>A CAMISA DO HEXA.
         </div>
       </div>
-      <div style="position:absolute;bottom:34px;left:24px;right:24px;z-index:12;">
-        <div style="font-family:{FONTS["body"]},sans-serif;font-size:13px;font-weight:500;
-                    color:rgba(255,255,255,0.72);line-height:1.45;">
-          R$ 200 milhões em ativação — pra fazer o pior marketing<br>
-          de Copa do ano.
+      <div style="position:absolute;bottom:28px;left:20px;right:20px;z-index:12;">
+        <div style="font-family:{FONTS["body"]},sans-serif;font-size:12px;font-weight:500;
+                    color:rgba(255,255,255,0.82);line-height:1.45;
+                    text-shadow:0 2px 6px rgba(0,0,0,0.7);">
+          R$ 200 milhões em ativação — pro pior marketing de Copa do ano.
         </div>
-        <div style="margin-top:18px;display:inline-flex;align-items:center;gap:8px;
-                    font-family:{FONTS["body"]},sans-serif;font-size:11px;font-weight:700;
+        <div style="margin-top:10px;display:inline-flex;align-items:center;gap:8px;
+                    font-family:{FONTS["body"]},sans-serif;font-size:10.5px;font-weight:700;
                     color:{AMARELO};letter-spacing:0.18em;text-transform:uppercase;">
           DESLIZE <span style="font-size:16px;">›››</span>
         </div>
       </div>
-      {overlay_vignette(0.35,z=3)}
     </div>'''
 
 
@@ -217,37 +230,47 @@ def slide3():
 # SLIDE 4 — VIRADA: "A narrativa do Hexa ja estava pronta ha 24 anos."
 # =============================================================================
 def slide4():
+    foto = photo_uri("copa_neymar_ancelotti.jpg")
     return f'''<div class="slide" style="overflow:hidden;
-        background:radial-gradient(ellipse at 50% 30%,#015A26 0%,{VERDE} 35%,#003015 100%);">
+        background:linear-gradient(180deg,#01270F 0%,#013D1A 45%,#000A1F 100%);">
       {logo()}
       <div style="position:absolute;top:72px;left:0;right:0;text-align:center;z-index:10;">
         {kicker("03 · A VIRADA")}
       </div>
       <!-- numero gigante 24 atras do titulo -->
-      <div style="position:absolute;top:80px;left:0;right:0;text-align:center;z-index:2;
+      <div style="position:absolute;top:70px;left:0;right:0;text-align:center;z-index:2;
                   font-family:{FONTS["display"]},sans-serif;font-size:280px;
-                  color:rgba(255,223,0,0.10);line-height:1;letter-spacing:-0.04em;">
+                  color:rgba(255,223,0,0.08);line-height:1;letter-spacing:-0.04em;">
         24
       </div>
-      <div style="position:absolute;top:140px;left:24px;right:24px;z-index:12;text-align:center;">
+      <div style="position:absolute;top:108px;left:22px;right:22px;z-index:12;text-align:center;">
         <div class="display" style="font-family:{FONTS["display"]},sans-serif;
-                    font-size:42px;color:{BRANCO};line-height:0.95;letter-spacing:-0.01em;">
+                    font-size:38px;color:{BRANCO};line-height:0.95;letter-spacing:-0.01em;">
           A NARRATIVA<br>DO HEXA JÁ<br>{hl_yellow("ESTAVA PRONTA")}
         </div>
-        <div style="margin-top:12px;font-family:{FONTS["display"]},sans-serif;
-                    font-size:26px;color:rgba(255,255,255,0.85);line-height:1;">
+        <div style="margin-top:10px;font-family:{FONTS["display"]},sans-serif;
+                    font-size:24px;color:rgba(255,255,255,0.85);line-height:1;">
           HÁ 24 ANOS.
         </div>
       </div>
-      <div style="position:absolute;bottom:38px;left:28px;right:28px;z-index:12;text-align:center;">
-        <div style="font-family:{FONTS["body"]},sans-serif;font-size:12px;font-weight:500;
-                    color:rgba(255,255,255,0.72);line-height:1.5;">
-          Maior campeã. 24 anos sem o título.<br>
-          Melhor técnico da história no comando.
-        </div>
-        {bridge("A Nike ignorou tudo isso e foi inventar outra história.")}
+      <!-- Faixa horizontal Neymar+Ancelotti embaixo, com tratamento dark+light wrap -->
+      <div style="position:absolute;bottom:0;left:0;right:0;height:240px;z-index:8;
+                  overflow:hidden;
+                  background:url('{foto}') center 40%/cover no-repeat;
+                  filter:contrast(1.05) saturate(1.02);
+                  box-shadow:inset 0 60px 80px -20px rgba(0,0,0,0.85);"></div>
+      <!-- Gradient encavalando a borda superior da foto pra suavizar transicao -->
+      <div style="position:absolute;bottom:200px;left:0;right:0;height:80px;z-index:9;
+                  background:linear-gradient(180deg,rgba(0,10,31,1) 0%,
+                    rgba(0,10,31,0.4) 60%,transparent 100%);"></div>
+      <!-- Faixa amarela sutil na borda topo da foto -->
+      <div style="position:absolute;bottom:240px;left:0;right:0;height:2px;z-index:10;
+                  background:{AMARELO};opacity:0.6;
+                  box-shadow:0 0 18px rgba(255,223,0,0.55);"></div>
+      <!-- Texto explicativo no espaco entre headline e foto -->
+      <div style="position:absolute;top:268px;left:22px;right:22px;z-index:12;text-align:center;">
+        {bridge("Maior campeã. 24 anos sem título. O melhor técnico do mundo no comando. A Nike ignorou.")}
       </div>
-      {overlay_vignette(0.4,z=3)}
     </div>'''
 
 
@@ -374,22 +397,34 @@ def slide7():
 # SLIDE 8 — CTA: trio_reuniao + comissao tecnica + Comente HEXA
 # =============================================================================
 def slide8():
-    trio = photo_uri("trio_reuniao.png")
+    selecao = photo_uri("copa_selecao_formacao.jpg")
     return f'''<div class="slide" style="overflow:hidden;
-        background:linear-gradient(165deg,#015A26 0%,{VERDE} 45%,#003015 100%);">
-      {tatica_bg()}
-      {logo()}
-      <div style="position:absolute;top:60px;left:0;right:0;text-align:center;z-index:10;">
-        {kicker("DA COMISSÃO TÉCNICA · NUC VISION")}
+        background:linear-gradient(165deg,#000A1F 0%,{AZUL} 50%,#001440 100%);">
+      <!-- Foto selecao full-bleed na parte de cima -->
+      <div style="position:absolute;top:0;left:0;right:0;height:320px;z-index:2;
+                  background:url('{selecao}') center 35%/cover no-repeat;
+                  filter:contrast(1.06) saturate(1.05);"></div>
+      <!-- Gradient da foto pro fundo verde -->
+      <div style="position:absolute;top:200px;left:0;right:0;height:160px;z-index:3;
+                  background:linear-gradient(180deg,transparent 0%,
+                    rgba(1,39,22,0.85) 65%,rgba(1,61,26,1) 100%);"></div>
+      <!-- Fundo verde com tabela tatica embaixo -->
+      <div style="position:absolute;top:320px;left:0;right:0;bottom:0;z-index:4;
+                  background:linear-gradient(180deg,#013D1A 0%,{VERDE} 50%,#003015 100%);"></div>
+      <div style="position:absolute;top:320px;left:0;right:0;bottom:0;z-index:5;">
+        {tatica_bg()}
       </div>
-      <!-- Trio com tratamento sepia/amarelo overlay para clima de campo -->
-      <div style="position:absolute;top:88px;left:50%;transform:translateX(-50%);
-                  width:230px;height:160px;z-index:11;overflow:hidden;border-radius:12px;
-                  box-shadow:0 18px 44px rgba(0,0,0,0.55),inset 0 0 0 2px {AMARELO};">
-        <div style="position:absolute;inset:0;background:
-            linear-gradient(180deg,rgba(0,156,59,0.10) 0%,rgba(0,39,118,0.35) 100%),
-            url('{trio}') center/cover no-repeat;
-            filter:contrast(1.05) saturate(1.1);"></div>
+      <!-- Faixa amarela divisora entre foto e CTA -->
+      <div style="position:absolute;top:318px;left:0;right:0;height:3px;z-index:8;
+                  background:{AMARELO};box-shadow:0 0 22px rgba(255,223,0,0.65);"></div>
+      {logo()}
+      <div style="position:absolute;top:60px;left:0;right:0;text-align:center;z-index:14;">
+        <div style="display:inline-block;padding:5px 12px;background:rgba(0,0,0,0.55);
+                    backdrop-filter:blur(6px);border-radius:4px;
+                    font-family:{FONTS["body"]},sans-serif;font-size:9.5px;font-weight:700;
+                    letter-spacing:0.28em;text-transform:uppercase;color:{AMARELO};">
+          A COMISSÃO TÉCNICA · NUC VISION
+        </div>
       </div>
       <!-- Confete amarelo -->
       <div style="position:absolute;top:60px;left:30px;width:14px;height:6px;
@@ -402,15 +437,15 @@ def slide8():
                   background:{AMARELO};transform:rotate(45deg);z-index:5;"></div>
       <div style="position:absolute;top:280px;right:14px;width:12px;height:4px;
                   background:{BRANCO};transform:rotate(-10deg);z-index:5;"></div>
-      <!-- Headline + CTA -->
-      <div style="position:absolute;top:268px;left:22px;right:22px;z-index:12;text-align:center;">
+      <!-- Headline + CTA na faixa verde abaixo da foto -->
+      <div style="position:absolute;top:340px;left:22px;right:22px;z-index:14;text-align:center;">
         <div class="display" style="font-family:{FONTS["display"]},sans-serif;
-                    font-size:34px;color:{BRANCO};line-height:0.95;letter-spacing:-0.01em;
-                    text-shadow:0 4px 14px rgba(0,0,0,0.5);">
+                    font-size:30px;color:{BRANCO};line-height:0.95;letter-spacing:-0.01em;
+                    text-shadow:0 3px 10px rgba(0,0,0,0.5);">
           FRAMEWORK DE MARCA<br>PRA COPA · {hl_yellow("GRÁTIS")}
         </div>
-        <div style="margin-top:10px;font-family:{FONTS["body"]},sans-serif;font-size:12.5px;
-                    font-weight:500;color:rgba(255,255,255,0.86);line-height:1.45;
+        <div style="margin-top:10px;font-family:{FONTS["body"]},sans-serif;font-size:12px;
+                    font-weight:500;color:rgba(255,255,255,0.86);line-height:1.4;
                     text-shadow:0 2px 6px rgba(0,0,0,0.4);">
           Como pegar o rebote do Hexa sem patrocinar a seleção.
         </div>
