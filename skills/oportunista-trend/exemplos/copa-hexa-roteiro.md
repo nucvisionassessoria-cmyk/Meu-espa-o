@@ -39,14 +39,24 @@ ciano NUC      #1EC5F2  (só logo + CTA — costura à marca)
 | Vai, Brasa           | "Vai dar"                                    |
 | ESTRAGOU             | ERROU                                        |
 
-## Figura
+## Figuras (mesmas inspirações do V4 — cobertura na casca NUC)
 
-- Slides 1–7: tipográfico forte + códigos visuais Copa (bandeira como
-  faixa, escudo CBF estilizado, troféu silhueta) — sem foto de atleta
-  (V4 já usou Vinicius e Neymar histórico).
-- Slide 8 (CTA): `trio_reuniao.png` (Iago + Derick + Lucas em
-  comissão técnica de marketing) sobre fundo verde com tabela tática
-  estilizada e CTA full-width.
+- **Slide 1 (gancho):** `copa_vinicius_escudo.png` — Vinicius Jr beijando
+  o escudo CBF, camisa amarela, fundo laranja stadium. Mesma figura do V4,
+  ancorada com tipografia/light wrap/sombra de contato no padrão NUC.
+- **Slide 4 (virada):** `copa_neymar_ancelotti_taca.png` — Neymar +
+  Ancelotti erguendo o troféu juntos (mesmo par do V4 no slide 7),
+  estádio dourado, vintage grain.
+- **Slide 5 (escalada):** `copa_camisa_brasil_mockup.png` — mockup da
+  nova camisa amarela em manequim sobre fundo escuro estilo editorial
+  (equivalente ao mockup da Rachel Denti do V4, sem a designer
+  específica — substituição justa: pessoa exclusiva V4).
+- **Slide 8 (CTA):** `copa_torcida_brasil.png` — torcida brasileira em
+  euforia (substitui os sócios V4 vestidos de árbitro, que são pessoas
+  exclusivas do V4 — equivalente do mesmo registro emocional). Fundo de
+  tabela tática verde + confete amarelo + CTA "COMENTE HEXA" full-width.
+- **Slides 2, 3, 6, 7:** tipográficos puros (modelo `nuc-carrossel` —
+  manifesto/regra/revelação/insight onde a tipografia faz o trabalho).
 
 ## Legenda
 

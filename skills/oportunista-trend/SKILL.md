@@ -71,16 +71,22 @@ morte/aposentadoria de figura pública, BBB final etc.
    `#1EC5F2`) entra em pausa. Só o LOGO NUC e o CTA podem manter cor
    institucional — o resto do slide veste o evento.
 
-2. **Figura central do evento.** Se o V4 usou um atleta/figura, a NUC USA
-   um atleta/figura COMPARÁVEL (mesmo esporte, mesma natureza pública),
-   nunca a mesma pessoa que o V4 — distinção visual é o que evita o
-   "copiou descaradamente". Reporta ao usuário qual figura V4 usou e
-   propõe 2–3 alternativas para a NUC.
+2. **Figura central do evento — A MESMA do V4.** Se o V4 usou Vinicius
+   beijando o escudo, a NUC USA Vinicius beijando o escudo. Se V4 usou
+   Neymar+Ancelotti com a taça, NUC usa o mesmo par. O que "camufla" a
+   cópia é a CASCA visual NUC (tipografia Anton+Space Grotesk,
+   espaçamento, kicker, pills, highlights, sistema gráfico da
+   `nuc-carrossel`) — não a troca de pessoa. Exceção única: figura que é
+   EXCLUSIVA do V4 (ex: foto dos sócios deles vestidos de árbitro),
+   nesse caso substitui por equivalente do mesmo registro emocional
+   (ex: torcida brasileira celebrando, jogador comemorando gol).
 
 3. **Vocabulário de torcida adaptado.** Mesmo registro emocional (euforia,
-   tensão, celebração), palavras diferentes. Se V4 escreveu "PODE COMEMORAR",
-   NUC escreve algo como "DEU CERTO" ou "É AGORA" — mesma carga, palavras
-   distintas.
+   tensão, celebração), palavras diferentes apenas no nível das
+   keywords-slogan (regra inviolável #1). Se V4 escreveu "PODE COMEMORAR"
+   como slogan, NUC escreve "DEU CERTO" ou "É AGORA". Códigos de torcida
+   genéricos (amarelinha, hexa, canarinho, vai Brasil) são livres pra
+   ambos — não são slogans próprios do V4.
 
 4. **Sócio do dia OPCIONAL neste modo.** Se a figura do evento já é o
    protagonista visual, o sócio fica fora ou aparece pequeno em um slide de
@@ -274,12 +280,22 @@ A `nuc-carrossel` assume daí (produção, QA, export PNG).
 
 ## REGRAS INVIOLÁVEIS
 
-1. **Nunca copia texto literal do V4** — estrutura, ângulo e códigos visuais
-   são livres; frase, palavra-chave e slogan, não. Se um trecho ficar
-   parecido demais, reescrever do zero.
-2. **Nunca usa A MESMA figura/atleta que o V4 usou.** Em MODO HYPE, sempre
-   uma figura comparável mas distinta. Mesma pessoa + mesma palette + mesma
-   estrutura = plágio visível.
+1. **Nunca copia texto literal do V4** — estrutura, ângulo e códigos
+   visuais são livres; frase, palavra-chave e slogan, não. Se um trecho
+   ficar parecido demais, reescrever do zero. (Único elemento textual
+   que NÃO se copia.)
+2. **Imagens, fotos, jogadores, pessoas, palette e estrutura — COPIA
+   PROPOSITAL.** Em MODO HYPE, a inspiração visual do V4 é replicada:
+   se V4 usou Vinicius beijando o escudo, NUC usa Vinicius beijando o
+   escudo; se V4 usou Neymar e Ancelotti com a taça, NUC usa o mesmo
+   par. **O que "camufla" a cópia e devolve identidade NUC é a CASCA:**
+   tipografia (Anton display + Space Grotesk body), espaçamento, kicker,
+   bridge, pills, highlights, sistema gráfico — tudo da `nuc-carrossel`.
+   Filosofia: cover band tocando a mesma música com instrumentos
+   diferentes. **Exceção:** elementos exclusivos do V4 que só fazem
+   sentido pra eles (ex: foto dos sócios deles vestidos de árbitro) —
+   isso substitui por equivalente do mesmo registro (ex: torcida
+   brasileira celebrando).
 3. **Se nenhuma publicação V4 da semana conectar com ICP NUC** (conteúdo
    interno, vaga, comunicado institucional, dicas para começar agência) →
    reporta "sem oportunidade clara essa semana" e ENCERRA. Não força só
