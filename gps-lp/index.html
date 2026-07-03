@@ -45,7 +45,12 @@ h1,h2,h3{text-wrap:balance}
    CAMADA 0 — FUNDO VIVO
    --------------------------------------------------------------------- */
 .bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bg #gl{position:absolute;inset:0;width:100%;height:100%;display:block}
 .bg #amb{position:absolute;inset:0;width:100%;height:100%;opacity:.6}
+.bg .grid-ov{position:absolute;inset:-6%;pointer-events:none;opacity:.5;will-change:transform;
+  background-image:linear-gradient(rgba(238,243,240,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(238,243,240,.028) 1px,transparent 1px);
+  background-size:52px 52px;
+  -webkit-mask:radial-gradient(90% 80% at 50% 40%,#000,transparent 92%);mask:radial-gradient(90% 80% at 50% 40%,#000,transparent 92%)}
 .bg .veil{position:absolute;inset:0;
   background:radial-gradient(70% 55% at 50% -8%,rgba(var(--green-rgb),.14),transparent 60%),
              radial-gradient(55% 45% at 100% 105%,rgba(var(--cyan-rgb),.08),transparent 60%),
@@ -108,6 +113,13 @@ h1,h2,h3{text-wrap:balance}
 .rv.rvr{translate:40px 0}.rv.rvr.in{translate:0 0}
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;translate:none;filter:none;transition:none}}
 
+/* tipografia cinética (letra a letra) */
+.kin .ltr{display:inline-block}
+.kin .ltr>i{display:inline-block;font-style:normal;opacity:0;translate:0 .55em;filter:blur(6px);
+  transition:opacity .55s cubic-bezier(.2,.8,.2,1),translate .6s cubic-bezier(.16,.9,.24,1),filter .55s}
+.kin.in .ltr>i{opacity:1;translate:0 0;filter:blur(0)}
+@media (prefers-reduced-motion:reduce){.kin .ltr>i{opacity:1;translate:0;filter:none;transition:none}}
+
 /* buttons + CTA magnético */
 .btn{font-family:var(--body);font-weight:700;font-size:15px;border-radius:12px;padding:15px 26px;position:relative;
   cursor:pointer;border:1px solid transparent;display:inline-flex;align-items:center;gap:11px;overflow:hidden;
@@ -169,11 +181,7 @@ h1,h2,h3{text-wrap:balance}
 .hero h1{font-family:var(--display);font-weight:400;text-transform:uppercase;
   font-size:clamp(38px,6.6vw,82px);line-height:.92;letter-spacing:.005em;margin-bottom:24px}
 .hero h1 .l1,.hero h1 .l2{display:block}
-.hero h1 .l1 i,.hero h1 .l2 i{display:inline-block;font-style:normal;opacity:0;translate:0 44%;filter:blur(6px);
-  transition:translate .9s cubic-bezier(.16,.8,.24,1),opacity .9s cubic-bezier(.16,.8,.24,1),filter .9s}
-.hero h1.in .l1 i,.hero h1.in .l2 i{opacity:1;translate:0 0;filter:blur(0)}
-.hero h1 .l2 i{color:var(--green);text-shadow:0 0 34px rgba(var(--green-rgb),.3);transition-delay:.14s}
-@media (prefers-reduced-motion:reduce){.hero h1 .l1 i,.hero h1 .l2 i{opacity:1;translate:0 0;filter:none;transition:none}}
+.hero h1 .l2{color:var(--green);text-shadow:0 0 34px rgba(var(--green-rgb),.3)}
 .hero .sub{font-size:clamp(16px,1.9vw,20px);color:var(--paper-dim);max-width:52ch;margin-bottom:34px}
 .hero .sub b{color:var(--paper);font-weight:600}
 .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:30px}
@@ -489,7 +497,9 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
 
 <!-- CAMADA 0 — FUNDO VIVO -->
 <div class="bg" aria-hidden="true">
+  <canvas id="gl"></canvas>
   <canvas id="amb"></canvas>
+  <div class="grid-ov" id="gridOv"></div>
   <div class="veil"></div>
   <div class="scan"></div>
   <div class="cursor-glow" id="cursorGlow"></div>
@@ -543,7 +553,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
     <div class="hero-grid">
       <div class="hero-copy">
         <span class="kick rv">Programa GPS · Nova NR-1 · Para empresários</span>
-        <h1 id="heroTitle"><span class="l1"><i>Você não precisa de susto.</i></span><span class="l2"><i>Precisa de rota.</i></span></h1>
+        <h1 id="heroTitle"><span class="l1">Você não precisa de susto.</span><span class="l2">Precisa de rota.</span></h1>
         <p class="sub rv">A nova NR-1 não é sobre pânico — é sobre <b>gestão</b>. Antes de gastar com qualquer solução, descubra <b>onde sua empresa realmente está exposta</b> e por que isso é uma decisão de liderança, não uma multa.</p>
         <div class="hero-cta rv">
           <a class="btn btn-primary btn-lg js-checkout magnetic" href="#oferta">Quero minha rota — R$47 <span class="arw">→</span></a>
@@ -875,18 +885,47 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
     });
   });
 
+  /* ---- TIPOGRAFIA CINÉTICA: divide headlines em letras (preserva spans coloridos) ---- */
+  function kinify(el){
+    if(el.dataset.kined) return; el.dataset.kined="1";
+    var n={v:0};
+    function rec(src,dst){
+      Array.prototype.forEach.call(src.childNodes,function(ch){
+        if(ch.nodeType===3){
+          var txt=ch.nodeValue;
+          for(var i=0;i<txt.length;i++){
+            var c=txt.charAt(i);
+            if(c===' '||c==='\n'||c==='\t'){ dst.appendChild(document.createTextNode(' ')); continue; }
+            var s=document.createElement('span'); s.className='ltr';
+            var it=document.createElement('i'); it.textContent=c;
+            it.style.transitionDelay=Math.min(n.v*0.02,1.5)+'s'; n.v++;
+            s.appendChild(it); dst.appendChild(s);
+          }
+        } else if(ch.nodeName==='BR'){ dst.appendChild(document.createElement('br')); }
+        else { var e=document.createElement(ch.nodeName.toLowerCase()); if(ch.className)e.className=ch.className; rec(ch,e); dst.appendChild(e); }
+      });
+    }
+    var frag=document.createDocumentFragment(); rec(el,frag);
+    el.innerHTML=''; el.appendChild(frag); el.classList.remove('rv'); el.classList.add('kin');
+  }
+  var kinEls=[];
+  if(!reduce){
+    kinEls=[].slice.call(document.querySelectorAll('#heroTitle, .sec-h, .final h2, .offer-top h2'));
+    kinEls.forEach(kinify);
+  }
+
   /* ---- REVEALS (staggered) ---- */
   var revIO=new IntersectionObserver(function(es){es.forEach(function(e){
     if(!e.isIntersecting)return; var el=e.target;
     // stagger relative to siblings sharing the same parent
     var sibs=[].slice.call(el.parentNode.children).filter(function(c){return c.classList&&c.classList.contains('rv');});
-    var i=sibs.indexOf(el); el.style.transitionDelay=(reduce?0:Math.min(i,6)*0.08)+'s';
+    var i=sibs.indexOf(el); if(i>=0) el.style.transitionDelay=(reduce?0:Math.min(i,6)*0.08)+'s';
     el.classList.add('in'); revIO.unobserve(el);
   });},{threshold:.16,rootMargin:'0px 0px -8% 0px'});
-  document.querySelectorAll('.rv,.turn').forEach(function(el){ reduce?el.classList.add('in'):revIO.observe(el); });
+  document.querySelectorAll('.rv,.turn,.kin').forEach(function(el){ reduce?el.classList.add('in'):revIO.observe(el); });
   /* garante o reveal da dobra inicial mesmo se o IO demorar */
   requestAnimationFrame(function(){ requestAnimationFrame(function(){
-    document.querySelectorAll('.rv').forEach(function(el){
+    document.querySelectorAll('.rv,.kin').forEach(function(el){
       var r=el.getBoundingClientRect();
       if(r.top < innerHeight*0.94 && r.bottom > 0){ el.classList.add('in'); revIO.unobserve(el); }
     });
@@ -1002,7 +1041,59 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
   var glow=document.getElementById('cursorGlow');
   if(glow&&fine&&!reduce){ setTimeout(function(){glow.style.opacity=1;},400); }
 
-  /* ---- background canvas ---- */
+  /* ---- FUNDO FLUIDO WEBGL (shader GLSL, sem libs, com fallback) ---- */
+  var GL=(function(){
+    var canvas=document.getElementById('gl'); if(!canvas) return null;
+    var gl=null; try{ gl=canvas.getContext('webgl',{antialias:false,alpha:false,depth:false,powerPreference:'high-performance'})||canvas.getContext('experimental-webgl'); }catch(e){}
+    if(!gl) return null;
+    var VS='attribute vec2 p;void main(){gl_Position=vec4(p,0.0,1.0);}';
+    var FS=[
+     'precision highp float;',
+     'uniform vec2 u_res;uniform float u_time;uniform vec2 u_mouse;uniform float u_scroll;',
+     'float hash(vec2 p){p=fract(p*vec2(123.34,345.45));p+=dot(p,p+34.345);return fract(p.x*p.y);}',
+     'float noise(vec2 p){vec2 i=floor(p),f=fract(p);float a=hash(i),b=hash(i+vec2(1.,0.)),c=hash(i+vec2(0.,1.)),d=hash(i+vec2(1.,1.));vec2 u=f*f*(3.-2.*f);return mix(mix(a,b,u.x),mix(c,d,u.x),u.y);}',
+     'float fbm(vec2 p){float v=0.,a=0.5;for(int i=0;i<5;i++){v+=a*noise(p);p=p*2.02+vec2(11.,7.);a*=0.5;}return v;}',
+     'void main(){',
+     ' vec2 uv=gl_FragCoord.xy/u_res;',
+     ' vec2 p=(gl_FragCoord.xy-0.5*u_res)/u_res.y;',
+     ' vec2 m=(u_mouse*u_res-0.5*u_res)/u_res.y;',
+     ' float t=u_time*0.045;',
+     ' vec2 pm=p+(p-m)*0.06;',
+     ' vec2 q=vec2(fbm(pm*1.4+t),fbm(pm*1.4-t+5.2));',
+     ' vec2 r=vec2(fbm(pm*1.7+q*1.4+t*1.1),fbm(pm*1.7+q*1.4-t));',
+     ' float f=fbm(pm*1.5+r*1.6);',
+     ' f+=0.10*sin(u_scroll*6.2831+p.y*3.0);',
+     ' f=clamp(f,0.0,1.0);',
+     ' vec3 ink=vec3(0.039,0.058,0.047);vec3 gdeep=vec3(0.055,0.36,0.20);vec3 grn=vec3(0.13,0.70,0.37);vec3 cyn=vec3(0.21,0.78,0.96);',
+     ' vec3 col=mix(ink,gdeep,smoothstep(0.34,0.62,f));',
+     ' col=mix(col,grn,smoothstep(0.60,0.82,f)*0.65);',
+     ' col=mix(col,cyn,smoothstep(0.83,0.96,f)*0.30);',
+     ' col*=0.5;',
+     ' float ml=exp(-dot(p-m,p-m)*2.4);',
+     ' col+=(grn*0.5+cyn*0.22)*ml*0.5;',
+     ' float vig=smoothstep(1.35,0.15,length(p));',
+     ' col*=mix(0.5,1.0,vig);',
+     ' float gr=hash(uv*u_res*0.5+fract(u_time))*2.0-1.0;',
+     ' col+=gr*0.014;',
+     ' gl_FragColor=vec4(max(col,0.0),1.0);',
+     '}'
+    ].join('\n');
+    function sh(ty,src){var o=gl.createShader(ty);gl.shaderSource(o,src);gl.compileShader(o);if(!gl.getShaderParameter(o,gl.COMPILE_STATUS)){if(window.console)console.warn('GLSL',gl.getShaderInfoLog(o));return null;}return o;}
+    var vs=sh(gl.VERTEX_SHADER,VS),fs=sh(gl.FRAGMENT_SHADER,FS); if(!vs||!fs)return null;
+    var pr=gl.createProgram();gl.attachShader(pr,vs);gl.attachShader(pr,fs);gl.linkProgram(pr);
+    if(!gl.getProgramParameter(pr,gl.LINK_STATUS))return null;
+    gl.useProgram(pr);
+    var b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+    var lp=gl.getAttribLocation(pr,'p');gl.enableVertexAttribArray(lp);gl.vertexAttribPointer(lp,2,gl.FLOAT,false,0,0);
+    var uRes=gl.getUniformLocation(pr,'u_res'),uTime=gl.getUniformLocation(pr,'u_time'),uMouse=gl.getUniformLocation(pr,'u_mouse'),uScroll=gl.getUniformLocation(pr,'u_scroll');
+    function resize(){var q=Math.min(devicePixelRatio||1,mob()?1:1.5)*0.8;canvas.width=Math.max(2,(innerWidth*q)|0);canvas.height=Math.max(2,(innerHeight*q)|0);gl.viewport(0,0,canvas.width,canvas.height);}
+    resize();
+    return {resize:resize,draw:function(time,mx,my,scroll){gl.uniform2f(uRes,canvas.width,canvas.height);gl.uniform1f(uTime,time);gl.uniform2f(uMouse,mx,my);gl.uniform1f(uScroll,scroll);gl.drawArrays(gl.TRIANGLES,0,3);}};
+  })();
+  var amb=document.getElementById('amb'), gridOv=document.getElementById('gridOv');
+  if(GL){ if(amb)amb.style.display='none'; if(glow)glow.style.display='none'; }
+
+  /* ---- background canvas (fallback) ---- */
   var cv=document.getElementById('amb'), cx2=cv.getContext('2d'), W,H,dpr,parts=[],t=0;
   function sizeBg(){
     dpr=Math.min(devicePixelRatio||1,2); W=cv.width=innerWidth*dpr; H=cv.height=innerHeight*dpr;
@@ -1032,12 +1123,15 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
     nX=(cgX/innerWidth-0.5); nY=(cgY/innerHeight-0.5);
     if(glow) glow.style.transform='translate3d('+cgX+'px,'+cgY+'px,0)';
 
-    if(!reduce){ t+=0.016; drawBg(); }
-
     var y=scrollY||document.documentElement.scrollTop;
     var maxScroll=docH-innerHeight; var prog=maxScroll>0?clamp(y/maxScroll,0,1):0;
     topbar.style.transform='scaleX('+prog+')';
     nav.classList.toggle('solid', y>40);
+
+    // FUNDO: WebGL fluido reativo (ou fallback canvas 2D)
+    if(GL){ GL.draw(reduce?0:(ts||0)/1000, cgX/innerWidth, 1-cgY/innerHeight, prog); }
+    else if(!reduce){ t+=0.016; drawBg(); }
+    if(gridOv) gridOv.style.transform='translate3d('+(nX*-16).toFixed(1)+'px,'+(nY*-16).toFixed(1)+'px,0)';
 
     // ROUTE draw + head + checkpoints
     if(liveLen>0){
@@ -1064,10 +1158,10 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
         o.el.style.transform='translate3d(0,'+mv.toFixed(1)+'px,0)';
       }
     }
-    requestAnimationFrame(loop);
+    if(!reduce) requestAnimationFrame(loop);
   }
 
-  function resizeAll(){ sizeBg(); buildRoute(); }
+  function resizeAll(){ sizeBg(); if(GL)GL.resize(); buildRoute(); }
   addEventListener('resize',function(){ clearTimeout(window.__rz); window.__rz=setTimeout(resizeAll,180); });
   // recompute route after fonts/images settle
   addEventListener('load',function(){ setTimeout(buildRoute,300); });
