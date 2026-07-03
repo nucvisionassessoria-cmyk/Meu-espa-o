@@ -13,6 +13,16 @@ premium com moldura de HUD, então nada quebra).
 | `prova-globo.jpg` | Card de prova social | Frame do **Bom Dia RO** / estúdio Rede Amazônica (16:10). |
 | `prova-cdl.jpg` | Card de prova social | Workshop na **CDL Porto Velho** (banner "Nova NR-01"). 16:10. |
 
+### Galeria (carrossel horizontal — seção "Registros")
+Slots verticais (4:5). Reaproveitam `cidinei-hero`, `cidinei-autoridade`,
+`prova-sbt`, `prova-globo`, `prova-cdl` acima — e mais estes três:
+
+| Arquivo | Slot |
+|---|---|
+| `galeria-bora.jpg` | Bora Rondônia (TV) |
+| `galeria-publico.jpg` | Com o público / plateia |
+| `galeria-sicoob.jpg` | SICOOB (institucional) |
+
 ## Dicas de tratamento (para casar com a estética)
 - Recorte/afaste marcas de terceiros irrelevantes ao fundo.
 - Grade escuro consistente; um leve rim light verde/ciano ajuda a integrar.
