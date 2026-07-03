@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Programa GPS · A NR-1 não é susto. É rota. | Cidinei Martins</title>
+<meta name="description" content="A nova NR-1 não precisa virar pânico. Precisa virar gestão. O e-book de entrada do Programa GPS mostra onde sua empresa está exposta — antes de você gastar com qualquer solução.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* =====================================================================
+   PROGRAMA GPS — LP P1 (Empresário)  ·  Fundação v01
+   Paleta e tipos herdados do sistema de design do projeto.
+   Mundo dark premium assumido de propósito.
+   ===================================================================== */
+:root{
+  --ink:#0A0F0C; --ink-2:#0E1713; --ink-3:#132019; --ink-4:#18271F;
+  --paper:#EEF3F0; --paper-dim:#A7B8AF; --muted:#6E817A;
+  --green:#21B45F; --green-rgb:33,180,95; --green-2:#5AE38C; --green-deep:#0E5C33;
+  --cyan:#35C6F4; --cyan-rgb:53,198,244; --amber:#E8B33D; --danger:#E0573F;
+  --line:rgba(238,243,240,.09); --line-2:rgba(238,243,240,.16);
+  --display:'Anton','Oswald','Arial Narrow',Impact,system-ui,sans-serif;
+  --body:'Bricolage Grotesque',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  --maxw:1180px;
+  --checkout:'#';
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:hidden}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  font-family:var(--body);background:var(--ink);color:var(--paper);
+  line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative;
+}
+::selection{background:var(--green);color:#04140A}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:4px}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+h1,h2,h3{text-wrap:balance}
+
+/* ambient bg */
+canvas#amb{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.5}
+.veil{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(70% 50% at 50% -5%,rgba(var(--green-rgb),.12),transparent 60%),
+             radial-gradient(50% 40% at 100% 100%,rgba(var(--cyan-rgb),.07),transparent 60%)}
+.wrap{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+/* ---------- shared ---------- */
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--cyan);display:inline-flex;align-items:center;gap:10px;margin-bottom:16px}
+.eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 0 4px rgba(var(--green-rgb),.15),0 0 12px 2px rgba(var(--green-rgb),.7)}
+.eyebrow.alt{color:var(--green)}
+.eyebrow.alt::before{background:var(--cyan);box-shadow:0 0 0 4px rgba(var(--cyan-rgb),.15),0 0 12px 2px rgba(var(--cyan-rgb),.7)}
+.sec-h{font-family:var(--display);font-weight:400;font-size:clamp(30px,5vw,56px);line-height:.98;
+  text-transform:uppercase;letter-spacing:.01em;margin-bottom:18px}
+.sec-h .g{color:var(--green)}
+.sec-h .c{color:var(--cyan)}
+.sec-lead{font-size:clamp(15px,1.7vw,18.5px);color:var(--paper-dim);max-width:62ch;margin-bottom:38px}
+.sec-lead b{color:var(--paper);font-weight:600}
+.section{padding:clamp(70px,10vw,132px) 0;border-top:1px solid var(--line);position:relative}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+
+/* buttons */
+.btn{font-family:var(--body);font-weight:700;font-size:15px;border-radius:11px;padding:15px 26px;
+  cursor:pointer;border:1px solid transparent;display:inline-flex;align-items:center;gap:11px;
+  transition:transform .2s,box-shadow .2s,background .2s,border-color .2s;line-height:1;text-align:center}
+.btn .arw{transition:transform .25s}
+.btn:hover .arw{transform:translateX(4px)}
+.btn-primary{background:linear-gradient(180deg,var(--green-2),var(--green));color:#04140A;
+  box-shadow:0 10px 34px -10px rgba(var(--green-rgb),.7),inset 0 1px 0 rgba(255,255,255,.3)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 44px -10px rgba(var(--green-rgb),.85)}
+.btn-ghost{background:rgba(238,243,240,.03);color:var(--paper);border-color:var(--line-2)}
+.btn-ghost:hover{border-color:var(--green);background:rgba(var(--green-rgb),.08);transform:translateY(-2px)}
+.btn-lg{font-size:16.5px;padding:18px 34px}
+
+/* ---------- progress spine (desktop) ---------- */
+.spine{position:fixed;left:26px;top:0;height:100vh;width:2px;z-index:5;display:none}
+@media(min-width:1180px){.spine{display:block}}
+.spine .rail{position:absolute;left:0;top:14vh;bottom:14vh;width:2px;background:var(--line-2);border-radius:2px}
+.spine .fill{position:absolute;left:0;top:14vh;width:2px;height:0;background:linear-gradient(180deg,var(--green),var(--cyan));
+  box-shadow:0 0 10px rgba(var(--green-rgb),.8);border-radius:2px}
+.spine .dot{position:absolute;left:-4px;width:10px;height:10px;border-radius:50%;background:var(--ink);
+  border:2px solid var(--muted);transition:.4s}
+.spine .dot.on{border-color:var(--green);background:var(--green);box-shadow:0 0 10px 1px rgba(var(--green-rgb),.9)}
+.spine .head{position:absolute;left:-3px;width:8px;height:8px;border-radius:50%;background:#eafff2;
+  box-shadow:0 0 12px 2px rgba(var(--green-rgb),1);top:14vh;opacity:0}
+
+/* ---------- navbar ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:40;transition:background .3s,border-color .3s,backdrop-filter .3s;
+  border-bottom:1px solid transparent}
+.nav.solid{background:rgba(8,12,10,.82);backdrop-filter:blur(14px);border-bottom-color:var(--line)}
+.nav-in{max-width:var(--maxw);margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+/* logo B — HUD mark */
+.logo{display:inline-flex;align-items:center;gap:0;position:relative;padding:5px 12px}
+.logo .br{position:absolute;width:11px;height:11px;border:2px solid var(--cyan)}
+.logo .br.tl{top:0;left:0;border-right:none;border-bottom:none}
+.logo .br.tr{top:0;right:0;border-left:none;border-bottom:none}
+.logo .br.bl{bottom:0;left:0;border-right:none;border-top:none}
+.logo .br.br2{bottom:0;right:0;border-left:none;border-top:none}
+.logo .tx{font-family:var(--display);font-size:23px;letter-spacing:3px;color:var(--paper);line-height:1}
+.logo .tx b{color:var(--green)}
+.nav-links{display:flex;align-items:center;gap:26px}
+.nav-links a{font-size:13.5px;color:var(--paper-dim);transition:color .2s}
+.nav-links a:hover{color:var(--paper)}
+.nav-cta{font-size:13.5px;padding:11px 18px}
+@media(max-width:880px){.nav-links a{display:none}}
+
+/* =====================================================================
+   HERO
+   ===================================================================== */
+.hero{min-height:100svh;display:flex;align-items:center;padding:120px 0 70px;border-top:none;position:relative}
+.hero-ghost{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:1;pointer-events:none;overflow:hidden}
+.hero-ghost span{font-family:var(--display);font-size:min(46vw,640px);color:transparent;
+  -webkit-text-stroke:1.5px rgba(var(--green-rgb),.07);letter-spacing:.03em;line-height:1;transform:translateY(4%)}
+.hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.08fr .92fr;gap:48px;align-items:center;width:100%}
+@media(max-width:940px){.hero-grid{grid-template-columns:1fr;gap:38px}}
+.hero .kick{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--cyan);
+  display:inline-flex;align-items:center;gap:10px;margin-bottom:22px}
+.hero .kick::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 10px 2px rgba(var(--green-rgb),.8)}
+.hero h1{font-family:var(--display);font-weight:400;text-transform:uppercase;
+  font-size:clamp(38px,6.6vw,82px);line-height:.92;letter-spacing:.005em;margin-bottom:24px}
+.hero h1 .l1{color:var(--paper)}
+.hero h1 .l2{color:var(--green);display:block;text-shadow:0 0 34px rgba(var(--green-rgb),.28)}
+.hero .sub{font-size:clamp(16px,1.9vw,20px);color:var(--paper-dim);max-width:52ch;margin-bottom:34px}
+.hero .sub b{color:var(--paper);font-weight:600}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:30px}
+.hero-auth{display:flex;align-items:center;gap:18px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.hero-auth .media{display:flex;gap:14px;align-items:center}
+.hero-auth .media span{color:var(--paper-dim);font-weight:500;position:relative}
+.hero-auth .media span+span::before{content:"·";position:absolute;left:-9px;color:var(--muted)}
+.hero-auth .txt{max-width:22ch;line-height:1.4}
+
+/* hero right: photo slot + GPS mark */
+.hero-visual{position:relative;min-height:440px;display:flex;align-items:center;justify-content:center}
+.photo{position:relative;width:100%;max-width:400px;aspect-ratio:4/5;border-radius:18px;overflow:hidden;
+  border:1px solid var(--line-2);
+  background:
+    var(--photo,none),
+    radial-gradient(120% 80% at 70% 10%,rgba(var(--green-rgb),.22),transparent 55%),
+    linear-gradient(180deg,var(--ink-3),var(--ink));
+  background-size:cover;background-position:center top;
+  box-shadow:0 40px 80px -30px rgba(0,0,0,.9),0 0 0 1px rgba(var(--green-rgb),.14);}
+.photo::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,transparent 40%,rgba(8,12,10,.55) 100%);}
+.photo .rim{position:absolute;inset:0;border-radius:18px;pointer-events:none;
+  box-shadow:inset 0 0 40px rgba(var(--green-rgb),.14),inset 0 -2px 0 rgba(var(--green-rgb),.25)}
+.photo .frame-lab{position:absolute;top:14px;left:14px;font-family:var(--mono);font-size:9px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--cyan);background:rgba(8,12,10,.6);padding:5px 9px;border-radius:6px;border:1px solid var(--line-2)}
+.photo .ph-note{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:10px;text-align:center;padding:20px;color:var(--muted);font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase}
+.photo .ph-note svg{width:54px;height:54px;opacity:.5}
+.photo.has-img .ph-note{display:none}
+.photo .brk{position:absolute;width:18px;height:18px;border:2px solid var(--cyan);z-index:3}
+.photo .brk.a{bottom:14px;right:14px;border-left:none;border-top:none}
+/* floating checkpoint chips around photo */
+.chipfloat{position:absolute;z-index:4;font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--paper);background:rgba(14,23,19,.82);backdrop-filter:blur(6px);border:1px solid var(--line-2);
+  border-radius:999px;padding:9px 14px;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;
+  box-shadow:0 10px 30px -12px rgba(0,0,0,.9)}
+.chipfloat i{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px rgba(var(--green-rgb),.9);font-style:normal}
+.chipfloat.c i{background:var(--cyan);box-shadow:0 0 8px rgba(var(--cyan-rgb),.9)}
+.chipfloat.f1{top:8%;left:-6%}
+.chipfloat.f2{top:46%;right:-8%}
+.chipfloat.f3{bottom:9%;left:-4%}
+@media(max-width:940px){.chipfloat.f1{left:2%}.chipfloat.f2{right:2%}.chipfloat.f3{left:2%}}
+.float-anim{animation:floaty 5s ease-in-out infinite}
+.float-anim.d2{animation-delay:-1.6s}
+.float-anim.d3{animation-delay:-3.1s}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@media (prefers-reduced-motion:reduce){.float-anim{animation:none}}
+.scrollcue{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:3;font-family:var(--mono);
+  font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:8px}
+.scrollcue .ln{width:1px;height:34px;background:linear-gradient(180deg,var(--green),transparent);position:relative;overflow:hidden}
+.scrollcue .ln::after{content:"";position:absolute;left:0;top:0;width:1px;height:40%;background:var(--green-2);animation:drop 1.9s ease-in-out infinite}
+@keyframes drop{0%{transform:translateY(-120%)}100%{transform:translateY(280%)}}
+@media (prefers-reduced-motion:reduce){.scrollcue .ln::after{animation:none}}
+
+/* =====================================================================
+   generic grids / cards
+   ===================================================================== */
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:860px){.g3,.g4{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.card{background:linear-gradient(180deg,var(--ink-2),rgba(10,15,12,.6));border:1px solid var(--line);
+  border-radius:15px;padding:26px 24px;position:relative;overflow:hidden;transition:transform .4s,border-color .4s,box-shadow .4s}
+.card:hover{transform:translateY(-4px);border-color:rgba(var(--green-rgb),.35);box-shadow:0 24px 50px -26px rgba(0,0,0,.9)}
+.card .ic{width:42px;height:42px;border-radius:11px;background:rgba(var(--green-rgb),.1);border:1px solid rgba(var(--green-rgb),.3);
+  display:flex;align-items:center;justify-content:center;margin-bottom:16px;color:var(--green)}
+.card .ic svg{width:20px;height:20px}
+.card .lab{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);display:block;margin-bottom:9px}
+.card .t{font-weight:700;font-size:17px;color:#fff;margin-bottom:8px;line-height:1.25}
+.card .d{font-size:14px;color:var(--paper-dim);line-height:1.55}
+.card .d b{color:#fff}
+
+/* =====================================================================
+   VIRADA — kinetic statement
+   ===================================================================== */
+.turn{text-align:center;padding:clamp(80px,12vw,150px) 0}
+.turn .big{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(34px,6.4vw,78px);
+  line-height:.98;letter-spacing:.01em;max-width:16ch;margin:0 auto 26px}
+.turn .big .strike{color:var(--muted);position:relative;white-space:nowrap}
+.turn .big .strike::after{content:"";position:absolute;left:-2%;right:-2%;top:52%;height:5px;background:var(--danger);
+  border-radius:3px;transform:scaleX(0);transform-origin:left;transition:transform .7s cubic-bezier(.6,0,.2,1) .2s}
+.turn.in .big .strike::after{transform:scaleX(1)}
+.turn .big .go{color:var(--green)}
+.turn p{font-size:clamp(15px,2vw,19px);color:var(--paper-dim);max-width:56ch;margin:0 auto}
+.turn p b{color:var(--paper)}
+@media (prefers-reduced-motion:reduce){.turn .big .strike::after{transition:none;transform:scaleX(1)}}
+
+/* =====================================================================
+   MÉTODO GPS
+   ===================================================================== */
+.method{position:relative}
+.gps-track{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;position:relative;margin-top:12px}
+@media(max-width:820px){.gps-track{grid-template-columns:1fr}}
+.gps-track::before{content:"";position:absolute;left:8%;right:8%;top:46px;height:2px;
+  background:linear-gradient(90deg,rgba(var(--green-rgb),.15),rgba(var(--green-rgb),.5),rgba(var(--cyan-rgb),.4));z-index:0}
+@media(max-width:820px){.gps-track::before{left:46px;right:auto;top:8%;bottom:8%;width:2px;height:auto}}
+.gcard{position:relative;z-index:1;background:linear-gradient(180deg,var(--ink-2),var(--ink));border:1px solid var(--line);
+  border-radius:16px;padding:30px 26px;transition:border-color .4s,box-shadow .4s,transform .4s}
+.gcard:hover{border-color:rgba(var(--green-rgb),.4);transform:translateY(-5px);box-shadow:0 26px 54px -28px rgba(0,0,0,.9)}
+.gcard .node{width:66px;height:66px;border-radius:50%;background:var(--ink-3);border:2px solid var(--muted);
+  display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:34px;color:var(--muted);
+  margin-bottom:22px;transition:.5s;position:relative}
+.gcard.on .node{border-color:var(--green);color:var(--green);box-shadow:0 0 0 6px rgba(var(--green-rgb),.12),0 0 22px rgba(var(--green-rgb),.5)}
+.gcard.on .node::after{content:"";position:absolute;inset:-2px;border-radius:50%;border:2px solid rgba(var(--green-rgb),.5);animation:ping 2.4s ease-out infinite}
+@keyframes ping{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.35);opacity:0}}
+@media (prefers-reduced-motion:reduce){.gcard.on .node::after{animation:none}}
+.gcard .step{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:6px}
+.gcard h3{font-family:var(--display);font-weight:400;font-size:25px;text-transform:uppercase;color:#fff;letter-spacing:.01em;margin-bottom:12px}
+.gcard p{font-size:14px;color:var(--paper-dim);line-height:1.6}
+.gcard p b{color:#fff}
+
+/* =====================================================================
+   E-BOOK
+   ===================================================================== */
+.ebook-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:52px;align-items:center}
+@media(max-width:860px){.ebook-grid{grid-template-columns:1fr;gap:40px}}
+.ebook-mock{position:relative;display:flex;align-items:center;justify-content:center;min-height:420px}
+.book{position:relative;width:280px;aspect-ratio:3/4.15;border-radius:6px 12px 12px 6px;overflow:hidden;
+  background:var(--photo-book,none),linear-gradient(135deg,#0d3a24,#07160f 70%);background-size:cover;background-position:center;
+  border:1px solid rgba(var(--green-rgb),.3);
+  box-shadow:-22px 34px 60px -26px rgba(0,0,0,.95),inset 6px 0 12px -6px rgba(0,0,0,.7),inset -1px 0 0 rgba(255,255,255,.05);
+  transform:perspective(1400px) rotateY(-18deg) rotateX(3deg);transition:transform .6s}
+.ebook-mock:hover .book{transform:perspective(1400px) rotateY(-9deg) rotateX(2deg)}
+.book::before{content:"";position:absolute;left:0;top:0;bottom:0;width:14px;background:linear-gradient(90deg,rgba(0,0,0,.5),transparent)}
+.book .spineglow{position:absolute;inset:0;box-shadow:inset 0 0 50px rgba(var(--green-rgb),.15)}
+.book .bk-in{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:26px 22px 22px}
+.book .bk-top{font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--green-2)}
+.book .bk-title{font-family:var(--display);font-weight:400;font-size:26px;line-height:1.02;text-transform:uppercase;color:#fff}
+.book .bk-title .g{color:var(--green-2)}
+.book .bk-sub{font-size:10px;color:var(--paper-dim);line-height:1.4;margin-top:8px}
+.book .bk-auth{font-family:var(--mono);font-size:8px;letter-spacing:.06em;text-transform:uppercase;color:var(--paper-dim);border-top:1px solid rgba(255,255,255,.14);padding-top:9px}
+.book .bk-auth b{color:#fff}
+.book-badge{position:absolute;top:-14px;right:-14px;z-index:3;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:#04140A;background:linear-gradient(180deg,var(--green-2),var(--green));
+  padding:8px 13px;border-radius:999px;font-weight:700;box-shadow:0 10px 26px -8px rgba(var(--green-rgb),.8);transform:rotate(6deg)}
+.ebook-bullets{list-style:none;display:flex;flex-direction:column;gap:16px;margin:26px 0 30px}
+.ebook-bullets li{display:flex;gap:14px;align-items:flex-start}
+.ebook-bullets .bx{flex-shrink:0;width:26px;height:26px;border-radius:8px;background:rgba(var(--green-rgb),.12);
+  border:1px solid rgba(var(--green-rgb),.35);display:flex;align-items:center;justify-content:center;color:var(--green);margin-top:2px}
+.ebook-bullets .bx svg{width:14px;height:14px}
+.ebook-bullets .txt{font-size:15px;color:var(--paper-dim);line-height:1.5}
+.ebook-bullets .txt b{color:#fff}
+.pill-note{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--cyan);border:1px solid var(--line-2);border-radius:999px;padding:9px 15px;margin-bottom:22px}
+
+/* =====================================================================
+   AUTORIDADE
+   ===================================================================== */
+.auth-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:center}
+@media(max-width:900px){.auth-grid{grid-template-columns:1fr;gap:36px}}
+.auth-photo{aspect-ratio:4/5;max-width:380px;width:100%}
+.cred-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0 26px}
+@media(max-width:520px){.cred-grid{grid-template-columns:1fr}}
+.cred{border:1px solid var(--line);border-radius:12px;padding:15px 16px;background:var(--ink-2)}
+.cred .r{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:5px}
+.cred .v{font-weight:700;font-size:15px;color:#fff;line-height:1.2}
+.cred .s{font-size:12px;color:var(--muted);margin-top:3px}
+.stat-row{display:flex;gap:30px;flex-wrap:wrap;margin-top:6px}
+.stat .n{font-family:var(--display);font-size:40px;color:var(--green);line-height:1;font-variant-numeric:tabular-nums}
+.stat .n .u{font-size:18px;color:var(--paper-dim);margin-left:3px}
+.stat .cap{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+
+/* =====================================================================
+   PROVA SOCIAL
+   ===================================================================== */
+.proof-band{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px 30px;margin-bottom:36px;
+  padding:22px;border:1px solid var(--line);border-radius:14px;background:var(--ink-2)}
+.proof-band .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.proof-band .logo-txt{font-family:var(--display);font-size:20px;letter-spacing:.02em;color:var(--paper-dim);
+  opacity:.85;transition:.3s}
+.proof-band .logo-txt:hover{color:var(--paper);opacity:1}
+.proof-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:820px){.proof-cards{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.proof-cards{grid-template-columns:1fr}}
+.pcard{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--ink-2);transition:transform .4s,border-color .4s}
+.pcard:hover{transform:translateY(-4px);border-color:rgba(var(--cyan-rgb),.35)}
+.pcard .ph{aspect-ratio:16/10;position:relative;
+  background:var(--pimg,none),linear-gradient(140deg,var(--ink-3),var(--ink));background-size:cover;background-position:center;
+  display:flex;align-items:center;justify-content:center}
+.pcard .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(8,12,10,.6))}
+.pcard .ph .tag{position:relative;z-index:1;font-family:var(--display);font-size:19px;color:rgba(238,243,240,.5);letter-spacing:.03em}
+.pcard .meta{padding:14px 16px;border-top:1px solid var(--line)}
+.pcard .meta .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:4px}
+.pcard .meta .t{font-size:13.5px;color:#fff;font-weight:600;line-height:1.3}
+
+/* =====================================================================
+   OBJEÇÕES / FAQ (accordion)
+   ===================================================================== */
+.faq{max-width:820px;margin:0 auto}
+.qa{border:1px solid var(--line);border-radius:13px;background:var(--ink-2);margin-bottom:12px;overflow:hidden;transition:border-color .3s}
+.qa.open{border-color:rgba(var(--green-rgb),.35)}
+.qa button{width:100%;text-align:left;background:transparent;border:none;color:#fff;font-family:var(--body);
+  font-weight:600;font-size:16px;padding:20px 22px;cursor:pointer;display:flex;justify-content:space-between;gap:16px;align-items:center}
+.qa .ico{flex-shrink:0;width:24px;height:24px;border-radius:50%;border:1px solid var(--line-2);position:relative;transition:.3s}
+.qa .ico::before,.qa .ico::after{content:"";position:absolute;background:var(--green);border-radius:2px;top:50%;left:50%}
+.qa .ico::before{width:11px;height:2px;transform:translate(-50%,-50%)}
+.qa .ico::after{width:2px;height:11px;transform:translate(-50%,-50%);transition:transform .3s}
+.qa.open .ico{border-color:var(--green);transform:rotate(90deg)}
+.qa.open .ico::after{transform:translate(-50%,-50%) scaleY(0)}
+.qa .ans{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.qa .ans p{padding:0 22px 22px;font-size:14.5px;color:var(--paper-dim);line-height:1.6}
+.qa .ans p b{color:#fff}
+
+/* =====================================================================
+   OFERTA (destino)
+   ===================================================================== */
+.offer{position:relative}
+.offer-card{position:relative;max-width:860px;margin:0 auto;border-radius:22px;overflow:hidden;
+  border:1px solid rgba(var(--green-rgb),.3);
+  background:radial-gradient(120% 90% at 50% 0%,rgba(var(--green-rgb),.14),transparent 60%),linear-gradient(180deg,var(--ink-2),var(--ink));
+  box-shadow:0 50px 100px -40px rgba(0,0,0,.9),0 0 0 1px rgba(var(--green-rgb),.1)}
+.offer-top{text-align:center;padding:40px 28px 10px}
+.offer-top .arrived{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--green);
+  display:inline-flex;align-items:center;gap:9px;margin-bottom:18px}
+.offer-top .arrived::before{content:"◉";color:var(--green)}
+.offer-top h2{font-family:var(--display);font-weight:400;font-size:clamp(26px,4vw,42px);text-transform:uppercase;color:#fff;line-height:1;margin-bottom:8px}
+.offer-body{display:grid;grid-template-columns:1.1fr .9fr;gap:0}
+@media(max-width:720px){.offer-body{grid-template-columns:1fr}}
+.offer-list{padding:30px 34px;border-right:1px solid var(--line)}
+@media(max-width:720px){.offer-list{border-right:none;border-bottom:1px solid var(--line)}}
+.offer-list li{list-style:none;display:flex;gap:12px;align-items:flex-start;margin-bottom:14px;font-size:14.5px;color:var(--paper-dim);line-height:1.45}
+.offer-list li b{color:#fff}
+.offer-list li .ck{flex-shrink:0;color:var(--green);margin-top:2px}
+.offer-buy{padding:30px 34px;display:flex;flex-direction:column;justify-content:center;text-align:center;
+  background:linear-gradient(180deg,rgba(var(--green-rgb),.06),transparent)}
+.offer-buy .anchor{font-family:var(--mono);font-size:13px;color:var(--muted);text-decoration:line-through;text-decoration-color:var(--danger);margin-bottom:2px}
+.offer-buy .price{font-family:var(--display);font-size:clamp(56px,9vw,84px);color:#fff;line-height:.9;font-variant-numeric:tabular-nums}
+.offer-buy .price .cur{font-size:26px;color:var(--green);vertical-align:super;margin-right:2px}
+.offer-buy .price .cent{font-size:26px;color:var(--paper-dim);vertical-align:super}
+.offer-buy .terms{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--paper-dim);margin:8px 0 22px}
+.offer-buy .btn{width:100%;justify-content:center}
+.offer-buy .safe{display:flex;align-items:center;justify-content:center;gap:8px;font-family:var(--mono);font-size:10px;
+  letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-top:16px}
+.guarantee{display:flex;align-items:center;gap:16px;max-width:860px;margin:20px auto 0;padding:18px 24px;
+  border:1px dashed var(--line-2);border-radius:14px;background:rgba(14,23,19,.5)}
+.guarantee .badge{flex-shrink:0;width:52px;height:52px;border-radius:50%;border:2px solid var(--green);color:var(--green);
+  display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:15px;text-align:center;line-height:.9}
+.guarantee .gt{font-size:13.5px;color:var(--paper-dim);line-height:1.5}
+.guarantee .gt b{color:#fff}
+
+/* =====================================================================
+   NEXT STEP
+   ===================================================================== */
+.next{max-width:820px;margin:0 auto;text-align:center;border:1px solid var(--line);border-radius:16px;padding:34px 30px;background:var(--ink-2)}
+.next .k{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);margin-bottom:12px}
+.next h3{font-family:var(--display);font-weight:400;font-size:clamp(22px,3.4vw,32px);text-transform:uppercase;color:#fff;margin-bottom:10px;line-height:1.05}
+.next p{font-size:14.5px;color:var(--paper-dim);max-width:52ch;margin:0 auto}
+.next .route-mini{display:flex;align-items:center;justify-content:center;gap:0;margin-top:22px;flex-wrap:wrap}
+.next .rstep{font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--paper-dim);
+  border:1px solid var(--line-2);border-radius:999px;padding:8px 14px;background:var(--ink)}
+.next .rstep.now{color:#04140A;background:var(--green);border-color:var(--green);font-weight:700}
+.next .rarw{color:var(--muted);margin:0 10px}
+
+/* =====================================================================
+   CTA FINAL
+   ===================================================================== */
+.final{text-align:center;padding:clamp(90px,14vw,170px) 0;position:relative;overflow:hidden}
+.final .ghost{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.final .ghost span{font-family:var(--display);font-size:min(40vw,540px);color:transparent;-webkit-text-stroke:1.4px rgba(var(--green-rgb),.08);line-height:1}
+.final .in-c{position:relative;z-index:2}
+.final h2{font-family:var(--display);font-weight:400;font-size:clamp(34px,6.5vw,86px);text-transform:uppercase;line-height:.94;
+  letter-spacing:.01em;max-width:15ch;margin:0 auto 20px}
+.final h2 .g{color:var(--green)}
+.final p{font-size:clamp(15px,2vw,19px);color:var(--paper-dim);max-width:52ch;margin:0 auto 34px}
+.final .btn{margin:0 auto}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:44px 0 120px;position:relative;z-index:2}
+.foot-in{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center}
+.foot-brand{font-family:var(--display);font-size:22px;letter-spacing:2px}
+.foot-brand b{color:var(--green)}
+.foot-legal{font-family:var(--mono);font-size:10px;line-height:1.7;color:var(--muted);letter-spacing:.04em;max-width:62ch}
+.foot-legal b{color:var(--paper-dim)}
+
+/* sticky mobile CTA */
+.mcta{position:fixed;left:0;right:0;bottom:0;z-index:45;display:none;padding:11px 16px calc(11px + env(safe-area-inset-bottom));
+  background:rgba(8,12,10,.9);backdrop-filter:blur(14px);border-top:1px solid var(--line);
+  align-items:center;justify-content:space-between;gap:12px}
+.mcta .mp{font-family:var(--display);font-size:24px;color:#fff;line-height:1}
+.mcta .mp .cur{font-size:13px;color:var(--green);vertical-align:super}
+.mcta .mp small{display:block;font-family:var(--mono);font-size:8px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+.mcta .btn{padding:13px 20px;font-size:14px}
+@media(max-width:880px){.mcta{display:flex}body{padding-bottom:0}}
+
+/* tiny helpers */
+.hl{color:var(--green)}
+.mono-tag{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+/* ---------- mobile hero + overflow safety ---------- */
+@media(max-width:600px){
+  .nav-cta{display:none}
+  .hero{padding:100px 0 58px;min-height:auto}
+  .hero .kick{flex-wrap:wrap}
+  .hero h1{font-size:clamp(30px,8.7vw,46px)}
+  .hero .sub{font-size:15.5px;margin-bottom:26px}
+  .hero-cta{flex-direction:column;align-items:stretch}
+  .hero-cta .btn{justify-content:center;width:100%}
+  .hero-auth{flex-direction:column;align-items:flex-start;gap:12px}
+  .hero-auth .txt{max-width:34ch}
+  .hero-visual{min-height:340px}
+  .hero-ghost span{font-size:80vw}
+  .sec-h{font-size:clamp(25px,7.4vw,40px)}
+  .section{padding:64px 0}
+  .turn{padding:70px 0}
+}
+</style>
+</head>
+<body>
+<canvas id="amb"></canvas>
+<div class="veil"></div>
+
+<!-- progress spine -->
+<div class="spine" aria-hidden="true">
+  <div class="rail"></div>
+  <div class="fill" id="spineFill"></div>
+  <div class="head" id="spineHead"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-in">
+    <a href="#top" class="logo" aria-label="Programa GPS">
+      <span class="br tl"></span><span class="br tr"></span><span class="br bl"></span><span class="br br2"></span>
+      <span class="tx">G<b>P</b>S</span>
+    </a>
+    <div class="nav-links">
+      <a href="#problema">O problema</a>
+      <a href="#metodo">Método GPS</a>
+      <a href="#ebook">O e-book</a>
+      <a href="#autoridade">Quem é</a>
+      <a href="#faq">Dúvidas</a>
+    </div>
+    <a href="#oferta" class="btn btn-primary nav-cta">Quero minha rota <span class="arw">→</span></a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-ghost" aria-hidden="true"><span>GPS</span></div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="kick rv">Programa GPS · Nova NR-1 · Para empresários</span>
+        <h1 class="rv"><span class="l1">Você não precisa de susto.</span><span class="l2">Precisa de rota.</span></h1>
+        <p class="sub rv">A nova NR-1 não é sobre pânico — é sobre <b>gestão</b>. Antes de gastar com qualquer solução, descubra <b>onde sua empresa realmente está exposta</b> e por que isso é uma decisão de liderança, não uma multa.</p>
+        <div class="hero-cta rv">
+          <a class="btn btn-primary btn-lg js-checkout" href="#oferta">Quero minha rota — R$47 <span class="arw">→</span></a>
+          <a class="btn btn-ghost btn-lg" href="#metodo">Ver o método</a>
+        </div>
+        <div class="hero-auth rv">
+          <div class="media">
+            <span>SBT</span><span>Globo RO</span><span>RedeTV!</span><span>CDL</span>
+          </div>
+          <div class="txt">O especialista que o estado inteiro já viu falar de NR-1.</div>
+        </div>
+      </div>
+
+      <div class="hero-visual rv">
+        <div class="photo" id="heroPhoto" style="--photo:url('assets/cidinei-hero.jpg')">
+          <span class="frame-lab">◉ Sinal · Cidinei Martins</span>
+          <div class="ph-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            <span>Foto do hero<br>assets/cidinei-hero.jpg</span>
+          </div>
+          <div class="rim"></div>
+          <span class="brk a"></span>
+        </div>
+        <span class="chipfloat f1 float-anim"><i></i> Advogado + Especialista SST</span>
+        <span class="chipfloat c f2 float-anim d2"><i></i> Visto na TV de Rondônia</span>
+        <span class="chipfloat f3 float-anim d3"><i></i> CEO · Grupo Syno</span>
+      </div>
+    </div>
+  </div>
+  <div class="scrollcue" aria-hidden="true"><span>Role a rota</span><span class="ln"></span></div>
+</header>
+
+<!-- PROBLEMA -->
+<section class="section" id="problema">
+  <div class="wrap">
+    <span class="eyebrow rv">01 · O ruído do mercado</span>
+    <h2 class="sec-h rv">Todo mundo está te vendendo <span class="g">medo</span>.<br>Quase ninguém está te dando <span class="c">direção</span>.</h2>
+    <p class="sec-lead rv">A nova NR-1 abriu uma enxurrada de oferta e susto. E, no meio do barulho, o empresário fica exposto de quatro formas — todas caras.</p>
+    <div class="grid g4">
+      <div class="card rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></div>
+        <div class="t">Susto como isca</div>
+        <div class="d">Vendem <b>multa e prazo</b> pra te apavorar — mas medo não organiza empresa nenhuma.</div>
+      </div>
+      <div class="card rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+        <div class="t">Solução errada</div>
+        <div class="d">“Gestor de NR-1”, “EPI da saúde mental”... coisas que <b>não existem na norma</b> — e a conta sobra pra você.</div>
+      </div>
+      <div class="card rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v6m0 8v6M2 12h6m8 0h6"/></svg></div>
+        <div class="t">Ignorar o tema</div>
+        <div class="d">Fingir que não mudou nada é acumular <b>risco documentado</b> silenciosamente.</div>
+      </div>
+      <div class="card rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16M4 12h16M4 18h10"/></svg></div>
+        <div class="t">Palestra motivacional</div>
+        <div class="d">Cartaz na parede e ioga na sexta <b>não adequam</b> ninguém — e ainda aumentam a exposição.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIRADA -->
+<section class="section turn" id="virada">
+  <div class="wrap">
+    <div class="rv">
+      <p class="eyebrow alt" style="justify-content:center">02 · A virada</p>
+      <h2 class="big">A NR-1 não é sobre <span class="strike">pânico</span>.<br>É sobre <span class="go">gestão</span>.</h2>
+      <p>O custo real não é a fiscalização. É a <b>liderança despreparada</b> — gente boa pedindo demissão, retrabalho, clima pesado. Isso já drenava sua empresa antes de qualquer norma. A NR-1 só trouxe isso pra dentro do gerenciamento de risco. <b>Quem organiza, para de perder dinheiro com um problema que dava pra prevenir.</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- MÉTODO GPS -->
+<section class="section method" id="metodo">
+  <div class="wrap">
+    <span class="eyebrow rv">03 · O método</span>
+    <h2 class="sec-h rv">Três eixos para sair da confusão<br>e entrar na <span class="g">rota</span>.</h2>
+    <p class="sec-lead rv">GPS não é sigla decorativa — é o caminho que tira o empresário do ruído e coloca a empresa numa direção clara para lidar com riscos psicossociais.</p>
+    <div class="gps-track">
+      <div class="gcard rv" data-node>
+        <div class="node">G</div>
+        <div class="step">Checkpoint 01</div>
+        <h3>Gestão Humanizada</h3>
+        <p>Liderança que sabe <b>cobrar com critério</b>, comunicar e criar ambiente. Gestão firme não é cobrança sem critério — e é isso que a norma pede.</p>
+      </div>
+      <div class="gcard rv" data-node>
+        <div class="node">P</div>
+        <div class="step">Checkpoint 02</div>
+        <h3>Produtividade Sustentável</h3>
+        <p>Menos ruído, menos retrabalho, mais clareza. Clima e desempenho <b>andam juntos</b> quando a liderança está preparada.</p>
+      </div>
+      <div class="gcard rv" data-node>
+        <div class="node">S</div>
+        <div class="step">Checkpoint 03</div>
+        <h3>Segurança Jurídica</h3>
+        <p>Evidência, documentação e prevenção. Entender o que <b>de fato</b> a norma exige do PGR — sem promessa vazia de “conformidade garantida”.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- E-BOOK -->
+<section class="section" id="ebook">
+  <div class="wrap">
+    <div class="ebook-grid">
+      <div class="ebook-mock rv">
+        <div class="book" style="--photo-book:url('assets/ebook-capa.jpg')">
+          <span class="book-badge">Lançamento</span>
+          <div class="spineglow"></div>
+          <div class="bk-in">
+            <div class="bk-top">◉ E-book · Programa GPS</div>
+            <div>
+              <div class="bk-title">Liderança, <span class="g">Riscos Psicossociais</span> e a Nova NR-01</div>
+              <div class="bk-sub">O que mudou, o que fazer e por onde começar.</div>
+            </div>
+            <div class="bk-auth"><b>Cidinei Martins da Silva</b><br>Advogado · Especialista em SST · Empresário</div>
+          </div>
+        </div>
+      </div>
+      <div class="ebook-copy">
+        <span class="pill-note rv">◉ Não é um PDF. É uma ferramenta de decisão.</span>
+        <h2 class="sec-h rv">O raio-x que mostra<br>onde você está <span class="g">exposto</span>.</h2>
+        <p class="sec-lead rv" style="margin-bottom:8px">Um guia direto para empresários e gestores enxergarem os fatores de risco psicossocial da própria empresa — e decidirem com clareza <b>antes de gastar</b> com qualquer consultoria.</p>
+        <ul class="ebook-bullets">
+          <li class="rv"><span class="bx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg></span><span class="txt">Entenda <b>o que realmente mudou</b> com a nova NR-1.</span></li>
+          <li class="rv"><span class="bx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg></span><span class="txt">Aprenda a <b>identificar os fatores de risco psicossocial</b> (FRPRT).</span></li>
+          <li class="rv"><span class="bx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg></span><span class="txt">Veja como <b>GRO, PGR e as normas vizinhas</b> (NR-17/NR-07) se conectam.</span></li>
+          <li class="rv"><span class="bx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg></span><span class="txt">Acesse um <b>checklist e um plano de ação em 6 passos</b>.</span></li>
+        </ul>
+        <a class="btn btn-primary btn-lg js-checkout rv" href="#oferta">Quero o e-book <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUTORIDADE -->
+<section class="section" id="autoridade">
+  <div class="wrap">
+    <div class="auth-grid">
+      <div class="auth-copy">
+        <span class="eyebrow rv">04 · Quem conduz a rota</span>
+        <h2 class="sec-h rv">Cidinei Martins</h2>
+        <p class="sec-lead rv" style="margin-bottom:6px">Não é mais um produtor digital falando de NR-1. É o especialista que a imprensa, a CDL e o setor empresarial de Rondônia colocam no palco.</p>
+        <div class="cred-grid">
+          <div class="cred rv"><div class="r">Credencial</div><div class="v">Advogado</div><div class="s">Formação jurídica</div></div>
+          <div class="cred rv"><div class="r">Credencial</div><div class="v">Especialista em SST</div><div class="s">Segurança e Saúde Ocupacional</div></div>
+          <div class="cred rv"><div class="r">Atuação</div><div class="v">Empresário · CEO</div><div class="s">Grupo Syno</div></div>
+          <div class="cred rv"><div class="r">Atuação</div><div class="v">Treinador Sistêmico</div><div class="s">Expansão Treinamentos</div></div>
+        </div>
+        <div class="stat-row rv">
+          <div class="stat"><div class="n">1998</div><div class="cap">Atuando em SST desde</div></div>
+          <div class="stat"><div class="n"><span data-count="3">0</span></div><div class="cap">Emissoras de TV (SBT · Globo · RedeTV!)</div></div>
+          <div class="stat"><div class="n"><span data-count="6">0</span><span class="u">passos</span></div><div class="cap">Plano de ação no e-book</div></div>
+        </div>
+      </div>
+      <div class="rv" style="display:flex;justify-content:center">
+        <div class="photo auth-photo" style="--photo:url('assets/cidinei-autoridade.jpg')">
+          <span class="frame-lab">◉ Autoridade · palco</span>
+          <div class="ph-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            <span>Foto ensinando<br>assets/cidinei-autoridade.jpg</span>
+          </div>
+          <div class="rim"></div><span class="brk a"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROVA SOCIAL -->
+<section class="section" id="prova">
+  <div class="wrap">
+    <span class="eyebrow alt rv">05 · Sistema de autoridade</span>
+    <h2 class="sec-h rv">Presença técnica, institucional<br>e <span class="c">pública</span> — de verdade.</h2>
+    <p class="sec-lead rv">A autoridade do Cidinei não se mede em seguidores. Se mede em quem o coloca no ar e no palco.</p>
+
+    <div class="proof-band rv">
+      <span class="lbl">Visto na TV</span>
+      <span class="logo-txt">SBT Rondônia</span>
+      <span class="logo-txt">Bom Dia RO</span>
+      <span class="logo-txt">Bora Rondônia</span>
+      <span class="logo-txt">RedeTV!</span>
+    </div>
+
+    <div class="proof-cards">
+      <div class="pcard rv"><div class="ph" style="--pimg:url('assets/prova-sbt.jpg')"><span class="tag">SBT RONDÔNIA</span></div><div class="meta"><div class="k">Televisão</div><div class="t">Entrevista sobre a nova NR-1 no SBT Rondônia</div></div></div>
+      <div class="pcard rv"><div class="ph" style="--pimg:url('assets/prova-globo.jpg')"><span class="tag">BOM DIA RO</span></div><div class="meta"><div class="k">Televisão · Rede Amazônica</div><div class="t">Participação no Bom Dia Rondônia</div></div></div>
+      <div class="pcard rv"><div class="ph" style="--pimg:url('assets/prova-cdl.jpg')"><span class="tag">CDL PORTO VELHO</span></div><div class="meta"><div class="k">Instituição</div><div class="t">Workshop “Liderança, Riscos Psicossociais e a Nova NR-01”</div></div></div>
+    </div>
+
+    <div class="proof-band rv" style="margin-top:16px">
+      <span class="lbl">Reconhecido por</span>
+      <span class="logo-txt">CDL Porto Velho</span>
+      <span class="logo-txt">MP-RO</span>
+      <span class="logo-txt">SEJUS/RO</span>
+      <span class="logo-txt">SICOOB</span>
+    </div>
+  </div>
+</section>
+
+<!-- OBJEÇÕES / FAQ -->
+<section class="section" id="faq">
+  <div class="wrap">
+    <span class="eyebrow rv">06 · Antes de decidir</span>
+    <h2 class="sec-h rv" style="text-align:center">Perguntas honestas,<br>respostas <span class="g">diretas</span>.</h2>
+    <div class="faq" style="margin-top:14px">
+      <div class="qa rv"><button aria-expanded="false"><span>Isso serve para empresa pequena?</span><span class="ico"></span></button><div class="ans"><p>Serve — e é onde mais faz diferença. Em PME a <b>liderança está mais perto do time</b>, então organizar gestão e prevenção tem efeito rápido. O e-book foi escrito para quem decide, não para departamento jurídico.</p></div></div>
+      <div class="qa rv"><button aria-expanded="false"><span>Esse e-book substitui uma consultoria ou assessoria técnica?</span><span class="ico"></span></button><div class="ans"><p>Não — e essa é a intenção. Ele é a <b>porta de entrada</b>: te dá clareza para saber exatamente o que cobrar e o que priorizar <b>antes</b> de contratar qualquer serviço. É o melhor filtro contra gastar errado.</p></div></div>
+      <div class="qa rv"><button aria-expanded="false"><span>Isso garante que minha empresa fica em conformidade?</span><span class="ico"></span></button><div class="ans"><p>Ninguém honesto promete “conformidade garantida” — isso não existe. O que o material entrega é <b>clareza, direção e preparo da liderança</b> para conduzir a adequação com critério.</p></div></div>
+      <div class="qa rv"><button aria-expanded="false"><span>Preciso entender de NR-1 mesmo tendo contador ou RH?</span><span class="ico"></span></button><div class="ans"><p>Sim. Quem <b>responde pela empresa é você</b>. Entender o essencial te coloca no controle da decisão — em vez de depender cegamente de quem talvez também não domine o tema.</p></div></div>
+      <div class="qa rv"><button aria-expanded="false"><span>É muito técnico? Vou conseguir aplicar sozinho?</span><span class="ico"></span></button><div class="ans"><p>É técnico na medida certa: <b>verdade normativa, sem juridiquês</b>. Escrito para o empresário ler em poucos minutos e sair sabendo onde está exposto e quais decisões tomar.</p></div></div>
+      <div class="qa rv"><button aria-expanded="false"><span>Como recebo o material e tem garantia?</span><span class="ico"></span></button><div class="ans"><p>Material <b>100% digital em PDF</b>, com acesso imediato após a compra. E você conta com <b>garantia de 7 dias</b> — se não fizer sentido, é só pedir o reembolso.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- OFERTA -->
+<section class="section offer" id="oferta">
+  <div class="wrap">
+    <div class="offer-card rv">
+      <div class="offer-top">
+        <span class="arrived">Destino da rota</span>
+        <h2>Liderança, Riscos Psicossociais<br>e a Nova NR-01</h2>
+        <p class="mono-tag">E-book premium · Programa GPS</p>
+      </div>
+      <div class="offer-body">
+        <ul class="offer-list">
+          <li><span class="ck">◉</span><span>O guia completo do que mudou na <b>nova NR-1</b>.</span></li>
+          <li><span class="ck">◉</span><span>Como <b>identificar os riscos psicossociais</b> (FRPRT) na sua empresa.</span></li>
+          <li><span class="ck">◉</span><span>Como <b>GRO e PGR</b> se conectam — sem enrolação.</span></li>
+          <li><span class="ck">◉</span><span><b>Checklist + plano de ação em 6 passos</b>.</span></li>
+          <li><span class="ck">◉</span><span><b>Acesso imediato</b>, 100% digital em PDF.</span></li>
+        </ul>
+        <div class="offer-buy">
+          <div class="anchor">de R$97</div>
+          <div class="price"><span class="cur">R$</span>47<span class="cent">,00</span></div>
+          <div class="terms">Valor de lançamento · pagamento único</div>
+          <a class="btn btn-primary btn-lg js-checkout" href="#">Garantir meu e-book <span class="arw">→</span></a>
+          <div class="safe"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> Compra segura · Greenn</div>
+        </div>
+      </div>
+    </div>
+    <div class="guarantee rv">
+      <div class="badge">7<br>DIAS</div>
+      <div class="gt"><b>Garantia incondicional de 7 dias.</b> Leu e não achou que valeu? Você pede o reembolso e recebe 100% de volta. O risco é todo nosso.</div>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT STEP -->
+<section class="section" id="proximo">
+  <div class="wrap">
+    <div class="next rv">
+      <div class="k">Depois do e-book</div>
+      <h3>Entender o mapa é o primeiro passo.<br>Implantar a rota é o próximo.</h3>
+      <p>O e-book te dá a clareza. Quem quiser ir além — colocar o método em prática na liderança — encontra o caminho no minicurso do Programa GPS. Uma coisa de cada vez.</p>
+      <div class="route-mini">
+        <span class="rstep now">E-book</span><span class="rarw">→</span>
+        <span class="rstep">Minicurso</span><span class="rarw">→</span>
+        <span class="rstep">Mentoria</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final" id="fim">
+  <div class="ghost" aria-hidden="true"><span>GPS</span></div>
+  <div class="wrap in-c">
+    <h2 class="rv">Você não precisa decidir no <span class="g">escuro</span> sobre a NR-1.</h2>
+    <p class="rv">Troque o susto pela rota. Comece pela ferramenta que mostra, hoje, onde sua empresa está exposta.</p>
+    <a class="btn btn-primary btn-lg js-checkout rv" href="#">Quero minha rota — R$47 <span class="arw">→</span></a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-in">
+      <div class="foot-brand">G<b>P</b>S</div>
+      <div class="foot-legal">
+        Programa GPS · Cidinei Martins da Silva — Advogado · Especialista em Segurança e Saúde Ocupacional · Empresário.<br>
+        <b>Este material é educativo e informativo.</b> Não substitui assessoria técnica ou jurídica individualizada e não garante enquadramento ou conformidade. Resultados dependem da aplicação de cada empresa.
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- sticky mobile CTA -->
+<div class="mcta">
+  <div class="mp"><span class="cur">R$</span>47<small>e-book · acesso imediato</small></div>
+  <a class="btn btn-primary js-checkout" href="#">Garantir <span class="arw">→</span></a>
+</div>
+
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  /* ---- CHECKOUT LINK (troque aqui quando quiser) ---- */
+  var CHECKOUT_URL = "https://payfast.greenn.com.br/fpzamy9?utm_source=lp&utm_medium=site&utm_content=cta";
+  document.querySelectorAll('.js-checkout').forEach(function(a){
+    a.setAttribute('href',CHECKOUT_URL); a.setAttribute('target','_blank'); a.setAttribute('rel','noopener');
+  });
+
+  /* ---- graceful photo slots: hide the placeholder note only if the image really loads ---- */
+  document.querySelectorAll('.photo[style*="--photo"]').forEach(function(el){
+    var m=/url\(['"]?(.*?)['"]?\)/.exec(el.getAttribute('style')||''); if(!m)return;
+    var img=new Image(); img.onload=function(){el.classList.add('has-img');}; img.src=m[1];
+  });
+
+  /* ---- reveal ---- */
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');}});},{threshold:.15});
+  document.querySelectorAll('.rv,.turn,[data-node]').forEach(function(el){reduce?el.classList.add('in'):io.observe(el);});
+
+  /* ---- method checkpoints ignite in sequence ---- */
+  var nio=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(!e.isIntersecting)return; var cards=document.querySelectorAll('[data-node]');
+    cards.forEach(function(c,i){setTimeout(function(){c.classList.add('on');}, reduce?0:i*450);});
+    nio.disconnect();
+  });},{threshold:.4});
+  var mt=document.querySelector('.gps-track'); if(mt)nio.observe(mt);
+
+  /* ---- counters ---- */
+  var cio=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(!e.isIntersecting)return; e.target.querySelectorAll('[data-count]').forEach(function(el){
+      if(el.dataset.done)return; el.dataset.done=1; var tgt=+el.getAttribute('data-count');
+      if(reduce){el.firstChild.nodeValue=tgt;return;}
+      var plain=el.hasAttribute('data-plain'); var dur=1200, t0=null;
+      function tick(ts){if(!t0)t0=ts;var p=Math.min((ts-t0)/dur,1);var v=Math.round(p*p*(3-2*p)*tgt);
+        el.firstChild.nodeValue=v; if(p<1)requestAnimationFrame(tick);}
+      requestAnimationFrame(tick);
+    });
+    cio.unobserve(e.target);
+  });},{threshold:.5});
+  document.querySelectorAll('.stat-row').forEach(function(el){cio.observe(el);});
+
+  /* ---- nav solidify + spine progress ---- */
+  var nav=document.getElementById('nav'), fill=document.getElementById('spineFill'), head=document.getElementById('spineHead');
+  var sections=[].slice.call(document.querySelectorAll('section[id],header[id]'));
+  var spineDots=[];
+  (function buildDots(){
+    var spine=document.querySelector('.spine'); if(!spine)return;
+    sections.forEach(function(s,i){
+      var d=document.createElement('div'); d.className='dot'; spine.appendChild(d); spineDots.push({el:d,sec:s});
+    });
+    layoutDots();
+  })();
+  function layoutDots(){
+    var vh=innerHeight, top=vh*0.14, bot=vh*0.86, span=bot-top;
+    spineDots.forEach(function(o,i){o.el.style.top=(top+span*(i/(spineDots.length-1)))+'px';});
+  }
+  addEventListener('resize',layoutDots);
+  function onScroll(){
+    var y=scrollY||document.documentElement.scrollTop;
+    nav.classList.toggle('solid', y>40);
+    var doch=document.body.scrollHeight-innerHeight; var p=doch>0?Math.min(y/doch,1):0;
+    var vh=innerHeight, top=vh*0.14, span=vh*0.72;
+    if(fill){fill.style.height=(span*p)+'px';}
+    if(head){head.style.top=(top+span*p)+'px'; head.style.opacity=(y>60?1:0);}
+    // active dots
+    var mid=y+vh*0.35;
+    spineDots.forEach(function(o){var r=o.sec.offsetTop; o.el.classList.toggle('on', mid>=r);});
+  }
+  addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  /* ---- FAQ accordion ---- */
+  document.querySelectorAll('.qa button').forEach(function(b){
+    b.addEventListener('click',function(){
+      var qa=b.parentElement, ans=qa.querySelector('.ans'), open=qa.classList.contains('open');
+      document.querySelectorAll('.qa').forEach(function(o){o.classList.remove('open');o.querySelector('.ans').style.maxHeight=null;o.querySelector('button').setAttribute('aria-expanded','false');});
+      if(!open){qa.classList.add('open');ans.style.maxHeight=ans.scrollHeight+'px';b.setAttribute('aria-expanded','true');}
+    });
+  });
+
+  /* ---- ambient canvas: grid + traveling signal on a route ---- */
+  var cv=document.getElementById('amb'),cx=cv.getContext('2d'),W,H,dpr;
+  function size(){dpr=Math.min(devicePixelRatio||1,2);W=cv.width=innerWidth*dpr;H=cv.height=innerHeight*dpr;}
+  size(); addEventListener('resize',size);
+  function pathPts(){return [[.05,.9],[.05,.62],[.28,.62],[.28,.32],[.52,.32],[.52,.7],[.74,.7],[.74,.4],[.96,.4]];}
+  var t=0;
+  function frame(){
+    cx.clearRect(0,0,W,H);
+    var g=46*dpr; cx.strokeStyle='rgba(238,243,240,0.028)'; cx.lineWidth=1;
+    for(var x=0;x<W;x+=g){cx.beginPath();cx.moveTo(x,0);cx.lineTo(x,H);cx.stroke();}
+    for(var y=0;y<H;y+=g){cx.beginPath();cx.moveTo(0,y);cx.lineTo(W,y);cx.stroke();}
+    var r=pathPts();
+    cx.beginPath(); r.forEach(function(p,i){i?cx.lineTo(p[0]*W,p[1]*H):cx.moveTo(p[0]*W,p[1]*H);});
+    cx.strokeStyle='rgba(33,180,95,0.14)'; cx.lineWidth=1.4*dpr; cx.stroke();
+    var seg=r.length-1, prog=(t%1)*seg, si=Math.floor(prog), f=prog-si;
+    var a=r[si], b=r[si+1]||r[si]; var sx=(a[0]+(b[0]-a[0])*f)*W, sy=(a[1]+(b[1]-a[1])*f)*H;
+    var grd=cx.createRadialGradient(sx,sy,0,sx,sy,30*dpr);
+    grd.addColorStop(0,'rgba(90,227,140,.85)'); grd.addColorStop(1,'rgba(33,180,95,0)');
+    cx.fillStyle=grd; cx.beginPath(); cx.arc(sx,sy,30*dpr,0,7); cx.fill();
+    cx.fillStyle='#eafff2'; cx.beginPath(); cx.arc(sx,sy,2.6*dpr,0,7); cx.fill();
+    for(var j=0;j<r.length;j++){cx.beginPath();cx.arc(r[j][0]*W,r[j][1]*H,2.6*dpr,0,7);
+      cx.fillStyle=(j<=si)?'rgba(33,180,95,.85)':'rgba(110,129,122,.45)';cx.fill();}
+    if(!reduce){t+=0.0012; requestAnimationFrame(frame);}
+  }
+  if(reduce){t=.999;frame();}else{requestAnimationFrame(frame);}
+})();
+</script>
+</body>
+</html>
