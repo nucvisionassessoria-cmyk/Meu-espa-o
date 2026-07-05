@@ -55,9 +55,11 @@ h1,h2,h3{text-wrap:balance}
   background:radial-gradient(75% 55% at 50% -12%,rgba(var(--green-rgb),.07),transparent 62%),
              radial-gradient(60% 48% at 100% 110%,rgba(var(--cyan-rgb),.045),transparent 62%),
              linear-gradient(180deg,transparent 52%,rgba(4,8,6,.55))}
-.bg .cursor-glow{position:absolute;top:0;left:0;width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;
-  background:radial-gradient(circle,rgba(var(--green-rgb),.10),rgba(var(--cyan-rgb),.05) 40%,transparent 70%);
+.bg .cursor-glow{position:absolute;top:0;left:0;width:300px;height:300px;margin:-150px 0 0 -150px;border-radius:50%;
+  background:radial-gradient(circle,rgba(var(--green-rgb),.12),rgba(var(--cyan-rgb),.06) 40%,transparent 70%);
   will-change:transform;opacity:0;transition:opacity .6s}
+/* rastro digital do cursor (breadcrumb GPS) */
+#trail{position:fixed;inset:0;width:100%;height:100%;z-index:6;pointer-events:none;mix-blend-mode:screen}
 .bg .scan{position:absolute;left:0;right:0;height:220px;top:-260px;opacity:.5;
   background:linear-gradient(180deg,transparent,rgba(var(--cyan-rgb),.05),transparent);animation:scanline 13s linear infinite}
 @keyframes scanline{0%{top:-260px}100%{top:100%}}
@@ -230,7 +232,16 @@ h1,h2,h3{text-wrap:balance}
 .chipfloat i{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px rgba(var(--green-rgb),.9);font-style:normal}
 .chipfloat.c i{background:var(--cyan);box-shadow:0 0 8px rgba(var(--cyan-rgb),.9)}
 .chipfloat.f1{top:8%;left:-6%}.chipfloat.f2{top:46%;right:-8%}.chipfloat.f3{bottom:9%;left:-4%}
-@media(max-width:940px){.chipfloat.f1{left:2%}.chipfloat.f2{right:2%}.chipfloat.f3{left:2%}}
+/* vertentes: linha + nó saindo do chip em direção à foto (não parecem "soltos") */
+.chipfloat::after{content:"";position:absolute;top:50%;height:1px;width:38px;pointer-events:none;opacity:.9}
+.chipfloat::before{content:"";position:absolute;top:50%;width:5px;height:5px;margin-top:-2.5px;border-radius:50%;
+  background:var(--cyan);box-shadow:0 0 9px rgba(53,198,244,.95);pointer-events:none}
+.chipfloat.f1::after,.chipfloat.f3::after{left:100%;background:linear-gradient(90deg,rgba(53,198,244,.8),transparent)}
+.chipfloat.f2::after{right:100%;background:linear-gradient(270deg,rgba(53,198,244,.8),transparent)}
+.chipfloat.f1::before,.chipfloat.f3::before{left:calc(100% + 34px)}
+.chipfloat.f2::before{right:calc(100% + 34px)}
+@media(max-width:940px){.chipfloat.f1{left:2%}.chipfloat.f2{right:2%}.chipfloat.f3{left:2%}
+  .chipfloat::after{width:22px}.chipfloat.f1::before,.chipfloat.f3::before{left:calc(100% + 20px)}.chipfloat.f2::before{right:calc(100% + 20px)}}
 .float-anim{animation:floaty 5s ease-in-out infinite}
 .float-anim.d2{animation-delay:-1.6s}.float-anim.d3{animation-delay:-3.1s}
 @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
@@ -279,6 +290,17 @@ h1,h2,h3{text-wrap:balance}
 .turn p{font-size:clamp(15px,2vw,19px);color:var(--paper-dim);max-width:56ch;margin:0 auto}
 .turn p b{color:var(--paper)}
 @media (prefers-reduced-motion:reduce){.turn .big .strike::after{transition:none;transform:scaleX(1)}}
+/* efeito EXCLUSIVO da virada: o "sinal" desenha o texto (scan reveal) — diferente de todo o resto */
+.turn .big-wrap{position:relative;display:inline-block;max-width:100%;margin-bottom:26px}
+.turn .big-wrap .big{margin-bottom:0}
+.turn .big{clip-path:inset(0 100% 0 -5%);-webkit-clip-path:inset(0 100% 0 -5%);transition:clip-path 1.15s cubic-bezier(.62,0,.2,1) .08s,-webkit-clip-path 1.15s cubic-bezier(.62,0,.2,1) .08s}
+.turn.in .big{clip-path:inset(0 -5% 0 -5%);-webkit-clip-path:inset(0 -5% 0 -5%)}
+.turn .scan-line{position:absolute;top:-8%;bottom:-8%;left:-3%;width:3px;opacity:0;pointer-events:none;border-radius:3px;
+  background:linear-gradient(180deg,transparent,var(--green) 28%,var(--cyan) 72%,transparent);
+  box-shadow:0 0 24px 5px rgba(var(--green-rgb),.7),0 0 46px 12px rgba(53,198,244,.22)}
+.turn.in .scan-line{animation:turnScan 1.25s cubic-bezier(.62,0,.2,1) .08s forwards}
+@keyframes turnScan{0%{left:-3%;opacity:0}10%{opacity:1}90%{opacity:1}100%{left:103%;opacity:0}}
+@media (prefers-reduced-motion:reduce){.turn .big{clip-path:none;-webkit-clip-path:none;transition:none}.turn .scan-line{display:none}}
 
 /* ---------------------------------------------------------------------
    MÉTODO GPS — módulos de sistema
@@ -608,6 +630,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
   <div class="scan"></div>
   <div class="cursor-glow" id="cursorGlow"></div>
 </div>
+<canvas id="trail" aria-hidden="true"></canvas>
 
 <!-- ROTA que atravessa a página -->
 <svg id="routeSvg" aria-hidden="true">
@@ -619,7 +642,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
   <path id="routeBase" d=""/>
   <g id="routeBranches"></g>
   <path id="routeLive" d=""/>
-  <circle id="routeHead" r="5"/>
+  <path id="routeHead" d="M -6.5 -6 L 6.5 -6 L 0 7.5 Z"/>
 </svg>
 
 <div class="topbar" id="topbar" aria-hidden="true"></div>
@@ -672,7 +695,6 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
       <div class="hero-visual rv">
         <div class="photo tilt" id="heroPhoto" role="img" aria-label="Cidinei Martins — retrato de autoridade" data-par="26" style="--photo:url('../assets/cidinei-hero.jpg')">
           <span class="aura"></span>
-          <span class="frame-lab">◉ Sinal · Cidinei Martins</span>
           <div class="ph-note">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>
             <span>Foto do hero<br>assets/cidinei-hero.jpg</span>
@@ -724,11 +746,12 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
 <!-- VIRADA -->
 <section class="section turn" id="virada">
   <div class="wrap">
-    <div class="rv">
-      <p class="eyebrow alt" style="justify-content:center">02 · A virada</p>
+    <p class="eyebrow alt rv" style="justify-content:center">02 · A virada</p>
+    <div class="big-wrap">
       <h2 class="big">A NR-1 não é só mais um <span class="strike">tema</span>.<br>É um novo <span class="go">campo de atuação</span>.</h2>
-      <p>As empresas precisam de gente que <b>entenda a norma</b> e conduza a adequação com critério. Quem domina o essencial — inventário, plano de ação, fatores psicossociais — se posiciona como <b>referência</b>, não como mais um.</p>
+      <span class="scan-line" aria-hidden="true"></span>
     </div>
+    <p class="turn-lead rv">As empresas precisam de gente que <b>entenda a norma</b> e conduza a adequação com critério. Quem domina o essencial — inventário, plano de ação, fatores psicossociais — se posiciona como <b>referência</b>, não como mais um.</p>
   </div>
 </section>
 
@@ -837,7 +860,6 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
       <div class="rv rvr" style="display:flex;justify-content:center">
         <div class="photo auth-photo tilt" role="img" aria-label="Cidinei Martins ensinando o método em flipchart" data-par="24" style="--photo:url('../assets/cidinei-autoridade.jpg')">
           <span class="aura"></span>
-          <span class="frame-lab">◉ Autoridade · palco</span>
           <div class="ph-note">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>
             <span>Foto ensinando<br>assets/cidinei-autoridade.jpg</span>
@@ -1218,6 +1240,25 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
   var glow=document.getElementById('cursorGlow');
   if(glow&&fine&&!reduce){ setTimeout(function(){glow.style.opacity=1;},400); }
 
+  /* ---- RASTRO DIGITAL do cursor (breadcrumb GPS) ---- */
+  var trail=document.getElementById('trail'), tctx=(trail&&fine&&!reduce)?trail.getContext('2d'):null, tpts=[], tdpr=1;
+  function sizeTrail(){ if(!tctx)return; tdpr=Math.min(devicePixelRatio||1,2); trail.width=(innerWidth*tdpr)|0; trail.height=(innerHeight*tdpr)|0; }
+  sizeTrail();
+  function drawTrail(){
+    if(!tctx)return;
+    var lp=tpts.length?tpts[tpts.length-1]:null;
+    var moved=!lp||(Math.abs(pgX-lp.x)+Math.abs(pgY-lp.y)>5);
+    if(moved){ tpts.push({x:pgX,y:pgY}); if(tpts.length>20)tpts.shift(); }
+    else if(tpts.length){ tpts.shift(); }        // parado: rastro encolhe e some
+    tctx.clearRect(0,0,trail.width,trail.height);
+    var n=tpts.length; if(n<2)return;
+    for(var i=1;i<n;i++){ var a=tpts[i-1],b=tpts[i],f=i/n;
+      tctx.strokeStyle='rgba(53,198,244,'+(0.04+0.30*f)+')'; tctx.lineWidth=(0.5+1.6*f)*tdpr;
+      tctx.beginPath(); tctx.moveTo(a.x*tdpr,a.y*tdpr); tctx.lineTo(b.x*tdpr,b.y*tdpr); tctx.stroke(); }
+    for(var j=0;j<n;j+=2){ var p=tpts[j],f2=j/n,s=(1.3+2.8*f2)*tdpr;   // nós "digitais"
+      tctx.fillStyle='rgba(122,240,176,'+(0.05+0.32*f2)+')'; tctx.fillRect(p.x*tdpr-s/2,p.y*tdpr-s/2,s,s); }
+  }
+
   /* ---- FUNDO FLUIDO WEBGL (shader GLSL, sem libs, com fallback) ---- */
   var GL=(function(){
     var canvas=document.getElementById('gl'); if(!canvas) return null;
@@ -1248,8 +1289,8 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
      ' vec3 col=ink;',
      ' col=mix(col,gdeep,amt);',
      ' col=mix(col,grn,smoothstep(0.64,0.95,f)*breath*0.32);',
-     ' float ml=exp(-dot(p-m,p-m)*3.0);',
-     ' col+=vec3(0.09,0.42,0.26)*ml*0.32;',
+     ' float ml=exp(-dot(p-m,p-m)*6.5);',
+     ' col+=vec3(0.10,0.46,0.28)*ml*0.34;',
      ' float vig=smoothstep(1.55,0.05,length(p*vec2(0.85,1.0)));',
      ' col*=mix(0.42,1.0,vig);',
      ' col*=0.95;',
@@ -1308,6 +1349,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
     cgX=lerp(cgX,pgX,0.09); cgY=lerp(cgY,pgY,0.09);
     nX=(cgX/innerWidth-0.5); nY=(cgY/innerHeight-0.5);
     if(glow) glow.style.transform='translate3d('+cgX+'px,'+cgY+'px,0)';
+    if(tctx) drawTrail();
 
     var y=scrollY||document.documentElement.scrollTop;
     var maxScroll=docH-innerHeight; var prog=maxScroll>0?clamp(y/maxScroll,0,1):0;
@@ -1320,18 +1362,22 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
     else { t+=reduce?0.006:0.016; drawBg(); }
     if(gridOv && !reduce) gridOv.style.transform='translate3d('+(nX*-16).toFixed(1)+'px,'+(nY*-16).toFixed(1)+'px,0)';
 
-    // ROTA: desenha até a frente, cabeça viaja, vertentes acendem títulos, destino pulsa
+    // ROTA: a linha É a barra de progresso — a seta fica no meio da viewport (onde você lê) e acompanha o scroll
     if(mainLen>0){
-      var frontY=y+innerHeight*0.42;
-      var frac=clamp((frontY-mainStartY)/Math.max(1,(mainEndY-mainStartY)),0,1);
+      var targetY=y+innerHeight*0.5;              // "sempre no meio" — posição de leitura
+      var frac=clamp((targetY-mainStartY)/Math.max(1,(mainEndY-mainStartY)),0,1);
+      var lenAt=frac*mainLen;
       rLive.style.strokeDashoffset=mainLen*(1-frac);
-      var pt=rLive.getPointAtLength(frac*mainLen);
-      rHead.setAttribute('cx',pt.x); rHead.setAttribute('cy',pt.y); rHead.setAttribute('opacity', y>30?1:0);
+      var pt=rLive.getPointAtLength(lenAt);
+      var pt2=rLive.getPointAtLength(Math.min(mainLen,lenAt+1.4)); // tangente p/ orientar a seta
+      var ang=Math.atan2(pt2.y-pt.y,pt2.x-pt.x)*180/Math.PI-90;    // seta aponta no sentido da rota
+      rHead.setAttribute('transform','translate('+pt.x.toFixed(1)+' '+pt.y.toFixed(1)+') rotate('+ang.toFixed(1)+')');
+      rHead.setAttribute('opacity', y>24?1:0);
       for(var ai=0;ai<anchors.length;ai++){ var a=anchors[ai];
-        if(!a.lit && frontY>=a.y){ a.lit=true; a.el.classList.add('energized');
+        if(!a.lit && pt.y>=a.y-2){ a.lit=true; a.el.classList.add('energized');   // energia chega quando a seta passa
           if(a.bpath)a.bpath.classList.add('on'); if(a.bnode)a.bnode.classList.add('on'); }
       }
-      if(destNode) destNode.classList.toggle('on', frontY>=destY-40);
+      if(destNode) destNode.classList.toggle('on', frac>=0.985);
     }
 
     // HERO ghost — scroll transform (afasta/desfoca) + mouse parallax
@@ -1353,7 +1399,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
     requestAnimationFrame(loop);
   }
 
-  function resizeAll(){ sizeBg(); if(GL)GL.resize(); buildRoute(); }
+  function resizeAll(){ sizeBg(); if(GL)GL.resize(); sizeTrail(); buildRoute(); }
   addEventListener('resize',function(){ clearTimeout(window.__rz); window.__rz=setTimeout(resizeAll,180); });
   // recompute route after fonts/images settle
   addEventListener('load',function(){ setTimeout(buildRoute,300); });
