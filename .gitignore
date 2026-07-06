@@ -1,1 +1,5 @@
 __pycache__/
+
+# build de deploy (gerado por build-deploy.sh)
+gps-lp/deploy-hostinger/
+gps-lp/*.zip
