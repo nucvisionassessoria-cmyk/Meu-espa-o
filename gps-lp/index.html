@@ -277,6 +277,35 @@ h1,h2,h3{text-wrap:balance}
 .card .lab{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);display:block;margin-bottom:9px}
 .card .t{font-weight:700;font-size:17px;color:#fff;margin-bottom:8px;line-height:1.25;transform:translateZ(20px)}
 .card .d{font-size:14px;color:var(--paper-dim);line-height:1.55}
+/* ic numerado (cards do conteúdo do e-book) */
+.card .ic.num{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--green)}
+/* prévias/prints do e-book (placeholder até páginas reais) */
+.ebook-prints{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
+@media(max-width:760px){.ebook-prints{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.ebook-prints{grid-template-columns:1fr}}
+.eprint{aspect-ratio:16/11;border-radius:14px;border:1px solid var(--line-2);position:relative;overflow:hidden;
+  background:var(--eimg,linear-gradient(135deg,#10271c,#0a1610));background-size:cover;background-position:center;
+  display:flex;align-items:flex-end;padding:12px;box-shadow:0 20px 44px -26px rgba(0,0,0,.9)}
+.eprint::before{content:"";position:absolute;inset:0;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);background:linear-gradient(180deg,rgba(8,12,10,.08),rgba(8,12,10,.5))}
+.eprint .epk{position:relative;z-index:1;font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);border:1px solid var(--line-2);border-radius:999px;padding:4px 9px;background:rgba(8,12,10,.55)}
+.prints-note{text-align:center;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:14px}
+/* cards de VÍDEO (prova social falada) — reusa o carrossel .gallery */
+.vitem{flex:0 0 clamp(268px,74vw,344px);scroll-snap-align:center;position:relative;border-radius:16px;overflow:hidden;
+  border:1px solid var(--line-2);background:linear-gradient(180deg,var(--ink-3),var(--ink-2));text-decoration:none;color:inherit;
+  user-select:none;box-shadow:0 26px 54px -30px rgba(0,0,0,.92);transition:transform .4s cubic-bezier(.2,.7,.2,1),border-color .4s,box-shadow .4s}
+.vitem:hover{transform:translateY(-5px);border-color:rgba(var(--green-rgb),.45);box-shadow:0 30px 60px -28px rgba(0,0,0,.95),0 0 40px -22px rgba(var(--green-rgb),.5)}
+.vitem .vthumb{aspect-ratio:16/9;position:relative;display:flex;align-items:center;justify-content:center;background:var(--vimg,linear-gradient(135deg,#0d3a24,#07160f)) center/cover no-repeat}
+.vitem .vthumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,12,10,.12),rgba(8,12,10,.55))}
+.vitem .play{position:relative;z-index:1;width:56px;height:56px;border-radius:50%;background:rgba(8,12,10,.5);border:1px solid rgba(var(--green-rgb),.6);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;transition:.4s}
+.vitem .play svg{width:20px;height:20px;margin-left:3px;fill:var(--paper)}
+.vitem:hover .play{background:rgba(var(--green-rgb),.25);box-shadow:0 0 26px rgba(var(--green-rgb),.55)}
+.vitem .brk{position:absolute;top:12px;left:12px;width:16px;height:16px;border:2px solid var(--cyan);border-right:none;border-bottom:none;z-index:2}
+.vitem .soon-lb{position:absolute;top:12px;right:12px;z-index:2;font-family:var(--mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line-2);border-radius:999px;padding:4px 8px;background:rgba(8,12,10,.5)}
+.vitem.soon{cursor:default}
+.vitem .vmeta{padding:14px 16px}
+.vitem .vmeta .vk{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:5px;display:flex;align-items:center;gap:6px}
+.vitem .vmeta .vk::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--green);box-shadow:0 0 6px rgba(var(--green-rgb),.9)}
+.vitem .vmeta .vt{font-weight:700;font-size:14.5px;color:#fff;line-height:1.3}
 .card .d b{color:#fff}
 
 /* ---------------------------------------------------------------------
@@ -713,12 +742,38 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
   <div class="scrollcue" aria-hidden="true"><span>Role a rota</span><span class="ln"></span></div>
 </header>
 
-<!-- PROBLEMA -->
+<!-- SITUAÇÃO (S) -->
+<section class="section" id="situacao">
+  <div class="wrap">
+    <span class="eyebrow rv">01 · Onde você está agora</span>
+    <h2 class="sec-h rv">Você já ouviu falar da NR-1.<br>Mas o que muda <span class="g">na prática</span>?</h2>
+    <p class="sec-lead rv">A informação chega de todo lado — no contador, num fornecedor, numa conversa. E, no meio de tocar a empresa, sobram perguntas que ninguém responde com clareza:</p>
+    <div class="grid g3">
+      <div class="card tilt rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9.1 9a3 3 0 1 1 4.5 2.6c-.9.5-1.6 1.2-1.6 2.4m0 3h.01"/></svg></div>
+        <div class="t">“Mudou o quê, exatamente?”</div>
+        <div class="d">Você ouve que a NR-1 mudou, mas não fica claro o que muda para a realidade da sua empresa.</div>
+      </div>
+      <div class="card tilt rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <div class="t">“Preciso agir agora?”</div>
+        <div class="d">Falta uma referência para separar o que é urgente, o que pode esperar e o que é só ruído.</div>
+      </div>
+      <div class="card tilt rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/><circle cx="12" cy="12" r="3.5"/></svg></div>
+        <div class="t">“Por onde eu começo?”</div>
+        <div class="d">Aparecem ofertas e opiniões diferentes — e nenhuma parece falar a sua língua de gestão.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMA (P) -->
 <section class="section" id="problema">
   <div class="wrap">
-    <span class="eyebrow rv">01 · O cenário atual</span>
+    <span class="eyebrow rv">02 · O cenário atual</span>
     <h2 class="sec-h rv">Muito <span class="g">ruído</span> sobre a NR-1.<br>Pouca <span class="c">direção</span>.</h2>
-    <p class="sec-lead rv">A nova NR-1 trouxe muita informação e muitas ofertas ao mesmo tempo. No meio disso, é comum deixar passar quatro pontos que fazem diferença:</p>
+    <p class="sec-lead rv">Quando falta essa leitura clara, quatro pontos costumam passar despercebidos — e cada um pesa na hora de decidir:</p>
     <div class="grid g4">
       <div class="card tilt rv">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></div>
@@ -744,10 +799,41 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
   </div>
 </section>
 
-<!-- VIRADA -->
+<!-- IMPLICAÇÃO (I) -->
+<section class="section" id="implicacao">
+  <div class="wrap">
+    <span class="eyebrow rv">03 · O que está em jogo</span>
+    <h2 class="sec-h rv">Sem clareza, a conta chega<br>de outras <span class="g">formas</span>.</h2>
+    <p class="sec-lead rv">Nada disso é sobre susto. É sobre o que acontece, de forma natural, quando a decisão é tomada sem enxergar o cenário inteiro:</p>
+    <div class="grid g4">
+      <div class="card tilt rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <div class="t">Decisão tardia</div>
+        <div class="d">O tema é adiado até virar urgência — e decisão com pressa costuma sair mais cara.</div>
+      </div>
+      <div class="card tilt rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <div class="t">Dinheiro no lugar errado</div>
+        <div class="d">Sem diagnóstico, o investimento vai para soluções que não resolvem o núcleo do problema.</div>
+      </div>
+      <div class="card tilt rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.4"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 20c0-2 1-3.7 3-4.4"/></svg></div>
+        <div class="t">Insegurança interna</div>
+        <div class="d">Fica difícil orientar a equipe e a liderança quando nem a direção está clara.</div>
+      </div>
+      <div class="card tilt rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12l2 2 4-4M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7z"/></svg></div>
+        <div class="t">Condução difícil de comprovar</div>
+        <div class="d">Sem gestão documentada, é mais difícil mostrar que a empresa conduziu o tema com responsabilidade.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIRADA (reenquadramento I→N) -->
 <section class="section turn" id="virada">
   <div class="wrap">
-    <p class="eyebrow alt rv" style="justify-content:center">02 · A virada</p>
+    <p class="eyebrow alt rv" style="justify-content:center">04 · A virada</p>
     <div class="big-wrap">
       <h2 class="big">A NR-1 não é sobre <span class="strike">pânico</span>.<br>É sobre <span class="go">gestão</span>.</h2>
       <span class="scan-line" aria-hidden="true"></span>
@@ -760,7 +846,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
 <section class="section method" id="metodo">
   <div class="scene-ghost" data-par="60" style="font-size:min(34vw,420px);right:-4%;top:6%">GPS</div>
   <div class="wrap">
-    <span class="eyebrow rv">03 · O método</span>
+    <span class="eyebrow rv">05 · O método</span>
     <h2 class="sec-h rv">Três eixos para sair da confusão<br>e entrar na <span class="g">rota</span>.</h2>
     <p class="sec-lead rv">GPS não é sigla decorativa — é um caminho claro para o empresário entender e conduzir os riscos psicossociais com direção.</p>
     <div class="gps-track" id="gpsTrack">
@@ -839,11 +925,37 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
 </section>
 
 <!-- AUTORIDADE -->
+<!-- E-BOOK · CONTEÚDO EXPANDIDO (percepção de valor) -->
+<section class="section" id="ebook-conteudo">
+  <div class="wrap">
+    <span class="eyebrow rv">Dentro do material</span>
+    <h2 class="sec-h rv">O que você vai conseguir<br><span class="g">enxergar</span> dentro do e-book.</h2>
+    <p class="sec-lead rv">Uma leitura prática para entender o cenário, separar ruído de decisão e perceber onde a sua empresa precisa de mais atenção — antes de contratar ou implementar qualquer coisa.</p>
+    <div class="grid g3" style="margin-top:26px">
+      <div class="card tilt rv"><div class="ic num">1</div><div class="t">O que mudou e por que importa</div><div class="d">O que a nova NR-1 trouxe — e o que isso significa para a gestão da sua empresa.</div></div>
+      <div class="card tilt rv"><div class="ic num">2</div><div class="t">Onde a empresa fica sem clareza</div><div class="d">Os pontos em que a maioria ainda não enxerga o próprio cenário com precisão.</div></div>
+      <div class="card tilt rv"><div class="ic num">3</div><div class="t">Riscos psicossociais na gestão</div><div class="d">Como o tema entra na conversa de liderança, clima e produtividade — sem juridiquês.</div></div>
+      <div class="card tilt rv"><div class="ic num">4</div><div class="t">O que observar antes de contratar</div><div class="d">Critérios para avaliar propostas e não investir na solução errada.</div></div>
+      <div class="card tilt rv"><div class="ic num">5</div><div class="t">Como o método GPS organiza a leitura</div><div class="d">A ordem em que faz sentido olhar cada parte do cenário.</div></div>
+      <div class="card tilt rv"><div class="ic num">6</div><div class="t">As decisões que pedem cuidado</div><div class="d">Quais escolhas merecem mais atenção antes de seguir em frente.</div></div>
+    </div>
+    <!-- PRÉVIAS / PRINTS INTERNOS — placeholder até receber páginas reais do e-book.
+         Ao ter as imagens: em cada .eprint use style="--eimg:url('assets/ebook-print-1.jpg')" -->
+    <div class="ebook-prints rv">
+      <div class="eprint"><span class="epk">Prévia · página</span></div>
+      <div class="eprint"><span class="epk">Prévia · página</span></div>
+      <div class="eprint"><span class="epk">Prévia · página</span></div>
+    </div>
+    <p class="prints-note rv">Prévias do material — o conteúdo completo está no e-book.</p>
+  </div>
+</section>
+
+<!-- AUTORIDADE -->
 <section class="section" id="autoridade">
   <div class="wrap">
     <div class="auth-grid">
       <div class="auth-copy">
-        <span class="eyebrow rv">04 · Quem conduz a rota</span>
+        <span class="eyebrow rv">06 · Quem conduz a rota</span>
         <h2 class="sec-h rv">Cidinei Martins</h2>
         <p class="sec-lead rv" style="margin-bottom:6px">Uma referência técnica em NR-1: o especialista que a imprensa, a CDL e o setor empresarial de Rondônia colocam no palco.</p>
         <div class="cred-grid">
@@ -898,7 +1010,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
 <!-- PROVA SOCIAL -->
 <section class="section" id="prova">
   <div class="wrap">
-    <span class="eyebrow alt rv">05 · Sistema de autoridade</span>
+    <span class="eyebrow alt rv">07 · Sistema de autoridade</span>
     <h2 class="sec-h rv">Presença técnica, institucional<br>e <span class="c">pública</span> — de verdade.</h2>
     <p class="sec-lead rv">A autoridade do Cidinei se verifica onde importa: nos veículos e instituições que o colocam no ar e no palco.</p>
 
@@ -910,23 +1022,18 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
   </div>
 </section>
 
-<!-- ============================================================
-     PROVA SOCIAL · DEPOIMENTOS  — SLOT PRONTO (placeholder, NÃO fabricar)
-     Quando o Cidinei tiver 2–3 depoimentos REAIS (de quem leu o e-book,
-     assistiu palestra ou é cliente), é só remover este comentário e
-     preencher .t (frase) e .k (nome · cargo/empresa). Estilo já existe (.pcard).
-<section class="section" id="depoimentos">
+<!-- PROVA SOCIAL EM VÍDEO (YouTube — leve: só thumbnail + link, sem iframe no load) -->
+<section class="section" id="videos">
   <div class="wrap">
-    <span class="eyebrow rv">Quem já rodou a rota</span>
-    <h2 class="sec-h rv">Não é teoria. É <span class="g">quem já aplicou</span>.</h2>
-    <div class="proof-cards" style="margin-top:22px">
-      <div class="pcard"><div class="meta"><div class="t">"[DEPOIMENTO REAL AQUI]"</div><div class="k" style="margin-top:8px">— [Nome · cargo · empresa]</div></div></div>
-      <div class="pcard"><div class="meta"><div class="t">"[DEPOIMENTO REAL AQUI]"</div><div class="k" style="margin-top:8px">— [Nome · cargo · empresa]</div></div></div>
-      <div class="pcard"><div class="meta"><div class="t">"[DEPOIMENTO REAL AQUI]"</div><div class="k" style="margin-top:8px">— [Nome · cargo · empresa]</div></div></div>
-    </div>
+    <span class="eyebrow rv">Quem participou</span>
+    <h2 class="sec-h rv">Pessoas reais.<br><span class="g">Experiências reais</span>.</h2>
+    <p class="sec-lead rv" style="margin-bottom:16px">Registros em vídeo de quem já teve contato com o método e com o conteúdo do Cidinei.</p>
+    <span class="drag-hint rv">Arraste <span class="ar">→</span> ou role para o lado</span>
+  </div>
+  <div class="gallery-outer">
+    <div class="gallery vgallery" id="videoRail" aria-label="Depoimentos em vídeo"></div>
   </div>
 </section>
-============================================================ -->
 
 <!-- OFERTA -->
 <section class="section offer" id="oferta">
@@ -965,7 +1072,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
 <!-- OBJEÇÕES / FAQ -->
 <section class="section" id="faq">
   <div class="wrap">
-    <span class="eyebrow rv">06 · Antes de decidir</span>
+    <span class="eyebrow rv">08 · Antes de decidir</span>
     <h2 class="sec-h rv" style="text-align:center">Perguntas honestas,<br>respostas <span class="g">diretas</span>.</h2>
     <div class="faq" style="margin-top:14px">
       <div class="qa rv"><button aria-expanded="false"><span>Isso serve para empresa pequena?</span><span class="ico"></span></button><div class="ans"><p>Serve — e é onde mais faz diferença. Em PME a <b>liderança está mais perto do time</b>, então organizar gestão e prevenção tem efeito rápido. O e-book foi escrito para quem decide, não para departamento jurídico.</p></div></div>
@@ -1053,8 +1160,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
   });
 
   /* ---- GALERIA: arrastar horizontal + roda do mouse ---- */
-  (function(){
-    var g=document.getElementById('gallery'); if(!g)return;
+  document.querySelectorAll('.gallery').forEach(function(g){
     var down=false,sx=0,sl=0,moved=false;
     g.addEventListener('pointerdown',function(e){down=true;moved=false;sx=e.clientX;sl=g.scrollLeft;g.classList.add('drag');try{g.setPointerCapture(e.pointerId);}catch(_){}});
     g.addEventListener('pointermove',function(e){if(!down)return;var dx=e.clientX-sx;if(Math.abs(dx)>5)moved=true;g.scrollLeft=sl-dx;});
@@ -1067,6 +1173,33 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
       if((e.deltaY<0&&g.scrollLeft<=0)||(e.deltaY>0&&g.scrollLeft>=max-1))return;
       g.scrollLeft+=e.deltaY; e.preventDefault();
     },{passive:false});
+  });
+
+  /* ---- PROVA SOCIAL EM VÍDEO (YouTube leve: thumbnail + link, sem iframe no load) ---- */
+  var PAGE_AUDIENCE = "empresario";   /* por LP: empresario | juridico | oportunidade */
+  var videoProofs = [
+    /* PLACEHOLDERS — trocar por vídeos REAIS (preencher youtubeId; thumbnail é opcional). NÃO inventar. */
+    { id:"video-01", title:"[Depoimento em vídeo]", context:"Espaço reservado · inserir link do YouTube", youtubeId:"", thumbnail:"", audience:["empresario","juridico","oportunidade"] },
+    { id:"video-02", title:"[Depoimento em vídeo]", context:"Espaço reservado · inserir link do YouTube", youtubeId:"", thumbnail:"", audience:["empresario","juridico","oportunidade"] },
+    { id:"video-03", title:"[Depoimento em vídeo]", context:"Espaço reservado · inserir link do YouTube", youtubeId:"", thumbnail:"", audience:["empresario","juridico","oportunidade"] }
+  ];
+  (function(){
+    var rail=document.getElementById('videoRail'), sec=document.getElementById('videos');
+    if(!rail) return;
+    var list=videoProofs.filter(function(v){return v.audience.indexOf(PAGE_AUDIENCE)>=0;});
+    if(!list.length){ if(sec) sec.style.display='none'; return; }
+    var PLAY='<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+    function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+    rail.innerHTML=list.map(function(v){
+      var has=!!v.youtubeId;
+      var thumb=v.thumbnail?("--vimg:url('"+v.thumbnail+"')"):(has?("--vimg:url('https://i.ytimg.com/vi/"+v.youtubeId+"/hqdefault.jpg')"):"");
+      var open=has?(' href="https://www.youtube.com/watch?v='+encodeURIComponent(v.youtubeId)+'" target="_blank" rel="noopener noreferrer"'):'';
+      return '<a class="vitem'+(has?'':' soon')+'"'+open+' style="'+thumb+'" aria-label="'+esc(v.title)+'">'
+        +'<span class="brk"></span>'
+        +'<div class="vthumb"><span class="play">'+PLAY+'</span>'+(has?'':'<span class="soon-lb">Em breve</span>')+'</div>'
+        +'<div class="vmeta"><div class="vk">'+esc(v.context)+'</div><div class="vt">'+esc(v.title)+'</div></div>'
+        +'</a>';
+    }).join('');
   })();
 
   /* ---- TIPOGRAFIA CINÉTICA: divide headlines em letras (preserva spans coloridos) ---- */
