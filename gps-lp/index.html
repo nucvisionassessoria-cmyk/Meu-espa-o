@@ -648,6 +648,12 @@ html.no-js .kin .ltr>i{opacity:1!important;translate:0 0!important;filter:none!i
 .next .rstep{font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--paper-dim);border:1px solid var(--line-2);border-radius:999px;padding:8px 14px;background:var(--ink)}
 .next .rstep.now{color:#04140A;background:var(--green);border-color:var(--green);font-weight:700;box-shadow:0 0 18px -4px rgba(var(--green-rgb),.7)}
 .next .rarw{color:var(--muted);margin:0 10px}
+/* mobile: E-book -> Minicurso -> Mentoria numa linha só (escala pra caber) */
+@media(max-width:600px){
+  .next .route-mini{flex-wrap:nowrap;max-width:100%}
+  .next .rstep{font-size:clamp(9px,2.5vw,11px);padding:7px clamp(8px,2.4vw,13px);letter-spacing:.02em;white-space:nowrap}
+  .next .rarw{margin:0 clamp(4px,1.5vw,9px);flex:0 0 auto}
+}
 
 /* CTA FINAL */
 .final{text-align:center;padding:clamp(90px,14vw,180px) 0;overflow:hidden}
@@ -1070,7 +1076,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
     <div class="vfeature rv">
       <a class="vphone" id="vphone" href="https://www.youtube.com/shorts/BUqX30VWW0U" target="_blank" rel="noopener noreferrer" aria-label="Assistir ao vídeo no YouTube (abre em nova aba)">
         <span class="brk"></span>
-        <img class="vthumb-img" id="vthumb" src="https://i.ytimg.com/vi/BUqX30VWW0U/hqdefault.jpg" onerror="this.classList.add('vthumb-off')" alt="" decoding="async">
+        <img class="vthumb-img" id="vthumb" src="assets/cidinei-autoridade.jpg" alt="Cidinei Martins em workshop sobre a nova NR-01" decoding="async">
         <span class="vgrad"></span>
         <span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
         <span class="vtag">Ao vivo no YouTube · vertical</span>
@@ -1249,10 +1255,22 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
     if(!sec) return;
     if(!VIDEO_ID){ sec.style.display='none'; return; }
     var url="https://www.youtube.com/shorts/"+VIDEO_ID;
-    var ph=document.getElementById('vphone'), bt=document.getElementById('vbtn');
+    var ph=document.getElementById('vphone'), bt=document.getElementById('vbtn'), im=document.getElementById('vthumb');
     if(ph) ph.href=url;
     if(bt) bt.href=url;
-    /* thumbnail já vem no src (hqdefault) direto no HTML — funciona sem JS. */
+    /* Poster local (assets) já carrega sempre — inclusive em visualizador que bloqueia
+       imagem externa. Se o navegador permitir, troca pela miniatura real do YouTube. */
+    if(im){
+      var names=['oardefault','hqdefault','sddefault','mqdefault'], i=0;
+      (function tryN(){
+        if(i>=names.length) return;
+        var u='https://i.ytimg.com/vi/'+VIDEO_ID+'/'+names[i++]+'.jpg';
+        var test=new Image();
+        test.onload=function(){ if(test.naturalWidth>120){ im.src=u; } else { tryN(); } };
+        test.onerror=function(){ tryN(); };
+        test.src=u;
+      })();
+    }
   })();
 
   /* ---- TIPOGRAFIA CINÉTICA: divide headlines em letras (preserva spans coloridos) ---- */
