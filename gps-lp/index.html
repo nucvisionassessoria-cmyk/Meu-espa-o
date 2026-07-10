@@ -352,6 +352,8 @@ h1,h2,h3{text-wrap:balance}
    VIRADA
    --------------------------------------------------------------------- */
 .turn{text-align:center;padding:clamp(80px,12vw,150px) 0;overflow:hidden}
+/* eyebrow em linha própria, centralizado no topo (igual às outras seções) */
+.turn .eyebrow{display:flex;justify-content:center;margin-bottom:20px}
 .turn .big{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(34px,6.4vw,78px);line-height:.98;letter-spacing:.01em;max-width:16ch;margin:0 auto 26px}
 .turn .big .strike{color:var(--muted);position:relative;white-space:nowrap}
 .turn .big .strike::after{content:"";position:absolute;left:-2%;right:-2%;top:52%;height:5px;background:var(--danger);border-radius:3px;transform:scaleX(0);transform-origin:left;transition:transform .8s cubic-bezier(.6,0,.2,1) .3s}
