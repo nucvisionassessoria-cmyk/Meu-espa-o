@@ -589,15 +589,16 @@ html.no-js .kin .ltr>i{opacity:1!important;translate:0 0!important;filter:none!i
    --------------------------------------------------------------------- */
 .faq{max-width:820px;margin:0 auto}
 .qa{border:1px solid var(--line);border-radius:13px;background:var(--ink-2);margin-bottom:12px;overflow:hidden;transition:border-color .3s,background .3s}
-.qa.open{border-color:rgba(var(--green-rgb),.35);background:linear-gradient(180deg,rgba(var(--green-rgb),.05),var(--ink-2))}
-.qa button{width:100%;text-align:left;background:transparent;border:none;color:#fff;font-family:var(--body);font-weight:600;font-size:16px;padding:20px 22px;cursor:pointer;display:flex;justify-content:space-between;gap:16px;align-items:center}
+.qa[open]{border-color:rgba(var(--green-rgb),.35);background:linear-gradient(180deg,rgba(var(--green-rgb),.05),var(--ink-2))}
+.qa summary{width:100%;text-align:left;background:transparent;border:none;color:#fff;font-family:var(--body);font-weight:600;font-size:16px;padding:20px 22px;cursor:pointer;display:flex;justify-content:space-between;gap:16px;align-items:center;list-style:none;-webkit-tap-highlight-color:transparent}
+.qa summary::-webkit-details-marker{display:none}.qa summary::marker{content:""}
 .qa .ico{flex-shrink:0;width:24px;height:24px;border-radius:50%;border:1px solid var(--line-2);position:relative;transition:.3s}
 .qa .ico::before,.qa .ico::after{content:"";position:absolute;background:var(--green);border-radius:2px;top:50%;left:50%}
 .qa .ico::before{width:11px;height:2px;transform:translate(-50%,-50%)}
 .qa .ico::after{width:2px;height:11px;transform:translate(-50%,-50%);transition:transform .3s}
-.qa.open .ico{border-color:var(--green);transform:rotate(90deg);box-shadow:0 0 12px rgba(var(--green-rgb),.5)}
-.qa.open .ico::after{transform:translate(-50%,-50%) scaleY(0)}
-.qa .ans{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.qa[open] .ico{border-color:var(--green);transform:rotate(90deg);box-shadow:0 0 12px rgba(var(--green-rgb),.5)}
+.qa[open] .ico::after{transform:translate(-50%,-50%) scaleY(0)}
+.qa .ans{overflow:hidden}
 .qa .ans p{padding:0 22px 22px;font-size:14.5px;color:var(--paper-dim);line-height:1.6}
 .qa .ans p b{color:#fff}
 
@@ -763,7 +764,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
         <h1 id="heroTitle"><span class="l1">Você não precisa de susto.</span><span class="l2">Precisa de rota.</span></h1>
         <p class="sub rv">A nova NR-1 não é sobre pânico — é sobre <b>gestão</b>. Antes de decidir sobre qualquer solução, entenda <b>quais pontos da sua empresa merecem atenção</b> e por que isso é uma decisão de liderança, não uma multa.</p>
         <div class="hero-cta rv">
-          <a class="btn btn-primary btn-lg js-checkout magnetic" href="#oferta">Quero minha rota — R$47 <span class="arw">→</span></a>
+          <a class="btn btn-primary btn-lg js-checkout magnetic" href="https://payfast.greenn.com.br/fpzamy9/offer/o8FIrl?utm_source=lp&utm_medium=site&utm_content=cta" target="_blank" rel="noopener noreferrer">Quero minha rota — R$47 <span class="arw">→</span></a>
           <a class="btn btn-ghost btn-lg" href="#metodo">Ver o método</a>
         </div>
         <div class="hero-auth rv">
@@ -968,7 +969,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
           <li class="rv"><span class="bx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg></span><span class="txt">Veja como <b>GRO, PGR e as normas vizinhas</b> (NR-17/NR-07) se conectam.</span></li>
           <li class="rv"><span class="bx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg></span><span class="txt">Acesse um <b>checklist e um plano de ação em 6 passos</b>.</span></li>
         </ul>
-        <a class="btn btn-primary btn-lg js-checkout magnetic rv" href="#oferta">Quero o e-book <span class="arw">→</span></a>
+        <a class="btn btn-primary btn-lg js-checkout magnetic rv" href="https://payfast.greenn.com.br/fpzamy9/offer/o8FIrl?utm_source=lp&utm_medium=site&utm_content=cta" target="_blank" rel="noopener noreferrer">Quero o e-book <span class="arw">→</span></a>
       </div>
     </div>
   </div>
@@ -1007,8 +1008,8 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
         </div>
         <div class="stat-row rv">
           <div class="stat"><div class="n">1998</div><div class="cap">Atuando em SST desde</div></div>
-          <div class="stat"><div class="n"><span data-count="3">0</span></div><div class="cap">Emissoras de TV (SBT · Bom Dia RO · Bora)</div></div>
-          <div class="stat"><div class="n"><span data-count="6">0</span><span class="u">passos</span></div><div class="cap">Plano de ação no e-book</div></div>
+          <div class="stat"><div class="n"><span data-count="3">3</span></div><div class="cap">Emissoras de TV (SBT · Bom Dia RO · Bora)</div></div>
+          <div class="stat"><div class="n"><span data-count="6">6</span><span class="u">passos</span></div><div class="cap">Plano de ação no e-book</div></div>
         </div>
       </div>
       <div class="rv rvr" style="display:flex;justify-content:center">
@@ -1069,7 +1070,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
     <div class="vfeature rv">
       <a class="vphone" id="vphone" href="https://www.youtube.com/shorts/BUqX30VWW0U" target="_blank" rel="noopener noreferrer" aria-label="Assistir ao vídeo no YouTube (abre em nova aba)">
         <span class="brk"></span>
-        <img class="vthumb-img" id="vthumb" alt="" decoding="async" loading="lazy">
+        <img class="vthumb-img" id="vthumb" src="https://i.ytimg.com/vi/BUqX30VWW0U/hqdefault.jpg" onerror="this.classList.add('vthumb-off')" alt="" decoding="async">
         <span class="vgrad"></span>
         <span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
         <span class="vtag">Ao vivo no YouTube · vertical</span>
@@ -1107,7 +1108,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
           <div class="anchor">de R$97</div>
           <div class="price"><span class="cur">R$</span>47<span class="cent">,00</span></div>
           <div class="terms">Valor de lançamento · pagamento único<br>Menos que o custo de um passo errado.</div>
-          <a class="btn btn-primary btn-lg js-checkout magnetic" href="#">Garantir meu e-book <span class="arw">→</span></a>
+          <a class="btn btn-primary btn-lg js-checkout magnetic" href="https://payfast.greenn.com.br/fpzamy9/offer/o8FIrl?utm_source=lp&utm_medium=site&utm_content=cta" target="_blank" rel="noopener noreferrer">Garantir meu e-book <span class="arw">→</span></a>
           <div class="safe"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> Compra segura · Greenn</div>
         </div>
       </div>
@@ -1125,12 +1126,12 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
     <span class="eyebrow rv">08 · Antes de decidir</span>
     <h2 class="sec-h rv" style="text-align:center">Perguntas honestas,<br>respostas <span class="g">diretas</span>.</h2>
     <div class="faq" style="margin-top:14px">
-      <div class="qa rv"><button aria-expanded="false"><span>Isso serve para empresa pequena?</span><span class="ico"></span></button><div class="ans"><p>Serve — e é onde mais faz diferença. Em PME a <b>liderança está mais perto do time</b>, então organizar gestão e prevenção tem efeito rápido. O e-book foi escrito para quem decide, não para departamento jurídico.</p></div></div>
-      <div class="qa rv"><button aria-expanded="false"><span>Esse e-book substitui uma consultoria ou assessoria técnica?</span><span class="ico"></span></button><div class="ans"><p>Não — e essa é a intenção. Ele é a <b>porta de entrada</b>: te dá clareza para saber exatamente o que cobrar e o que priorizar <b>antes</b> de contratar qualquer serviço. É o melhor filtro contra gastar errado.</p></div></div>
-      <div class="qa rv"><button aria-expanded="false"><span>Isso garante que minha empresa fica em conformidade?</span><span class="ico"></span></button><div class="ans"><p>“Conformidade garantida” não existe — nenhum material sério promete isso. O que este entrega é <b>clareza, direção e preparo da liderança</b> para conduzir a adequação com critério.</p></div></div>
-      <div class="qa rv"><button aria-expanded="false"><span>Preciso entender de NR-1 mesmo tendo contador ou RH?</span><span class="ico"></span></button><div class="ans"><p>Sim. Quem <b>responde pela empresa é você</b>. Entender o essencial te dá autonomia para acompanhar e alinhar o trabalho de contador, RH e parceiros com mais segurança.</p></div></div>
-      <div class="qa rv"><button aria-expanded="false"><span>É muito técnico? Vou conseguir aplicar sozinho?</span><span class="ico"></span></button><div class="ans"><p>É técnico na medida certa: <b>verdade normativa, sem juridiquês</b>. Escrito para o empresário ler em poucos minutos e sair sabendo quais pontos precisam de atenção e quais decisões tomar.</p></div></div>
-      <div class="qa rv"><button aria-expanded="false"><span>Como recebo o material e tem garantia?</span><span class="ico"></span></button><div class="ans"><p>Material <b>100% digital em PDF</b>, com acesso imediato após a compra. E você conta com <b>garantia de 7 dias</b> — se não fizer sentido, é só pedir o reembolso.</p></div></div>
+      <details class="qa rv"><summary><span>Isso serve para empresa pequena?</span><span class="ico"></span></summary><div class="ans"><p>Serve — e é onde mais faz diferença. Em PME a <b>liderança está mais perto do time</b>, então organizar gestão e prevenção tem efeito rápido. O e-book foi escrito para quem decide, não para departamento jurídico.</p></div></details>
+      <details class="qa rv"><summary><span>Esse e-book substitui uma consultoria ou assessoria técnica?</span><span class="ico"></span></summary><div class="ans"><p>Não — e essa é a intenção. Ele é a <b>porta de entrada</b>: te dá clareza para saber exatamente o que cobrar e o que priorizar <b>antes</b> de contratar qualquer serviço. É o melhor filtro contra gastar errado.</p></div></details>
+      <details class="qa rv"><summary><span>Isso garante que minha empresa fica em conformidade?</span><span class="ico"></span></summary><div class="ans"><p>“Conformidade garantida” não existe — nenhum material sério promete isso. O que este entrega é <b>clareza, direção e preparo da liderança</b> para conduzir a adequação com critério.</p></div></details>
+      <details class="qa rv"><summary><span>Preciso entender de NR-1 mesmo tendo contador ou RH?</span><span class="ico"></span></summary><div class="ans"><p>Sim. Quem <b>responde pela empresa é você</b>. Entender o essencial te dá autonomia para acompanhar e alinhar o trabalho de contador, RH e parceiros com mais segurança.</p></div></details>
+      <details class="qa rv"><summary><span>É muito técnico? Vou conseguir aplicar sozinho?</span><span class="ico"></span></summary><div class="ans"><p>É técnico na medida certa: <b>verdade normativa, sem juridiquês</b>. Escrito para o empresário ler em poucos minutos e sair sabendo quais pontos precisam de atenção e quais decisões tomar.</p></div></details>
+      <details class="qa rv"><summary><span>Como recebo o material e tem garantia?</span><span class="ico"></span></summary><div class="ans"><p>Material <b>100% digital em PDF</b>, com acesso imediato após a compra. E você conta com <b>garantia de 7 dias</b> — se não fizer sentido, é só pedir o reembolso.</p></div></details>
     </div>
   </div>
 </section>
@@ -1157,7 +1158,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
   <div class="wrap in-c">
     <h2 class="rv">Você não precisa decidir no <span class="g">escuro</span> sobre a NR-1.</h2>
     <p class="rv">Troque o susto pela rota. Comece pela ferramenta que mostra, hoje, os pontos que pedem atenção na sua empresa.</p>
-    <a class="btn btn-primary btn-lg js-checkout magnetic rv" href="#">Quero minha rota — R$47 <span class="arw">→</span></a>
+    <a class="btn btn-primary btn-lg js-checkout magnetic rv" href="https://payfast.greenn.com.br/fpzamy9/offer/o8FIrl?utm_source=lp&utm_medium=site&utm_content=cta" target="_blank" rel="noopener noreferrer">Quero minha rota — R$47 <span class="arw">→</span></a>
   </div>
 </section>
 
@@ -1176,7 +1177,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
 <!-- sticky mobile CTA -->
 <div class="mcta">
   <div class="mp"><span class="cur">R$</span>47<small>e-book · acesso imediato</small></div>
-  <a class="btn btn-primary js-checkout" href="#">Garantir <span class="arw">→</span></a>
+  <a class="btn btn-primary js-checkout" href="https://payfast.greenn.com.br/fpzamy9/offer/o8FIrl?utm_source=lp&utm_medium=site&utm_content=cta" target="_blank" rel="noopener noreferrer">Garantir <span class="arw">→</span></a>
 </div>
 <script>
 /* CTA fixo (mobile): aparece depois do hero e some sobre a oferta/CTA final.
@@ -1218,12 +1219,10 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
     img.src=m[1];
   });
 
-  /* ---- FAQ ---- */
-  document.querySelectorAll('.qa button').forEach(function(b){
-    b.addEventListener('click',function(){
-      var qa=b.parentElement, ans=qa.querySelector('.ans'), open=qa.classList.contains('open');
-      document.querySelectorAll('.qa').forEach(function(o){o.classList.remove('open');o.querySelector('.ans').style.maxHeight=null;o.querySelector('button').setAttribute('aria-expanded','false');});
-      if(!open){qa.classList.add('open');ans.style.maxHeight=ans.scrollHeight+'px';b.setAttribute('aria-expanded','true');}
+  /* ---- FAQ: <details> nativo (funciona sem JS). JS só fecha os outros ao abrir um. ---- */
+  document.querySelectorAll('.faq details.qa').forEach(function(d){
+    d.addEventListener('toggle',function(){
+      if(d.open){ document.querySelectorAll('.faq details.qa').forEach(function(o){ if(o!==d) o.open=false; }); }
     });
   });
 
@@ -1250,16 +1249,10 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
     if(!sec) return;
     if(!VIDEO_ID){ sec.style.display='none'; return; }
     var url="https://www.youtube.com/shorts/"+VIDEO_ID;
-    var ph=document.getElementById('vphone'), bt=document.getElementById('vbtn'), im=document.getElementById('vthumb');
+    var ph=document.getElementById('vphone'), bt=document.getElementById('vbtn');
     if(ph) ph.href=url;
     if(bt) bt.href=url;
-    if(im){
-      /* tenta a miniatura vertical (Shorts); se faltar, cai pra 4:3; se falhar, fundo gradiente */
-      var srcs=['https://i.ytimg.com/vi/'+VIDEO_ID+'/oardefault.jpg',
-                'https://i.ytimg.com/vi/'+VIDEO_ID+'/hqdefault.jpg'], i=0;
-      im.onerror=function(){ i++; if(i<srcs.length){ im.src=srcs[i]; } else { im.onerror=null; im.classList.add('vthumb-off'); } };
-      im.src=srcs[0];
-    }
+    /* thumbnail já vem no src (hqdefault) direto no HTML — funciona sem JS. */
   })();
 
   /* ---- TIPOGRAFIA CINÉTICA: divide headlines em letras (preserva spans coloridos) ---- */
@@ -1334,6 +1327,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
         el.firstChild.nodeValue=Math.round(p*p*(3-2*p)*tgt); if(p<1)requestAnimationFrame(tick);})(0);
     }); cIO.unobserve(e.target);
   });},{threshold:.5});
+  if(!reduce){ document.querySelectorAll('[data-count]').forEach(function(el){el.firstChild.nodeValue=0;}); } /* com JS começa do 0; sem JS mostra o número real */
   document.querySelectorAll('.stat-row').forEach(function(el){cIO.observe(el);});
 
   /* ---- TILT 3D + sheen (desktop, fine pointer) ---- */
