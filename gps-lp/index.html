@@ -279,33 +279,62 @@ h1,h2,h3{text-wrap:balance}
 .card .d{font-size:14px;color:var(--paper-dim);line-height:1.55}
 /* ic numerado (cards do conteúdo do e-book) */
 .card .ic.num{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--green)}
-/* prévias/prints do e-book (placeholder até páginas reais) */
-.ebook-prints{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
-@media(max-width:760px){.ebook-prints{grid-template-columns:1fr 1fr}}
-@media(max-width:480px){.ebook-prints{grid-template-columns:1fr}}
-.eprint{aspect-ratio:16/11;border-radius:14px;border:1px solid var(--line-2);position:relative;overflow:hidden;
-  background:var(--eimg,linear-gradient(135deg,#10271c,#0a1610));background-size:cover;background-position:center;
-  display:flex;align-items:flex-end;padding:12px;box-shadow:0 20px 44px -26px rgba(0,0,0,.9)}
-.eprint::before{content:"";position:absolute;inset:0;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);background:linear-gradient(180deg,rgba(8,12,10,.08),rgba(8,12,10,.5))}
-.eprint .epk{position:relative;z-index:1;font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);border:1px solid var(--line-2);border-radius:999px;padding:4px 9px;background:rgba(8,12,10,.55)}
-.prints-note{text-align:center;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:14px}
-/* cards de VÍDEO (prova social falada) — reusa o carrossel .gallery */
-.vitem{flex:0 0 clamp(268px,74vw,344px);scroll-snap-align:center;position:relative;border-radius:16px;overflow:hidden;
-  border:1px solid var(--line-2);background:linear-gradient(180deg,var(--ink-3),var(--ink-2));text-decoration:none;color:inherit;
-  user-select:none;box-shadow:0 26px 54px -30px rgba(0,0,0,.92);transition:transform .4s cubic-bezier(.2,.7,.2,1),border-color .4s,box-shadow .4s}
-.vitem:hover{transform:translateY(-5px);border-color:rgba(var(--green-rgb),.45);box-shadow:0 30px 60px -28px rgba(0,0,0,.95),0 0 40px -22px rgba(var(--green-rgb),.5)}
-.vitem .vthumb{aspect-ratio:16/9;position:relative;display:flex;align-items:center;justify-content:center;background:var(--vimg,linear-gradient(135deg,#0d3a24,#07160f)) center/cover no-repeat}
-.vitem .vthumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,12,10,.12),rgba(8,12,10,.55))}
-.vitem .play{position:relative;z-index:1;width:56px;height:56px;border-radius:50%;background:rgba(8,12,10,.5);border:1px solid rgba(var(--green-rgb),.6);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;transition:.4s}
-.vitem .play svg{width:20px;height:20px;margin-left:3px;fill:var(--paper)}
-.vitem:hover .play{background:rgba(var(--green-rgb),.25);box-shadow:0 0 26px rgba(var(--green-rgb),.55)}
-.vitem .brk{position:absolute;top:12px;left:12px;width:16px;height:16px;border:2px solid var(--cyan);border-right:none;border-bottom:none;z-index:2}
-.vitem .soon-lb{position:absolute;top:12px;right:12px;z-index:2;font-family:var(--mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line-2);border-radius:999px;padding:4px 8px;background:rgba(8,12,10,.5)}
-.vitem.soon{cursor:default}
-.vitem .vmeta{padding:14px 16px}
-.vitem .vmeta .vk{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:5px;display:flex;align-items:center;gap:6px}
-.vitem .vmeta .vk::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--green);box-shadow:0 0 6px rgba(var(--green-rgb),.9)}
-.vitem .vmeta .vt{font-weight:700;font-size:14.5px;color:#fff;line-height:1.3}
+/* prévias reais do e-book — "páginas" em papel, espiadas do material */
+.ebook-prints{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
+@media(max-width:760px){.ebook-prints{grid-template-columns:1fr}}
+.eprint{position:relative;height:312px;border-radius:12px;overflow:hidden;
+  background:linear-gradient(180deg,#f7f5ef,#eae7dd);color:#141a16;border:1px solid rgba(0,0,0,.10);
+  box-shadow:0 26px 54px -30px rgba(0,0,0,.95),0 1px 0 rgba(255,255,255,.6) inset;
+  padding:22px 22px 0;display:flex;flex-direction:column;
+  transform:rotate(-.7deg);transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s}
+.eprint:nth-child(2){transform:rotate(.6deg)}
+.eprint:nth-child(3){transform:rotate(-.35deg)}
+.eprint::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--green),var(--cyan))}
+.eprint::after{content:"";position:absolute;left:0;right:0;bottom:0;height:104px;background:linear-gradient(180deg,rgba(233,230,220,0),#e9e6dc 78%);pointer-events:none}
+.eprint:hover{transform:rotate(0) translateY(-5px);box-shadow:0 34px 68px -30px rgba(0,0,0,.98),0 0 40px -22px rgba(var(--green-rgb),.4)}
+.eprint .epk{align-self:flex-start;font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:#0b7a3f;border:1px solid rgba(11,122,63,.35);border-radius:999px;padding:4px 9px;background:rgba(11,122,63,.06);margin-bottom:14px}
+.eprint .ep-h{font-family:var(--display);text-transform:uppercase;font-weight:400;font-size:20px;line-height:1.02;letter-spacing:.01em;color:#0d1512;margin-bottom:10px}
+.eprint .ep-tx{font-size:12.5px;line-height:1.52;color:#39433d}
+.eprint .ep-tx b{color:#0b7a3f;font-weight:700}
+.eprint .ep-pg{position:absolute;right:16px;bottom:12px;z-index:1;font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:#9a9f96}
+.ep-tab{width:100%;border-collapse:collapse;margin-top:2px;font-size:10px}
+.ep-tab th{font-family:var(--mono);font-size:7.5px;letter-spacing:.05em;text-transform:uppercase;color:#0b7a3f;text-align:left;padding:0 6px 7px 0;border-bottom:1px solid rgba(0,0,0,.16);font-weight:600}
+.ep-tab td{padding:8px 6px 0 0;color:#39433d;vertical-align:top;line-height:1.3}
+.ep-tab td b{color:#0d1512}
+.ep-tab .rd{display:inline-block;height:8px;border-radius:3px;background:rgba(13,21,18,.14);vertical-align:middle}
+.prints-note{text-align:center;font-size:12.5px;color:var(--paper-dim);margin-top:20px}
+.prints-note b{color:var(--paper)}
+/* prova social em VÍDEO — 1 vídeo em destaque (YouTube, leve: thumb + link) */
+.vfeature{display:grid;grid-template-columns:300px 1fr;gap:clamp(24px,4vw,52px);align-items:center;margin-top:8px}
+@media(max-width:720px){.vfeature{grid-template-columns:1fr;gap:26px;justify-items:center;text-align:center}}
+.vphone{position:relative;display:block;width:300px;max-width:82vw;aspect-ratio:9/16;border-radius:22px;overflow:hidden;
+  border:1px solid var(--line-2);background:linear-gradient(160deg,#0d3a24,#07160f);text-decoration:none;
+  box-shadow:0 40px 80px -34px rgba(0,0,0,.95),0 0 0 6px rgba(8,12,10,.5),0 0 60px -30px rgba(var(--green-rgb),.7);
+  transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s}
+.vphone:hover{transform:translateY(-6px);box-shadow:0 48px 92px -32px rgba(0,0,0,.98),0 0 0 6px rgba(8,12,10,.5),0 0 70px -22px rgba(var(--green-rgb),.85)}
+.vphone .vthumb-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.vphone .vthumb-img.vthumb-off{display:none}
+.vphone .vgrad{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,12,10,.10),transparent 34%,rgba(8,12,10,.28) 74%,rgba(8,12,10,.72))}
+.vphone .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;width:64px;height:64px;border-radius:50%;
+  background:rgba(8,12,10,.45);border:1px solid rgba(var(--green-rgb),.65);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);
+  display:flex;align-items:center;justify-content:center;transition:.4s}
+.vphone .play svg{width:24px;height:24px;margin-left:3px;fill:var(--paper)}
+.vphone .play::after{content:"";position:absolute;inset:-10px;border-radius:50%;border:1px solid rgba(var(--green-rgb),.35);animation:vpulse 2.4s ease-out infinite}
+@keyframes vpulse{0%{transform:scale(.85);opacity:.8}100%{transform:scale(1.5);opacity:0}}
+.vphone:hover .play{background:rgba(var(--green-rgb),.28);box-shadow:0 0 30px rgba(var(--green-rgb),.6)}
+.vphone .brk{position:absolute;top:14px;left:14px;width:18px;height:18px;border:2px solid var(--cyan);border-right:none;border-bottom:none;z-index:2}
+.vphone .vtag{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:14px 16px;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--paper);display:flex;align-items:center;gap:7px}
+.vphone .vtag::before{content:"";width:6px;height:6px;border-radius:50%;background:#ff3b30;box-shadow:0 0 8px rgba(255,59,48,.9)}
+.vcopy{max-width:44ch}
+.vcopy .eyebrow{margin-bottom:14px}
+.vcopy .sec-lead{margin-bottom:22px}
+.vbtn{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:13px;letter-spacing:.04em;color:#04140A;background:linear-gradient(180deg,var(--green-2),var(--green));
+  border-radius:999px;padding:13px 22px;font-weight:700;box-shadow:0 18px 40px -20px rgba(var(--green-rgb),.9);transition:transform .3s,box-shadow .3s}
+.vbtn:hover{transform:translateY(-3px);box-shadow:0 26px 50px -20px rgba(var(--green-rgb),1)}
+.vbtn .ar{transition:transform .3s}
+.vbtn:hover .ar{transform:translate(3px,-3px)}
+.vsmall{display:block;margin-top:14px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+@media(max-width:720px){.vcopy{max-width:52ch}}
 .card .d b{color:#fff}
 
 /* ---------------------------------------------------------------------
@@ -932,21 +961,42 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
     <h2 class="sec-h rv">O que você vai conseguir<br><span class="g">enxergar</span> dentro do e-book.</h2>
     <p class="sec-lead rv">Uma leitura prática para entender o cenário, separar ruído de decisão e perceber onde a sua empresa precisa de mais atenção — antes de contratar ou implementar qualquer coisa.</p>
     <div class="grid g3" style="margin-top:26px">
-      <div class="card tilt rv"><div class="ic num">1</div><div class="t">O que mudou e por que importa</div><div class="d">O que a nova NR-1 trouxe — e o que isso significa para a gestão da sua empresa.</div></div>
-      <div class="card tilt rv"><div class="ic num">2</div><div class="t">Onde a empresa fica sem clareza</div><div class="d">Os pontos em que a maioria ainda não enxerga o próprio cenário com precisão.</div></div>
-      <div class="card tilt rv"><div class="ic num">3</div><div class="t">Riscos psicossociais na gestão</div><div class="d">Como o tema entra na conversa de liderança, clima e produtividade — sem juridiquês.</div></div>
-      <div class="card tilt rv"><div class="ic num">4</div><div class="t">O que observar antes de contratar</div><div class="d">Critérios para avaliar propostas e não investir na solução errada.</div></div>
-      <div class="card tilt rv"><div class="ic num">5</div><div class="t">Como o método GPS organiza a leitura</div><div class="d">A ordem em que faz sentido olhar cada parte do cenário.</div></div>
-      <div class="card tilt rv"><div class="ic num">6</div><div class="t">As decisões que pedem cuidado</div><div class="d">Quais escolhas merecem mais atenção antes de seguir em frente.</div></div>
+      <div class="card tilt rv"><div class="ic num">1</div><div class="t">O que mudou na NR-01</div><div class="d">Os fatores de risco psicossocial passaram a integrar formalmente o gerenciamento de riscos ocupacionais.</div></div>
+      <div class="card tilt rv"><div class="ic num">2</div><div class="t">O que são FRPRT</div><div class="d">Os Fatores de Riscos Psicossociais Relacionados ao Trabalho — o que são e como aparecem na organização e na gestão.</div></div>
+      <div class="card tilt rv"><div class="ic num">3</div><div class="t">Os 3 eixos do método</div><div class="d">Segurança jurídica, liderança humanizada e produtividade sustentável — a leitura integrada que a norma pede.</div></div>
+      <div class="card tilt rv"><div class="ic num">4</div><div class="t">GRO, PGR e normas vizinhas</div><div class="d">Como inventário e plano de ação se conectam — e onde entram NR-17 e AEP, sem confundir as normas.</div></div>
+      <div class="card tilt rv"><div class="ic num">5</div><div class="t">Plano de ação destacável</div><div class="d">Um quadro prático (etapa, ação, responsável, prazo e evidência) para transformar percepção em registro.</div></div>
+      <div class="card tilt rv"><div class="ic num">6</div><div class="t">Autoavaliação da liderança</div><div class="d">Perguntas para olhar a própria rotina e enxergar onde a gestão precisa de mais atenção.</div></div>
     </div>
-    <!-- PRÉVIAS / PRINTS INTERNOS — placeholder até receber páginas reais do e-book.
-         Ao ter as imagens: em cada .eprint use style="--eimg:url('assets/ebook-print-1.jpg')" -->
+    <!-- PRÉVIAS REAIS — trechos do e-book renderizados como "páginas" (spoiler). -->
     <div class="ebook-prints rv">
-      <div class="eprint"><span class="epk">Prévia · página</span></div>
-      <div class="eprint"><span class="epk">Prévia · página</span></div>
-      <div class="eprint"><span class="epk">Prévia · página</span></div>
+      <div class="eprint">
+        <span class="epk">Prévia · e-book</span>
+        <div class="ep-h">O que são<br>os FRPRT</div>
+        <div class="ep-tx"><b>Fatores de Riscos Psicossociais Relacionados ao Trabalho.</b> São fatores presentes na organização, na gestão, nas condições e nas relações de trabalho que, quando inadequados, podem afetar a saúde de quem trabalha…</div>
+        <span class="ep-pg">e-book · cap. 2</span>
+      </div>
+      <div class="eprint">
+        <span class="epk">Prévia · e-book</span>
+        <div class="ep-h">A grande<br>virada</div>
+        <div class="ep-tx">A NR-01 desloca os fatores psicossociais para <b>dentro do GRO / PGR</b>. Não basta dizer que a empresa se preocupa com pessoas: é preciso demonstrar, com método e evidência, que a organização identifica, avalia e controla os riscos…</div>
+        <span class="ep-pg">e-book · cap. 1</span>
+      </div>
+      <div class="eprint">
+        <span class="epk">Prévia · e-book</span>
+        <div class="ep-h">Plano de ação<br>destacável</div>
+        <table class="ep-tab">
+          <thead><tr><th>Etapa</th><th>Ação prática</th><th>Evidência</th></tr></thead>
+          <tbody>
+            <tr><td><b>1.</b> Olhar sistêmico</td><td>Mapear o cenário real do trabalho</td><td>Registro</td></tr>
+            <tr><td><b>2.</b> <span class="rd" style="width:58px"></span></td><td><span class="rd" style="width:92px"></span></td><td><span class="rd" style="width:40px"></span></td></tr>
+            <tr><td><b>3.</b> <span class="rd" style="width:44px"></span></td><td><span class="rd" style="width:80px"></span></td><td><span class="rd" style="width:34px"></span></td></tr>
+          </tbody>
+        </table>
+        <span class="ep-pg">e-book · anexo</span>
+      </div>
     </div>
-    <p class="prints-note rv">Prévias do material — o conteúdo completo está no e-book.</p>
+    <p class="prints-note rv">Trechos reais do material. O plano de ação completo e a autoavaliação da liderança <b>estão dentro do e-book</b>.</p>
   </div>
 </section>
 
@@ -1025,13 +1075,22 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
 <!-- PROVA SOCIAL EM VÍDEO (YouTube — leve: só thumbnail + link, sem iframe no load) -->
 <section class="section" id="videos">
   <div class="wrap">
-    <span class="eyebrow rv">Quem participou</span>
-    <h2 class="sec-h rv">Pessoas reais.<br><span class="g">Experiências reais</span>.</h2>
-    <p class="sec-lead rv" style="margin-bottom:16px">Registros em vídeo de quem já teve contato com o método e com o conteúdo do Cidinei.</p>
-    <span class="drag-hint rv">Arraste <span class="ar">→</span> ou role para o lado</span>
-  </div>
-  <div class="gallery-outer">
-    <div class="gallery vgallery" id="videoRail" aria-label="Depoimentos em vídeo"></div>
+    <div class="vfeature rv">
+      <a class="vphone" id="vphone" href="https://www.youtube.com/shorts/BUqX30VWW0U" target="_blank" rel="noopener noreferrer" aria-label="Assistir ao vídeo no YouTube (abre em nova aba)">
+        <span class="brk"></span>
+        <img class="vthumb-img" id="vthumb" alt="" decoding="async" loading="lazy">
+        <span class="vgrad"></span>
+        <span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="vtag">Ao vivo no YouTube · vertical</span>
+      </a>
+      <div class="vcopy">
+        <span class="eyebrow">◉ Registro em vídeo</span>
+        <h2 class="sec-h">Não é só teoria.<br><span class="g">Aperte o play.</span></h2>
+        <p class="sec-lead">Um registro rápido sobre o tema, direto da fonte. Assista, ouça e tire a sua própria conclusão — depois volte e continue a leitura.</p>
+        <a class="vbtn" id="vbtn" href="https://www.youtube.com/shorts/BUqX30VWW0U" target="_blank" rel="noopener noreferrer">Assistir no YouTube <span class="ar">↗</span></a>
+        <span class="vsmall">Abre em nova aba · você não perde o seu lugar aqui</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1175,31 +1234,23 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
     },{passive:false});
   });
 
-  /* ---- PROVA SOCIAL EM VÍDEO (YouTube leve: thumbnail + link, sem iframe no load) ---- */
-  var PAGE_AUDIENCE = "empresario";   /* por LP: empresario | juridico | oportunidade */
-  var videoProofs = [
-    /* PLACEHOLDERS — trocar por vídeos REAIS (preencher youtubeId; thumbnail é opcional). NÃO inventar. */
-    { id:"video-01", title:"[Depoimento em vídeo]", context:"Espaço reservado · inserir link do YouTube", youtubeId:"", thumbnail:"", audience:["empresario","juridico","oportunidade"] },
-    { id:"video-02", title:"[Depoimento em vídeo]", context:"Espaço reservado · inserir link do YouTube", youtubeId:"", thumbnail:"", audience:["empresario","juridico","oportunidade"] },
-    { id:"video-03", title:"[Depoimento em vídeo]", context:"Espaço reservado · inserir link do YouTube", youtubeId:"", thumbnail:"", audience:["empresario","juridico","oportunidade"] }
-  ];
+  /* ---- PROVA SOCIAL EM VÍDEO (1 vídeo do YouTube em destaque; thumb + link, sem iframe) ---- */
+  var VIDEO_ID = "BUqX30VWW0U";   /* ID do Short do YouTube. Vazio ("") esconde a seção. */
   (function(){
-    var rail=document.getElementById('videoRail'), sec=document.getElementById('videos');
-    if(!rail) return;
-    var list=videoProofs.filter(function(v){return v.audience.indexOf(PAGE_AUDIENCE)>=0;});
-    if(!list.length){ if(sec) sec.style.display='none'; return; }
-    var PLAY='<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
-    function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
-    rail.innerHTML=list.map(function(v){
-      var has=!!v.youtubeId;
-      var thumb=v.thumbnail?("--vimg:url('"+v.thumbnail+"')"):(has?("--vimg:url('https://i.ytimg.com/vi/"+v.youtubeId+"/hqdefault.jpg')"):"");
-      var open=has?(' href="https://www.youtube.com/watch?v='+encodeURIComponent(v.youtubeId)+'" target="_blank" rel="noopener noreferrer"'):'';
-      return '<a class="vitem'+(has?'':' soon')+'"'+open+' style="'+thumb+'" aria-label="'+esc(v.title)+'">'
-        +'<span class="brk"></span>'
-        +'<div class="vthumb"><span class="play">'+PLAY+'</span>'+(has?'':'<span class="soon-lb">Em breve</span>')+'</div>'
-        +'<div class="vmeta"><div class="vk">'+esc(v.context)+'</div><div class="vt">'+esc(v.title)+'</div></div>'
-        +'</a>';
-    }).join('');
+    var sec=document.getElementById('videos');
+    if(!sec) return;
+    if(!VIDEO_ID){ sec.style.display='none'; return; }
+    var url="https://www.youtube.com/shorts/"+VIDEO_ID;
+    var ph=document.getElementById('vphone'), bt=document.getElementById('vbtn'), im=document.getElementById('vthumb');
+    if(ph) ph.href=url;
+    if(bt) bt.href=url;
+    if(im){
+      /* tenta a miniatura vertical (Shorts); se faltar, cai pra 4:3; se falhar, fundo gradiente */
+      var srcs=['https://i.ytimg.com/vi/'+VIDEO_ID+'/oardefault.jpg',
+                'https://i.ytimg.com/vi/'+VIDEO_ID+'/hqdefault.jpg'], i=0;
+      im.onerror=function(){ i++; if(i<srcs.length){ im.src=srcs[i]; } else { im.onerror=null; im.classList.add('vthumb-off'); } };
+      im.src=srcs[0];
+    }
   })();
 
   /* ---- TIPOGRAFIA CINÉTICA: divide headlines em letras (preserva spans coloridos) ---- */
