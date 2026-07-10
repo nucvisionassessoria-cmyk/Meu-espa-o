@@ -25,6 +25,7 @@ build_folder(){
   sed "s#url('../assets/#url('assets/#g; s#url(\"../assets/#url(\"assets/#g" "$src" > "$OUT/$dst/index.html"
   # copia SÓ as fotos usadas (as extras ficam de fora do deploy)
   cp assets/*.jpg "$OUT/$dst/assets/" 2>/dev/null || true
+  cp assets/*.png "$OUT/$dst/assets/" 2>/dev/null || true
 }
 
 build_folder "ebookjuridico"     "p2/index.html"   # RH / Gestão / Jurídico
