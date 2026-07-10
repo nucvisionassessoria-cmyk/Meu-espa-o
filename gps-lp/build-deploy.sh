@@ -15,6 +15,8 @@ mkdir -p "$OUT"
 
 # home no domínio raiz
 cp home/index.html "$OUT/index.html"
+# imagem de compartilhamento (OG) da home fica na raiz
+cp assets/og-share.jpg "$OUT/og-share.jpg" 2>/dev/null || true
 
 # monta uma pasta self-contained a partir de uma LP.
 #   $1 = pasta final (na public_html)   $2 = html de origem
