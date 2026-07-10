@@ -3,3 +3,6 @@ __pycache__/
 # build de deploy (gerado por build-deploy.sh)
 gps-lp/deploy-hostinger/
 gps-lp/*.zip
+
+# previews self-contained (gerados sob demanda; pesados, não versionar)
+gps-lp/preview-*.html
