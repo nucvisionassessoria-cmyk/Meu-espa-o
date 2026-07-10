@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="no-js">
 <head>
+<script>document.documentElement.classList.remove('no-js');</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Programa GPS · A NR-1 abriu um mercado. Onde você se encaixa? | Profissionais</title>
@@ -144,6 +145,10 @@ h1,h2,h3{text-wrap:balance}
 .kin .ltr>i{display:inline-block;font-style:normal;opacity:0;translate:0 .55em;filter:blur(6px);
   transition:opacity .55s cubic-bezier(.2,.8,.2,1),translate .6s cubic-bezier(.16,.9,.24,1),filter .55s}
 .kin.in .ltr>i{opacity:1;translate:0 0;filter:blur(0)}
+/* FALLBACK sem JS: se o script de reveal não rodar, mostra tudo (nada de página em branco) */
+html.no-js .rv,html.no-js .rv.rvx,html.no-js .rv.rvr{opacity:1!important;translate:0 0!important;filter:none!important}
+html.no-js .turn .big{clip-path:none!important;-webkit-clip-path:none!important}
+html.no-js .kin .ltr>i{opacity:1!important;translate:0 0!important;filter:none!important}
 
 /* buttons + CTA magnético */
 .btn{font-family:var(--body);font-weight:700;font-size:15px;border-radius:12px;padding:15px 26px;position:relative;
