@@ -662,7 +662,10 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
 .foot-legal b{color:var(--paper-dim)}
 
 /* sticky mobile CTA */
-.mcta{position:fixed;left:0;right:0;bottom:0;z-index:45;display:none;padding:11px 16px calc(11px + env(safe-area-inset-bottom));background:rgba(8,12,10,.9);backdrop-filter:blur(14px);border-top:1px solid var(--line);align-items:center;justify-content:space-between;gap:12px}
+.mcta{position:fixed;left:0;right:0;bottom:0;z-index:45;display:none;padding:11px 16px calc(11px + env(safe-area-inset-bottom));background:rgba(8,12,10,.92);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid rgba(var(--green-rgb),.28);box-shadow:0 -16px 38px -24px rgba(0,0,0,.92);align-items:center;justify-content:space-between;gap:12px;transform:translateY(125%);transition:transform .4s cubic-bezier(.2,.7,.2,1);will-change:transform}
+.mcta.show{transform:translateY(0)}
+.mcta .btn{flex:0 0 auto}
+@media(prefers-reduced-motion:reduce){.mcta{transition:none}}
 .mcta .mp{font-family:var(--display);font-size:24px;color:#fff;line-height:1}
 .mcta .mp .cur{font-size:13px;color:var(--green);vertical-align:super}
 .mcta .mp small{display:block;font-family:var(--mono);font-size:8px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
@@ -686,8 +689,8 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
   .hero-visual{min-height:340px}
   .hero-ghost .gh{font-size:82vw}
   .sec-h{font-size:clamp(25px,7.4vw,40px)}
-  .section{padding:64px 0}
-  .turn{padding:70px 0}
+  .section{padding:58px 0}
+  .turn{padding:64px 0}
 }
 </style>
 </head>
@@ -1170,6 +1173,24 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
   <div class="mp"><span class="cur">R$</span>47<small>e-book · acesso imediato</small></div>
   <a class="btn btn-primary js-checkout" href="#">Garantir <span class="arw">→</span></a>
 </div>
+<script>
+/* CTA fixo (mobile): aparece depois do hero e some sobre a oferta/CTA final.
+   Gatilho por scrollY (estável); só ESCONDE via geometria (falha => aparece). */
+(function(){
+  var bar=document.querySelector('.mcta'); if(!bar) return;
+  var hero=document.getElementById('top'), offer=document.getElementById('oferta'), fim=document.getElementById('fim');
+  function trig(){ return hero ? Math.max(300, hero.offsetHeight*0.6) : 400; }
+  var t=trig();
+  function onScreen(el){ if(!el) return false; try{ var r=el.getBoundingClientRect(); return r.top<innerHeight*0.85 && r.bottom>innerHeight*0.15; }catch(e){ return false; } }
+  function upd(){
+    var y=window.scrollY||window.pageYOffset||0;
+    bar.classList.toggle('show', y>t && !onScreen(offer) && !onScreen(fim));
+  }
+  addEventListener('scroll',upd,{passive:true});
+  addEventListener('resize',function(){ t=trig(); upd(); });
+  upd();
+})();
+</script>
 
 <script>
 (function(){
