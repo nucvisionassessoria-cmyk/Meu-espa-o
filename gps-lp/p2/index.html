@@ -1217,19 +1217,9 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
     var ph=document.getElementById('vphone'), bt=document.getElementById('vbtn'), im=document.getElementById('vthumb');
     if(ph) ph.href=url;
     if(bt) bt.href=url;
-    /* Poster local (assets) já carrega sempre — inclusive em visualizador que bloqueia
-       imagem externa. Se o navegador permitir, troca pela miniatura real do YouTube. */
-    if(im){
-      var names=['oardefault','hqdefault','sddefault','mqdefault'], i=0;
-      (function tryN(){
-        if(i>=names.length) return;
-        var u='https://i.ytimg.com/vi/'+VIDEO_ID+'/'+names[i++]+'.jpg';
-        var test=new Image();
-        test.onload=function(){ if(test.naturalWidth>120){ im.src=u; } else { tryN(); } };
-        test.onerror=function(){ tryN(); };
-        test.src=u;
-      })();
-    }
+    /* P2: SEM troca automática pela thumb do YouTube — o vídeo desse ID às vezes
+       carrega um frame genérico (ex.: outra pessoa falando), sem nada a ver com a
+       capa aprovada. O poster fica sempre fixo em prova-cdl.jpg (ele + o público). */
   })();
 
   /* ---- TIPOGRAFIA CINÉTICA: divide headlines em letras (preserva spans coloridos) ---- */
