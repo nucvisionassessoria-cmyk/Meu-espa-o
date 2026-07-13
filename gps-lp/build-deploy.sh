@@ -28,10 +28,6 @@ build_folder(){
   # copia SÓ as fotos usadas (as extras ficam de fora do deploy)
   cp assets/*.jpg "$OUT/$dst/assets/" 2>/dev/null || true
   cp assets/*.png "$OUT/$dst/assets/" 2>/dev/null || true
-  # vídeos: só os que essa LP realmente referencia (arquivos pesados — não espalhar pras outras)
-  { grep -oE 'assets/[A-Za-z0-9_-]+\.mp4' "$src" || true; } | sort -u | while read -r v; do
-    cp "$v" "$OUT/$dst/assets/" 2>/dev/null || true
-  done
 }
 
 build_folder "ebookjuridico"     "p2/index.html"   # RH / Gestão / Jurídico

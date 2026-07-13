@@ -710,24 +710,6 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
   .section{padding:58px 0}
   .turn{padding:64px 0}
 }
-
-/* VÍDEOS (P2): cards com <video> nativo self-hosted, sem YouTube */
-.vgallery{gap:16px}
-.vcard{position:relative;flex:0 0 clamp(220px,58vw,272px);scroll-snap-align:center;aspect-ratio:9/16;border-radius:20px;overflow:hidden;border:1px solid var(--line-2);background:linear-gradient(160deg,#0d3a24,#07160f);box-shadow:0 30px 60px -30px rgba(0,0,0,.92);transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s;user-select:none}
-.vcard:hover{transform:translateY(-5px);box-shadow:0 38px 74px -28px rgba(0,0,0,.96),0 0 40px -22px rgba(var(--green-rgb),.5)}
-.vcard .vvid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;background:#07160f}
-.vcard .brk{position:absolute;top:12px;left:12px;width:16px;height:16px;border:2px solid var(--cyan);border-right:none;border-bottom:none;z-index:3;pointer-events:none}
-.vcard .vgrad{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,12,10,.10),transparent 34%,rgba(8,12,10,.3) 74%,rgba(8,12,10,.76));pointer-events:none;z-index:1}
-.vcard .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;width:58px;height:58px;border-radius:50%;background:rgba(8,12,10,.48);border:1px solid rgba(var(--green-rgb),.65);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);display:flex;align-items:center;justify-content:center;transition:.4s;cursor:pointer}
-.vcard .play svg{width:22px;height:22px;margin-left:3px;fill:var(--paper)}
-.vcard .play::after{content:"";position:absolute;inset:-9px;border-radius:50%;border:1px solid rgba(var(--green-rgb),.32);animation:vpulse 2.4s ease-out infinite}
-@keyframes vpulse{0%{transform:scale(.85);opacity:.8}100%{transform:scale(1.5);opacity:0}}
-.vcard:hover .play{background:rgba(var(--green-rgb),.27);box-shadow:0 0 28px rgba(var(--green-rgb),.55)}
-.vcard .vtag{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:13px 15px;font-family:var(--mono);font-size:8.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--paper);display:flex;align-items:center;gap:6px;pointer-events:none}
-.vcard .vtag i{width:6px;height:6px;border-radius:50%;background:#ff3b30;box-shadow:0 0 8px rgba(255,59,48,.9);display:inline-block;flex:0 0 auto}
-.vcard.playing .vgrad,.vcard.playing .play,.vcard.playing .vtag{opacity:0;pointer-events:none;transition:opacity .3s}
-html.no-js .vcard .play{display:none}
-@media(prefers-reduced-motion:reduce){.vcard .play::after{animation:none}}
 </style>
 </head>
 <body>
@@ -1047,16 +1029,24 @@ html.no-js .vcard .play{display:none}
   </div>
 </section>
 
-<!-- VÍDEOS (self-hosted — <video> nativo, sem YouTube, toca na própria página) -->
+<!-- PROVA SOCIAL EM VÍDEO (YouTube — leve: só thumbnail + link, sem iframe no load) -->
 <section class="section" id="videos">
   <div class="wrap">
-    <span class="eyebrow rv">◉ Registro em vídeo</span>
-    <h2 class="sec-h rv">Não é só teoria.<br><span class="g">Aperte o play.</span></h2>
-    <p class="sec-lead rv" style="margin-bottom:20px">Registro em vídeo, direto da fonte — assista aqui mesmo.</p>
-  </div>
-  <div class="gallery-outer">
-    <div class="gallery vgallery" id="videoRail">
-      <div class="vcard"><span class="brk"></span><video class="vvid" controls preload="metadata" playsinline poster="assets/prova-cdl.jpg"><source src="assets/video-nr01.mp4" type="video/mp4"></video><span class="vgrad"></span><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="vtag"><i></i>Vídeo · assista aqui</span></div>
+    <div class="vfeature rv">
+      <a class="vphone" id="vphone" href="https://www.youtube.com/shorts/BUqX30VWW0U" target="_blank" rel="noopener noreferrer" aria-label="Assistir ao vídeo no YouTube (abre em nova aba)">
+        <span class="brk"></span>
+        <img class="vthumb-img" id="vthumb" src="assets/cidinei-autoridade.jpg" alt="Cidinei Martins em workshop sobre a nova NR-01" decoding="async">
+        <span class="vgrad"></span>
+        <span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="vtag">Ao vivo no YouTube · vertical</span>
+      </a>
+      <div class="vcopy">
+        <span class="eyebrow">◉ Registro em vídeo</span>
+        <h2 class="sec-h">Não é só teoria.<br><span class="g">Aperte o play.</span></h2>
+        <p class="sec-lead">Um registro rápido sobre o tema, direto da fonte. Assista, ouça e tire a sua própria conclusão — depois volte e continue a leitura.</p>
+        <a class="vbtn" id="vbtn" href="https://www.youtube.com/shorts/BUqX30VWW0U" target="_blank" rel="noopener noreferrer">Assistir no YouTube <span class="ar">↗</span></a>
+        <span class="vsmall">Abre em nova aba · você não perde o seu lugar aqui</span>
+      </div>
     </div>
   </div>
 </section>
@@ -1217,22 +1207,29 @@ html.no-js .vcard .play{display:none}
     },{passive:false});
   });
 
-  /* ---- VÍDEOS (P2): <video> nativo self-hosted; JS só estiliza o play até o clique ---- */
+  /* ---- PROVA SOCIAL EM VÍDEO (1 vídeo do YouTube em destaque; thumb + link, sem iframe) ---- */
+  var VIDEO_ID = "BUqX30VWW0U";   /* ID do Short do YouTube. Vazio ("") esconde a seção. */
   (function(){
-    var rail=document.getElementById("videoRail");
-    if(!rail) return;
-    rail.querySelectorAll(".vcard").forEach(function(card){
-      var vid=card.querySelector("video");
-      if(!vid) return;
-      vid.removeAttribute("controls");
-      card.addEventListener("click",function(ev){
-        if(card.classList.contains("playing")) return;
-        ev.preventDefault();
-        vid.setAttribute("controls","");
-        vid.play().catch(function(){});
-      });
-      vid.addEventListener("play",function(){ card.classList.add("playing"); });
-    });
+    var sec=document.getElementById('videos');
+    if(!sec) return;
+    if(!VIDEO_ID){ sec.style.display='none'; return; }
+    var url="https://www.youtube.com/shorts/"+VIDEO_ID;
+    var ph=document.getElementById('vphone'), bt=document.getElementById('vbtn'), im=document.getElementById('vthumb');
+    if(ph) ph.href=url;
+    if(bt) bt.href=url;
+    /* Poster local (assets) já carrega sempre — inclusive em visualizador que bloqueia
+       imagem externa. Se o navegador permitir, troca pela miniatura real do YouTube. */
+    if(im){
+      var names=['oardefault','hqdefault','sddefault','mqdefault'], i=0;
+      (function tryN(){
+        if(i>=names.length) return;
+        var u='https://i.ytimg.com/vi/'+VIDEO_ID+'/'+names[i++]+'.jpg';
+        var test=new Image();
+        test.onload=function(){ if(test.naturalWidth>120){ im.src=u; } else { tryN(); } };
+        test.onerror=function(){ tryN(); };
+        test.src=u;
+      })();
+    }
   })();
 
   /* ---- TIPOGRAFIA CINÉTICA: divide headlines em letras (preserva spans coloridos) ---- */
