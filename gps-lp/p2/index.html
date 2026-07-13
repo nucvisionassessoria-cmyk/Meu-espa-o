@@ -711,15 +711,14 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
   .turn{padding:64px 0}
 }
 
-/* VÍDEOS (P2): cards estáticos que tocam o YouTube embutido ao clicar */
+/* VÍDEOS (P2): cards com <video> nativo self-hosted, sem YouTube */
 .vgallery{gap:16px}
-.vcard{position:relative;flex:0 0 clamp(220px,58vw,272px);scroll-snap-align:center;aspect-ratio:9/16;border-radius:20px;overflow:hidden;border:1px solid var(--line-2);background:linear-gradient(160deg,#0d3a24,#07160f);text-decoration:none;color:inherit;box-shadow:0 30px 60px -30px rgba(0,0,0,.92);transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s;user-select:none;cursor:pointer}
+.vcard{position:relative;flex:0 0 clamp(220px,58vw,272px);scroll-snap-align:center;aspect-ratio:9/16;border-radius:20px;overflow:hidden;border:1px solid var(--line-2);background:linear-gradient(160deg,#0d3a24,#07160f);box-shadow:0 30px 60px -30px rgba(0,0,0,.92);transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s;user-select:none}
 .vcard:hover{transform:translateY(-5px);box-shadow:0 38px 74px -28px rgba(0,0,0,.96),0 0 40px -22px rgba(var(--green-rgb),.5)}
-.vcard .vposter{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;background:#07160f}
-.vcard .vframe{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:4;background:#000}
+.vcard .vvid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;background:#07160f}
 .vcard .brk{position:absolute;top:12px;left:12px;width:16px;height:16px;border:2px solid var(--cyan);border-right:none;border-bottom:none;z-index:3;pointer-events:none}
 .vcard .vgrad{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,12,10,.10),transparent 34%,rgba(8,12,10,.3) 74%,rgba(8,12,10,.76));pointer-events:none;z-index:1}
-.vcard .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;width:58px;height:58px;border-radius:50%;background:rgba(8,12,10,.48);border:1px solid rgba(var(--green-rgb),.65);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);display:flex;align-items:center;justify-content:center;transition:.4s}
+.vcard .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;width:58px;height:58px;border-radius:50%;background:rgba(8,12,10,.48);border:1px solid rgba(var(--green-rgb),.65);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);display:flex;align-items:center;justify-content:center;transition:.4s;cursor:pointer}
 .vcard .play svg{width:22px;height:22px;margin-left:3px;fill:var(--paper)}
 .vcard .play::after{content:"";position:absolute;inset:-9px;border-radius:50%;border:1px solid rgba(var(--green-rgb),.32);animation:vpulse 2.4s ease-out infinite}
 @keyframes vpulse{0%{transform:scale(.85);opacity:.8}100%{transform:scale(1.5);opacity:0}}
@@ -727,6 +726,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
 .vcard .vtag{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:13px 15px;font-family:var(--mono);font-size:8.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--paper);display:flex;align-items:center;gap:6px;pointer-events:none}
 .vcard .vtag i{width:6px;height:6px;border-radius:50%;background:#ff3b30;box-shadow:0 0 8px rgba(255,59,48,.9);display:inline-block;flex:0 0 auto}
 .vcard.playing .vgrad,.vcard.playing .play,.vcard.playing .vtag{opacity:0;pointer-events:none;transition:opacity .3s}
+html.no-js .vcard .play{display:none}
 @media(prefers-reduced-motion:reduce){.vcard .play::after{animation:none}}
 </style>
 </head>
@@ -1047,17 +1047,16 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
   </div>
 </section>
 
-<!-- VÍDEOS (YouTube embutido — cards estáticos, tocam na própria página) -->
+<!-- VÍDEOS (self-hosted — <video> nativo, sem YouTube, toca na própria página) -->
 <section class="section" id="videos">
   <div class="wrap">
     <span class="eyebrow rv">◉ Registro em vídeo</span>
     <h2 class="sec-h rv">Não é só teoria.<br><span class="g">Aperte o play.</span></h2>
-    <p class="sec-lead rv" style="margin-bottom:20px">Registros em vídeo, direto da fonte. <b>Arraste para o lado</b> e assista aqui mesmo.</p>
-    <span class="drag-hint rv">Arraste <span class="ar">→</span> ou role para o lado</span>
+    <p class="sec-lead rv" style="margin-bottom:20px">Registro em vídeo, direto da fonte — assista aqui mesmo.</p>
   </div>
   <div class="gallery-outer">
     <div class="gallery vgallery" id="videoRail">
-      <a class="vcard" data-yt="BUqX30VWW0U" href="https://www.youtube.com/watch?v=BUqX30VWW0U" target="_blank" rel="noopener noreferrer" aria-label="Assistir ao vídeo (toca aqui na página)"><span class="brk"></span><img class="vposter" src="assets/prova-cdl.jpg" alt="Cidinei Martins palestrando para o público" decoding="async"><span class="vgrad"></span><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="vtag"><i></i>YouTube · assista aqui</span></a>
+      <div class="vcard"><span class="brk"></span><video class="vvid" controls preload="metadata" playsinline poster="assets/prova-cdl.jpg"><source src="assets/video-nr01.mp4" type="video/mp4"></video><span class="vgrad"></span><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="vtag"><i></i>Vídeo · assista aqui</span></div>
     </div>
   </div>
 </section>
@@ -1218,27 +1217,21 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
     },{passive:false});
   });
 
-  /* ---- VÍDEOS (P2): cards estáticos no HTML; clique cria o player do YouTube embutido ---- */
+  /* ---- VÍDEOS (P2): <video> nativo self-hosted; JS só estiliza o play até o clique ---- */
   (function(){
     var rail=document.getElementById("videoRail");
     if(!rail) return;
-    addEventListener("load",function(){ setTimeout(function(){
-      ["https://www.youtube-nocookie.com","https://i.ytimg.com"].forEach(function(h){
-        var l=document.createElement("link"); l.rel="preconnect"; l.href=h; l.crossOrigin=""; document.head.appendChild(l);
-      });
-    },1200); });
-    rail.querySelectorAll(".vcard[data-yt]").forEach(function(card){
+    rail.querySelectorAll(".vcard").forEach(function(card){
+      var vid=card.querySelector("video");
+      if(!vid) return;
+      vid.removeAttribute("controls");
       card.addEventListener("click",function(ev){
+        if(card.classList.contains("playing")) return;
         ev.preventDefault();
-        if(card.querySelector(".vframe")) return;
-        var f=document.createElement("iframe");
-        f.className="vframe";
-        f.src="https://www.youtube-nocookie.com/embed/"+encodeURIComponent(card.getAttribute("data-yt"))+"?autoplay=1&playsinline=1&rel=0&modestbranding=1";
-        f.title="Vídeo"; f.setAttribute("frameborder","0");
-        f.setAttribute("allow","accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
-        f.setAttribute("allowfullscreen","");
-        card.appendChild(f); card.classList.add("playing");
+        vid.setAttribute("controls","");
+        vid.play().catch(function(){});
       });
+      vid.addEventListener("play",function(){ card.classList.add("playing"); });
     });
   })();
 
