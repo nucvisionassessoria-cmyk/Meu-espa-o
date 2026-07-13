@@ -328,7 +328,8 @@ html.no-js .kin .ltr>i{opacity:1!important;translate:0 0!important;filter:none!i
   border:1px solid var(--line-2);background:linear-gradient(160deg,#0d3a24,#07160f);text-decoration:none;color:inherit;
   box-shadow:0 30px 60px -30px rgba(0,0,0,.92);transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s;user-select:none}
 .vcard:hover{transform:translateY(-5px);box-shadow:0 38px 74px -28px rgba(0,0,0,.96),0 0 40px -22px rgba(var(--green-rgb),.5)}
-.vcard video,.vcard .vposter{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;background:#07160f}
+.vcard .vposter{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;background:#07160f}
+.vcard .vframe{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:4;background:#000}
 .vcard .brk{position:absolute;top:12px;left:12px;width:16px;height:16px;border:2px solid var(--cyan);border-right:none;border-bottom:none;z-index:3;pointer-events:none}
 .vcard .vplay{position:absolute;inset:0;z-index:2;border:none;background:transparent;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent}
 .vcard .vgrad{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,12,10,.10),transparent 34%,rgba(8,12,10,.3) 74%,rgba(8,12,10,.76));pointer-events:none}
@@ -341,7 +342,6 @@ html.no-js .kin .ltr>i{opacity:1!important;translate:0 0!important;filter:none!i
 .vcard .vtag{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:13px 15px;font-family:var(--mono);font-size:8.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--paper);display:flex;align-items:center;gap:6px;pointer-events:none}
 .vcard .vtag i{width:6px;height:6px;border-radius:50%;background:#ff3b30;box-shadow:0 0 8px rgba(255,59,48,.9);display:inline-block;flex:0 0 auto}
 .vcard.playing .vplay,.vcard.playing .vgrad,.vcard.playing .vtag{opacity:0;pointer-events:none;transition:opacity .3s}
-.vcard.playing video{cursor:default}
 @media(prefers-reduced-motion:reduce){.vcard .play::after{animation:none}}
 .card .d b{color:#fff}
 
@@ -1068,7 +1068,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
   </div>
 </section>
 
-<!-- VÍDEOS (self-hospedados; poster aparece na hora, vídeo carrega em 2º plano) -->
+<!-- VÍDEOS (YouTube incorporado — toca dentro da página, sem abrir aba nova) -->
 <section class="section" id="videos">
   <div class="wrap">
     <span class="eyebrow rv">◉ Registro em vídeo</span>
@@ -1237,15 +1237,13 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
     },{passive:false});
   });
 
-  /* ---- VÍDEOS: self-hospedados, com carregamento em 2º plano (não pesa a página) ----
-     Cada item é: {type:'file', src, poster, tag} — vídeo próprio na LP; carrega
-     em segundo plano só DEPOIS que a página já carregou, quando o item se aproxima
-     da tela (nunca durante o carregamento inicial). Ou {type:'youtube', id, poster, tag}
-     — atalho pro YouTube (abre em nova aba), pra vídeos que ainda não foram hospedados aqui. */
+  /* ---- VÍDEOS: hospedados no YouTube, tocam INCORPORADOS na própria página (sem abrir aba nova).
+     Cada item: {id, poster, tag}. O player do YouTube só é criado no CLIQUE — a página nunca
+     carrega nada de vídeo/YouTube sozinha, então isso não pesa o carregamento inicial. */
   var VIDEOS = [
-    { type:'youtube', id:'BUqX30VWW0U', poster:'assets/cidinei-autoridade.jpg', tag:'YouTube · vertical' }
-    /* Vídeo hospedado na própria LP — adicionar quando o arquivo estiver em assets/:
-       { type:'file', src:'assets/video-2.mp4', poster:'assets/traj-2.jpg', tag:'Vídeo' }, */
+    { id:'BUqX30VWW0U', poster:'assets/cidinei-autoridade.jpg', tag:'YouTube · vertical' }
+    /* Adicionar os próximos vídeos aqui, no mesmo formato:
+       { id:'XXXXXXXXXXX', poster:'assets/traj-2.jpg', tag:'YouTube · vertical' }, */
   ];
   (function(){
     var rail=document.getElementById('videoRail'), sec=document.getElementById('videos');
@@ -1254,57 +1252,38 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
     function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
     var PLAY='<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
     rail.innerHTML=VIDEOS.map(function(v,i){
-      if(v.type==='youtube'){
-        var url='https://www.youtube.com/shorts/'+v.id;
-        return '<a class="vcard" href="'+url+'" target="_blank" rel="noopener noreferrer" aria-label="Assistir no YouTube (abre em nova aba)">'
-          +'<span class="brk"></span><img class="vposter" src="'+v.poster+'" alt="" decoding="async">'
-          +'<span class="vgrad"></span><span class="play">'+PLAY+'</span>'
-          +'<span class="vtag"><i></i>'+esc(v.tag||'YouTube')+'</span></a>';
-      }
       return '<div class="vcard" data-idx="'+i+'">'
-        +'<span class="brk"></span>'
-        +'<video class="vplayer" poster="'+v.poster+'" preload="none" playsinline></video>'
-        +'<button class="vplay" type="button" aria-label="Assistir vídeo"><span class="vgrad"></span><span class="play">'+PLAY+'</span></button>'
-        +'<span class="vtag"><i></i>'+esc(v.tag||'Vídeo')+'</span></div>';
+        +'<span class="brk"></span><img class="vposter" src="'+v.poster+'" alt="" decoding="async">'
+        +'<button class="vplay" type="button" aria-label="Assistir vídeo aqui mesmo na página"><span class="vgrad"></span><span class="play">'+PLAY+'</span></button>'
+        +'<span class="vtag"><i></i>'+esc(v.tag||'YouTube')+'</span></div>';
     }).join('');
 
-    var fileCards=[].slice.call(rail.querySelectorAll('.vcard[data-idx]'));
-    if(!fileCards.length) return;
-
-    /* conexão lenta / economia de dados: não pré-carrega sozinho, só ao clicar */
-    var conn=navigator.connection||navigator.webkitConnection||navigator.mozConnection;
-    var saveData=!!(conn&&(conn.saveData||/2g/.test(conn.effectiveType||'')));
-
-    var arm=fileCards.map(function(card){
-      var video=card.querySelector('.vplayer'), btn=card.querySelector('.vplay');
-      var v=VIDEOS[+card.dataset.idx], done=false;
-      video.addEventListener('error',function(){ card.style.display='none'; },true);
-      function ensure(){
-        if(done||!v.src) return; done=true;
-        video.preload='auto'; video.src=v.src; video.load();
-      }
-      btn.addEventListener('click',function(){
-        ensure(); video.controls=true; card.classList.add('playing');
-        video.play().catch(function(){});
-      });
-      return ensure;
+    /* aquece a conexão com o YouTube em 2º plano — só DEPOIS que a página já carregou.
+       Não baixa o player nem nenhum vídeo: só prepara DNS/TLS, pra quando a pessoa
+       clicar o player entrar quase na hora. */
+    addEventListener('load',function(){
+      setTimeout(function(){
+        ['https://www.youtube-nocookie.com','https://i.ytimg.com'].forEach(function(href){
+          var l=document.createElement('link'); l.rel='preconnect'; l.href=href; l.crossOrigin='';
+          document.head.appendChild(l);
+        });
+      },1200);
     });
 
-    /* só começa a "esquentar" o vídeo em 2º plano DEPOIS que a página já carregou
-       por completo — nunca disputa banda com o carregamento inicial. */
-    addEventListener('load',function(){
-      if(saveData) return;
-      setTimeout(function(){
-        var io=new IntersectionObserver(function(es){
-          es.forEach(function(e){
-            if(!e.isIntersecting) return;
-            var idx=fileCards.indexOf(e.target);
-            if(idx>=0) arm[idx]();
-            io.unobserve(e.target);
-          });
-        },{rootMargin:'600px 0px',threshold:.01});
-        fileCards.forEach(function(card){ io.observe(card); });
-      },1200);
+    rail.querySelectorAll('.vcard').forEach(function(card){
+      var btn=card.querySelector('.vplay'), v=VIDEOS[+card.dataset.idx];
+      btn.addEventListener('click',function(){
+        if(card.querySelector('.vframe')) return;
+        var f=document.createElement('iframe');
+        f.className='vframe';
+        f.src='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(v.id)+'?autoplay=1&playsinline=1&rel=0&modestbranding=1';
+        f.title='Vídeo — '+(v.tag||'YouTube');
+        f.setAttribute('frameborder','0');
+        f.setAttribute('allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+        f.setAttribute('allowfullscreen','');
+        card.appendChild(f);
+        card.classList.add('playing');
+      });
     });
   })();
 
