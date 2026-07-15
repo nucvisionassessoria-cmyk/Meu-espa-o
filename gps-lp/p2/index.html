@@ -99,6 +99,7 @@ h1,h2,h3{text-wrap:balance}
 .sec-h,#heroTitle,.final h2,.offer-top h2{transition:text-shadow .6s ease}
 .energized{animation:enrg 1.3s ease forwards}
 @keyframes enrg{0%{text-shadow:0 0 0 rgba(var(--green-rgb),0)}35%{text-shadow:0 0 30px rgba(var(--green-rgb),.7),0 0 62px rgba(var(--green-rgb),.3)}100%{text-shadow:0 0 16px rgba(var(--green-rgb),.32),0 0 34px rgba(var(--green-rgb),.15)}}
+@media (prefers-reduced-motion:reduce){.energized{animation:none;text-shadow:0 0 16px rgba(var(--green-rgb),.32),0 0 34px rgba(var(--green-rgb),.15)}}
 
 /* barra de progresso no topo */
 .topbar{position:fixed;top:0;left:0;height:2px;width:100%;z-index:50;transform:scaleX(0);transform-origin:left;
@@ -1352,21 +1353,23 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
     var contentLeft=Math.max(24,(docW-1180)/2+24);
     var gutter=contentLeft>=88;                 // vertentes só quando há gutter (PC)
     var Xmain=clamp(contentLeft*0.42,12,84);
-    // âncoras de título: hero + títulos de seção + CTA final
+    // destino = oferta principal (calculado ANTES das âncoras, pra filtrar o que vem depois dele)
+    var offerEl=document.querySelector('.offer-card'); var otopY,ocx;
+    if(offerEl){var orr=offerEl.getBoundingClientRect(); otopY=orr.top+scrollY-18; ocx=orr.left+scrollX+orr.width/2;}
+    else {otopY=docH-420; ocx=docW/2;}
+    // âncoras de título: hero + títulos de seção — só os que vêm ANTES do e-book.
+    // a rota termina na oferta; títulos depois dela (FAQ, CTA final) ficam de fora,
+    // senão o traçado passa do destino e volta (quebra a sensação de chegada).
     anchors=[]; var list=[]; var htEl=document.getElementById('heroTitle'); if(htEl)list.push(htEl);
     [].slice.call(document.querySelectorAll('.sec-h')).forEach(function(e){list.push(e);});
-    var fhEl=document.querySelector('.final h2'); if(fhEl)list.push(fhEl);
     list.forEach(function(el){
       var r=el.getBoundingClientRect(); if(r.height===0)return;
       var y=r.top+scrollY+Math.min(r.height*0.5,54); var left=r.left+scrollX;
+      if(y>=otopY-40)return;
       var isCenter=getComputedStyle(el).textAlign==='center';
       anchors.push({el:el,y:y,left:left,branch:gutter && el.id!=='heroTitle' && !isCenter && left>Xmain+40 && left<docW*0.34});
     });
     anchors.sort(function(a,b){return a.y-b.y;});
-    // destino = oferta principal
-    var offerEl=document.querySelector('.offer-card'); var otopY,ocx;
-    if(offerEl){var orr=offerEl.getBoundingClientRect(); otopY=orr.top+scrollY-18; ocx=orr.left+scrollX+orr.width/2;}
-    else {otopY=docH-420; ocx=docW/2;}
     mainStartY=anchors.length?anchors[0].y:200; mainEndY=otopY; destY=otopY;
     // caminho principal (desce no gutter e curva para dentro da oferta)
     var d='M '+Xmain.toFixed(1)+' '+mainStartY.toFixed(1);
