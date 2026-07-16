@@ -205,7 +205,7 @@ html.no-js .kin .ltr>i{opacity:1!important;translate:0 0!important;filter:none!i
 .hero-hud .h1{top:20%;left:6%}.hero-hud .h2{top:70%;right:8%}.hero-hud .h3{bottom:16%;left:12%}
 @media(max-width:940px){.hero-hud{display:none}}
 .hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.08fr .92fr;gap:48px;align-items:center;width:100%}
-@media(max-width:940px){.hero-grid{grid-template-columns:1fr;gap:38px}}
+@media(max-width:940px){.hero-grid{grid-template-columns:1fr;gap:38px}.hero-grid>*{min-width:0}}
 .hero .kick{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--cyan);
   display:inline-flex;align-items:center;gap:10px;margin-bottom:22px}
 .hero .kick::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 10px 2px rgba(var(--green-rgb),.8)}
@@ -948,7 +948,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 120px}
     <div class="ebook-grid">
       <div class="ebook-mock rv rvx" data-par="30">
         <div class="book3d" id="book">
-          <div class="bookface bf-front book" style="--photo-book:url('../assets/ebook-capa.jpg')">
+          <div class="bookface bf-front book">
             <span class="book-badge">Lançamento</span>
             <div class="spineglow"></div>
             <div class="glare"></div>
