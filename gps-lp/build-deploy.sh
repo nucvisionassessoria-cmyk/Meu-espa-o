@@ -25,9 +25,11 @@ build_folder(){
   mkdir -p "$OUT/$dst/assets"
   # caminhos: ../assets/ -> assets/  (P1 já usa assets/, então é no-op nele)
   sed "s#url('../assets/#url('assets/#g; s#url(\"../assets/#url(\"assets/#g" "$src" > "$OUT/$dst/index.html"
-  # copia SÓ as fotos usadas (as extras ficam de fora do deploy)
-  cp assets/*.jpg "$OUT/$dst/assets/" 2>/dev/null || true
-  cp assets/*.png "$OUT/$dst/assets/" 2>/dev/null || true
+  # copia SÓ os assets que ESTA LP referencia (mantém o pacote enxuto)
+  grep -oE "assets/[A-Za-z0-9._-]+\.(jpg|jpeg|png|svg|webp|mp4)" "$OUT/$dst/index.html" \
+    | sed 's#^assets/##' | sort -u | while read -r a; do
+      cp "assets/$a" "$OUT/$dst/assets/" 2>/dev/null || echo "  AVISO: asset ausente $a"
+    done
 }
 
 build_folder "ebookjuridico"     "p2/index.html"   # RH / Gestão / Jurídico
